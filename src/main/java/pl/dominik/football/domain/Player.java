@@ -1,6 +1,7 @@
 package pl.dominik.football.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -10,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@NoArgsConstructor
 @ToString
 public class Player {
 
@@ -32,4 +34,5 @@ public class Player {
         return firstName + " " + lastName;
     }
 
+    //TODO some stuff like add players to teams
 }

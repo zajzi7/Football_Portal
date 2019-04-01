@@ -7,15 +7,14 @@
 </head>
 <body>
 
-Hello! <br/>
-Thymeleaf test, witaj graczu
 <table border="1">
-    <tr th:each="player : ${players}">
-        <td th:text="${player.firstName}"></td>
-        <td th:text="${player.lastName}"></td>
+    <tr th:each="result : ${results}">
+        <td th:text="${result.homeTeam.teamName}"></td>
+        <td th:text="${result.homeScore}"></td>
+        <td th:text="${result.awayScore}"></td>
+        <td th:text="${result.awayTeam.teamName}"></td>
     </tr>
 </table>
-<hr/>
-<a th:href="results">Wyniki</a>
+
 </body>
 </html>

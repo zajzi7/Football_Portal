@@ -6,6 +6,7 @@ import pl.dominik.football.domain.Player;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 @Repository
 public class PlayerRepository {
@@ -18,4 +19,19 @@ public class PlayerRepository {
         Player player = new Player(firstName, lastName);
         em.persist(player);
     }
+
+    @Transactional
+    public void deletePlayer(int id) {
+        em.remove(id);
+    }
+
+    @Transactional
+    public void updatePlayer() {
+        //TODO
+    }
+
+    public List<Player> getAllPlayers() {
+        return em.createQuery("from Player", Player.class).getResultList();
+    }
+
 }
