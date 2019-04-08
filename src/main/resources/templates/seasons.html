@@ -1,0 +1,30 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+</head>
+<body>
+
+<a th:href="newseason">Nowy sezon</a>
+
+<table border="1">
+    <tr th:each="season : ${seasons}">
+        <td>
+            <span th:text="${season.seasonName}" /> <span th:if="${season.id==currentSeasonId}" >Obecny sezon</span>
+        </td>
+        <td>
+            <a th:href="${'/seasons/edit/'+season.id}">Edytuj</a>
+        </td>
+        <td>
+            <a th:href="${'/seasons/delete/'+season.id}" th:if="${season.id!=currentSeasonId}">Usuń</a>
+        </td>
+        <td>
+            <a th:href="${'/seasons/set-season/'+season.id}" th:if="${season.id!=currentSeasonId}">Ustaw jako obecny</a>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>

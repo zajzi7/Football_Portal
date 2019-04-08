@@ -9,6 +9,7 @@ import pl.dominik.football.services.MatchService;
 
 import java.util.List;
 
+@Deprecated
 @Controller
 public class ResultsController {
 
@@ -19,7 +20,7 @@ public class ResultsController {
     public String showResults(Model model) {
 
         //show results in table
-        List<Match> matchesList = matchService.getResultList();
+        List<Match> matchesList = matchService.getMatchResultList();
         model.addAttribute("results", matchesList);
         return "results";
     }

@@ -16,6 +16,7 @@ import javax.persistence.Id;
 public class Player {
 
     @Id
+    @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 

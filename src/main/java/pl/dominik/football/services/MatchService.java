@@ -13,7 +13,7 @@ public class MatchService {
     @Autowired
     MatchRepository matchRepository;
 
-    public List<Match> getResultList() {
-        return matchRepository.getResults();
+    public List<Match> getMatchResultList() {
+        return matchRepository.getMatchResult();
     }
 }

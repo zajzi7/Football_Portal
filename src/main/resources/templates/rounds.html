@@ -7,18 +7,13 @@
 </head>
 <body>
 
+
 <table border="1">
-    <tr th:each="player : ${players}">
-        <td th:text="${player.firstName}"></td>
-        <td th:text="${player.lastName}"></td>
+    <tr th:each="round : ${rounds}">
+        <td th:text="${round.roundNumber}"></td>
     </tr>
 </table>
-<hr/>
-<a th:href="results">Wyniki</a>
-<hr/>
-<a th:href="seasons">Sezony</a>
 
-<hr/>
 
 </body>
 </html>

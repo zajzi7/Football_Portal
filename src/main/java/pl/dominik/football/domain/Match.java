@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Match {
 
     @Id
+    @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
@@ -28,11 +29,24 @@ public class Match {
     @Getter @Setter
     private Team awayTeam;
 
-    public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore) {
+    @ManyToOne
+    @Getter @Setter
+    private Round round;
+
+    public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.homeScore = homeScore;
         this.awayScore = awayScore;
+        this.round = round;
     }
 
+    @Override
+    public String toString() {
+        return "Match{" +
+                "id=" + id +
+                ", homeScore=" + homeScore +
+                ", awayScore=" + awayScore +
+                '}';
+    }
 }
