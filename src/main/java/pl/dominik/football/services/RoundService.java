@@ -1,32 +1,13 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pl.dominik.football.domain.Match;
-import pl.dominik.football.domain.Round;
-import pl.dominik.football.domain.repository.RoundRepository;
+import pl.dominik.football.domain.entity.Round;
 
-import java.util.List;
+public interface RoundService {
 
-@Service
-public class RoundService {
+    void createRound(int roundNumber);
 
-    @Autowired
-    RoundRepository roundRepository;
+    Round getRoundByInt(int roundNumber);
 
-    public List<Match> getMatchesByRound(Round round) {
-        return roundRepository.getMatchesByRound(round);
-    }
+    Round getRoundById(int id);
 
-    public void createRound(int roundNumber) {
-        roundRepository.createRound(roundNumber);
-    }
-
-    public Round getRoundByInt(int roundNumber) {
-        return roundRepository.getRoundByInt(roundNumber);
-    }
-
-    public Round getRoundById(int id) {
-        return roundRepository.getRoundById(id);
-    }
 }

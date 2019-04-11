@@ -1,4 +1,4 @@
-package pl.dominik.football.domain;
+package pl.dominik.football.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,4 +30,7 @@ public class Season {
         this.seasonName = seasonName;
     }
 
+    public void addRound(Round round) {
+        this.rounds.add(round);
+    }
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.repository.RankingRepository;
 
+@Deprecated
 @Service
 public class RankingService {
 

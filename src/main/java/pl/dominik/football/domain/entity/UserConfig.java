@@ -1,4 +1,4 @@
-package pl.dominik.football.domain;
+package pl.dominik.football.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +14,7 @@ import javax.persistence.OneToOne;
 public class UserConfig {
 
     @Id
+    @Getter
     private int id = 1;
 
     @Getter @Setter

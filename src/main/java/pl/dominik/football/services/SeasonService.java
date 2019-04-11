@@ -1,46 +1,24 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import pl.dominik.football.domain.Round;
-import pl.dominik.football.domain.Season;
-import pl.dominik.football.domain.repository.SeasonRepository;
+import pl.dominik.football.domain.entity.Round;
+import pl.dominik.football.domain.entity.Season;
 
 import java.util.List;
 
-@Service
-public class SeasonService {
+public interface SeasonService {
 
-    @Autowired
-    SeasonRepository seasonRepository;
+    void createSeason(String seasonName);
 
-    public void createSeason(String seasonName) {
-        seasonRepository.createSeason(seasonName);
-    }
+    void saveSeason(Season season);
 
-    @Transactional
-    public void saveSeason(Season season) {
-        seasonRepository.saveSeason(season);
-    }
+    List<Season> getSeasonList();
 
-    public List<Season> getSeasonList() {
-        return seasonRepository.getSeasonList();
-    }
+    void deleteSeason(int id);
 
-    public void deleteSeason(int id) {
-        seasonRepository.deleteSeason(id);
-    }
+    Season getSeasonById(int id);
 
-    public Season getSeasonById(int id) {
-        return seasonRepository.getSeasonById(id);
-    }
+    Season getSeason(String seasonName);
 
-    public Season getSeason(String seasonName) {
-        return seasonRepository.getSeason(seasonName);
-    }
+    void addRound(Round round, Season season);
 
-    public void addRound(Round round, Season season) {
-        seasonRepository.addRound(round, season);
-    }
 }

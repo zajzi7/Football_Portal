@@ -1,13 +1,15 @@
-package pl.dominik.football.domain;
+package pl.dominik.football.domain.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class Match {
 
     @Id
@@ -22,15 +24,15 @@ public class Match {
     private int awayScore;
 
     @OneToOne
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private Team homeTeam;
 
     @OneToOne
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private Team awayTeam;
 
     @ManyToOne
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private Round round;
 
     public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {
@@ -39,14 +41,5 @@ public class Match {
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.round = round;
-    }
-
-    @Override
-    public String toString() {
-        return "Match{" +
-                "id=" + id +
-                ", homeScore=" + homeScore +
-                ", awayScore=" + awayScore +
-                '}';
     }
 }

@@ -1,14 +1,15 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pl.dominik.football.justfortestsomething.TeamRepository;
+import pl.dominik.football.domain.entity.Team;
 
-@Service
-public class TeamService {
+public interface TeamService {
 
-    @Autowired
-    TeamRepository teamRepository;
+    void createTeam(String teamName);
 
+    void deleteTeam(int id);
+
+    Team getTeamByName(String teamName);
+
+    Team getTeamById(int id);
 
 }

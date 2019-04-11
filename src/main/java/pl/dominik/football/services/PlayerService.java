@@ -1,24 +1,16 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pl.dominik.football.domain.Player;
-import pl.dominik.football.domain.repository.PlayerRepository;
+import pl.dominik.football.domain.entity.Player;
 
 import java.util.List;
 
-@Service
-public class PlayerService {
+public interface PlayerService {
 
-    @Autowired
-    PlayerRepository playerRepository;
+    void createPlayer(String firstName, String lastName);
 
-    public void createPlayer(String firstName, String lastName) {
-        playerRepository.createPlayer(firstName, lastName);
-    }
+    void deletePlayer(int id);
 
-    public List<Player> getAllPlayers() {
-        return playerRepository.getAllPlayers();
-    }
+    List<Player> getAllPlayers();
+
 
 }

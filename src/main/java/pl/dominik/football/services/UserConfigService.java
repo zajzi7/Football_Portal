@@ -2,7 +2,7 @@ package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.dominik.football.domain.Season;
+import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.repository.UserConfigRepository;
 
 @Service
@@ -21,5 +21,9 @@ public class UserConfigService {
 
     public void setCurrentSeasonById(int id) {
         userConfigRepository.setCurrentSeasonById(id);
+    }
+
+    public int getId() {
+        return userConfigRepository.getId();
     }
 }

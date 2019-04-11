@@ -1,19 +1,19 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import pl.dominik.football.domain.Match;
-import pl.dominik.football.domain.repository.MatchRepository;
+import pl.dominik.football.domain.entity.Match;
+import pl.dominik.football.domain.entity.Round;
+import pl.dominik.football.domain.entity.Team;
 
 import java.util.List;
 
-@Service
-public class MatchService {
+public interface MatchService {
 
-    @Autowired
-    MatchRepository matchRepository;
+    Match getMatchById(int id);
 
-    public List<Match> getMatchResultList() {
-        return matchRepository.getMatchResult();
-    }
+    List<Match> getAllMatches();
+
+    void addMatchResult(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round);
+
+    List<Match> getMatchesByRound(Round round);
+
 }
