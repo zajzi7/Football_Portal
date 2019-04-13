@@ -25,7 +25,7 @@ public class Round {
     @Getter @Setter
     private int roundNumber;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "round")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "round", cascade = CascadeType.ALL)
     @Getter @Setter
     private List<Match> matches = new ArrayList<>();
 

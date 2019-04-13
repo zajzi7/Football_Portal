@@ -61,7 +61,7 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Override
     public void addRound(Round round, Season season) {
-        //TODO probably this method will be moved to RoundRepository
+        //TODO this method will be removed probably
         season.addRound(round);
         round.setSeason(season);
         roundRepository.save(round);

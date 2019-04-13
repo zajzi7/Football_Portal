@@ -4,17 +4,27 @@
 <head>
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
 </head>
 <body>
 
-<table border="1">
-    <tr th:each="result : ${results}">
-        <td th:text="${result.homeTeam.teamName}"></td>
-        <td th:text="${result.homeScore}"></td>
-        <td th:text="${result.awayScore}"></td>
-        <td th:text="${result.awayTeam.teamName}"></td>
-    </tr>
-</table>
+<div class="container">
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+        <th>Gospodarze</th>
+        <th>Wynik</th>
+        <th>Goście</th>
+        </thead>
+
+        <tbody>
+        <tr th:each="result : ${results}">
+            <td th:text="${result.homeTeam.teamName}"></td>
+            <td th:text="${result.homeScore} + ':' + ${result.awayScore}"></td>
+            <td th:text="${result.awayTeam.teamName}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

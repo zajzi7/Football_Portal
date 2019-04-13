@@ -22,7 +22,7 @@ public class Season {
     @Getter @Setter
     private String seasonName;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "season")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.ALL)
     @Getter @Setter
     private List<Round> rounds = new ArrayList<>();
 

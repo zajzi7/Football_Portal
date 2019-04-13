@@ -4,27 +4,48 @@
 <head>
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
 </head>
 <body>
 
-<a th:href="newseason">Nowy sezon</a>
+<div class="container">
+    <a th:href="newseason" class="btn btn-info btn-sm">Nowy sezon</a>
 
-<table border="1">
-    <tr th:each="season : ${seasons}">
-        <td>
-            <span th:text="${season.seasonName}" /> <span th:if="${season.id==currentSeasonId}" >Obecny sezon</span>
-        </td>
-        <td>
-            <a th:href="${'/seasons/edit/'+season.id}">Edytuj</a>
-        </td>
-        <td>
-            <a th:href="${'/seasons/delete/'+season.id}" th:if="${season.id!=currentSeasonId}">Usuń</a>
-        </td>
-        <td>
-            <a th:href="${'/seasons/set-season/'+season.id}" th:if="${season.id!=currentSeasonId}">Ustaw jako obecny</a>
-        </td>
-    </tr>
-</table>
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Lista sezonów</caption>
+        <thead class="thead-dark">
+        <th scope="col">ID</th>
+        <th scope="col">Sezon</th>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th></th>
+        </thead>
+        <tbody>
+        <tr th:each="season : ${seasons}">
+            <!--        ID season-->
+            <th scope="row" th:text="${season.id}"></th>
 
+            <!--        Season name + current season-->
+            <td><span th:text="${season.seasonName}"/>
+                <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></td>
+
+            <!--        Rounds of season-->
+            <td><a th:href="${'/seasons/show-rounds/'+season.id}">Rundy</a></td>
+
+            <!--        Edit season name-->
+            <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj</a></td>
+
+            <!--        Delete season-->
+            <td><a th:href="${'/seasons/delete/'+season.id}"
+                   th:if="${season.id!=currentSeasonId}">Usuń</a></td>
+
+            <!--        Set season as current season-->
+            <td><a th:href="${'/seasons/set-season/'+season.id}"
+                   th:if="${season.id!=currentSeasonId}">Ustaw jako obecny</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>

@@ -4,14 +4,16 @@
 <head>
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 <body>
 
 <form th:object="${season}" th:action="@{/seasons}" th:method="post">
-    <label>Nazwa sezonu: </label>
+<!--    Hidden field necessary for updates-->
     <input type="hidden" th:field="*{id}" />
-    <input type="text" th:field="*{seasonName}" />
-    <input type="submit" value="Zatwierdź" />
+
+    <input type="text" th:field="*{seasonName}" class="form-control mb-3 col-2" placeholder="Nazwa sezonu" />
+    <button type="submit" class="btn btn-info col-1">Zapisz</button>
 </form>
 
 </body>

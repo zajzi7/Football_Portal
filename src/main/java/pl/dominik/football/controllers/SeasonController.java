@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
@@ -17,17 +18,14 @@ import java.util.List;
 @Controller
 public class SeasonController {
 
-//    @Autowired
-//    SeasonService seasonService;
-
     @Autowired
     UserConfigService userConfigService;
 
     @Autowired
-    RoundService roundService;
+    SeasonService seasonService;
 
     @Autowired
-    SeasonService seasonService;
+    RoundService roundService;
 
     @RequestMapping("/newseason")
     //Form to create new season by admin
@@ -76,6 +74,15 @@ public class SeasonController {
         model.addAttribute("currentSeasonId", currentSeasonId);
 
         return "seasons";
+    }
+
+    @RequestMapping("/seasons/show-rounds/{id}")
+    public String showRoundsBySeason(@PathVariable("id") int id, Model model) {
+        List<Round> rounds = roundService.getRoundsBySeasonId(id);
+        model.addAttribute("rounds", rounds);
+        model.addAttribute("seasonId", id);
+        model.addAttribute("seasonName", seasonService.getSeasonById(id).getSeasonName());
+        return "rounds";
     }
 
 }

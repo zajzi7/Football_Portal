@@ -4,16 +4,27 @@
 <head>
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 <body>
 
+<div class="container">
+<a th:href="${'/newround/'+seasonId}" class="btn btn-info btn-sm">Nowa runda</a>
+<table class="table table-bordered table-striped table-hover">
+    <caption>Rundy sezonu <span th:text="${seasonName}"></span></caption>
+    <thead class="thead-dark">
+    <th scope="col">ID</th>
+    <th scope="col">Runda</th>
+    </thead>
 
-<table border="1">
+    <tbody>
     <tr th:each="round : ${rounds}">
-        <td th:text="${round.roundNumber}"></td>
+        <th scope="row" th:text="${round.id}"></th>
+        <td th:text="${'Kolejka ' + round.roundNumber}"></td>
     </tr>
+    </tbody>
 </table>
-
+</div>
 
 </body>
 </html>
