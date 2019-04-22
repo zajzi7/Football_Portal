@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.RoundRepository;
 import pl.dominik.football.domain.repository.SeasonRepository;
+import pl.dominik.football.domain.repository.TeamRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,9 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Autowired
     RoundRepository roundRepository;
+
+    @Autowired
+    TeamRepository teamRepository;
 
     @Override
     public void createSeason(String seasonName) {
@@ -65,6 +70,14 @@ public class SeasonServiceImpl implements SeasonService {
         season.addRound(round);
         round.setSeason(season);
         roundRepository.save(round);
+        seasonRepository.save(season);
+    }
+
+    @Override
+    public void addTeam(Team team, Season season) {
+        season.addTeam(team);
+        team.setSeason(season);
+        teamRepository.save(team);
         seasonRepository.save(season);
     }
 

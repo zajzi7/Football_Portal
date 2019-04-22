@@ -3,13 +3,11 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
 import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
-@ToString
 public class Match {
 
     @Id
@@ -24,15 +22,15 @@ public class Match {
     private int awayScore;
 
     @OneToOne
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
     private Team homeTeam;
 
     @OneToOne
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
     private Team awayTeam;
 
     @ManyToOne
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
     private Round round;
 
     public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {

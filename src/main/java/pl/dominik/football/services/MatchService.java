@@ -14,6 +14,10 @@ public interface MatchService {
 
     void addMatchResult(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round);
 
-    List<Match> getMatchesByRound(Round round);
+    List<Match> getMatchesByRoundId(int roundId);
+
+    void deleteMatchById(int id);
+
+    void saveMatch(Match match);
 
 }

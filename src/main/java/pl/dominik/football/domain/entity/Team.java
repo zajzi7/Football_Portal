@@ -3,14 +3,13 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class Team {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +19,10 @@ public class Team {
 
     @Getter @Setter
     private String teamName;
+
+    @ManyToOne
+    @Getter @Setter
+    private Season season;
 
     public Team(String teamName) {
         this.teamName = teamName;

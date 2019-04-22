@@ -40,9 +40,18 @@ public class MatchServiceImpl implements MatchService {
         matchRepository.save(match);
     }
 
+    public List<Match> getMatchesByRoundId(int roundId) {
+        return matchRepository.getMatchesByRound_Id(roundId);
+    }
+
     @Override
-    public List<Match> getMatchesByRound(Round round) {
-        return matchRepository.getMatchesByRound(round);
+    public void deleteMatchById(int id) {
+        matchRepository.deleteById(id);
+    }
+
+    @Override
+    public void saveMatch(Match match) {
+        matchRepository.save(match);
     }
 
 

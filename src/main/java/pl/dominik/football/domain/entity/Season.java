@@ -22,9 +22,13 @@ public class Season {
     @Getter @Setter
     private String seasonName;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.REMOVE)
     @Getter @Setter
     private List<Round> rounds = new ArrayList<>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.ALL)
+    @Getter @Setter
+    private List<Team> teams = new ArrayList<>();
 
     public Season(String seasonName) {
         this.seasonName = seasonName;
@@ -32,5 +36,9 @@ public class Season {
 
     public void addRound(Round round) {
         this.rounds.add(round);
+    }
+
+    public void addTeam(Team team) {
+        this.teams.add(team);
     }
 }

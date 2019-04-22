@@ -2,6 +2,7 @@ package pl.dominik.football.services;
 
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.domain.entity.Team;
 
 import java.util.List;
 
@@ -20,5 +21,7 @@ public interface SeasonService {
     Season getSeason(String seasonName);
 
     void addRound(Round round, Season season);
+
+    void addTeam(Team team, Season season);
 
 }

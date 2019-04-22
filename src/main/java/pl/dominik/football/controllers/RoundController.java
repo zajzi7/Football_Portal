@@ -42,17 +42,19 @@ public class RoundController {
         return "redirect:/seasons/show-rounds/" + seasonId;
     }
 
-    @RequestMapping(value = "/rounds/edit/{id}")
-    public String updateRound(@PathVariable("id") int id, Model model) {
+    @RequestMapping(value = "/rounds/edit/{seasonId}/{roundId}")
+    public String updateRound
+            (@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId, Model model) {
         //TODO check if Round name already exist
-        model.addAttribute("round", roundService.getRoundById(id));
+        model.addAttribute("round", roundService.getRoundById(roundId));
+        model.addAttribute("seasonId", seasonId);
         return "create-round";
     }
 
-    @RequestMapping(value = "/rounds/delete/{id}")
-    public String deleteRound(@PathVariable("id") int id) {
-        roundService.deleteRound(id);
-        return "redirect:/rounds";
+    @RequestMapping(value = "/rounds/delete/{seasonId}/{roundId}")
+    public String deleteRound(@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId) {
+        roundService.deleteRound(roundId);
+        return "redirect:/seasons/show-rounds/" + seasonId;
     }
 
     @RequestMapping("/rounds")

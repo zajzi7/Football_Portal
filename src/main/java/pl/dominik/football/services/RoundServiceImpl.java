@@ -18,6 +18,7 @@ public class RoundServiceImpl implements RoundService {
     @Autowired
     SeasonService seasonService;
 
+
     public void assignRoundToSeasonWithId(Round round, int seasonId) {
         Season season = seasonService.getSeasonById(seasonId);
 
@@ -62,7 +63,7 @@ public class RoundServiceImpl implements RoundService {
 
     @Override
     public void deleteRound(int id) {
-        roundRepository.deleteById(id);
+        roundRepository.delete(getRoundById(id));
     }
 
     @Override

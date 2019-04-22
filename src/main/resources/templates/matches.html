@@ -1,0 +1,91 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.4.0/jquery.min.js}"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $('.chkCheckBoxId').prop('checked', true);
+                } else
+                    $('.chkCheckBoxId').prop('checked', false);
+            });
+        });
+    </script>
+
+    <script th:inline="javascript">
+        //helps generate onchange element id
+        window.onload = onchangeWrapper();
+
+        function onchangeWrapper(iterateValue) {
+            return 'chb' + iterateValue;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <form th:method="post" th:action="|/matches/process/${season.id}/${roundId}|">
+        <table class="table table-bordered table-striped">
+            <caption><span th:text="|Mecze kolejki ${roundNumber} sezonu ${season.seasonName}|"></span></caption>
+            <thead class="thead-dark">
+            <th style="width: 5%; text-align: center">ID</th>
+            <th style="width: 5%; text-align: center" class="align-middle"><input type="checkbox" id="checkBoxAll"/></th>
+            <th>Drużyna 1</th>
+            <th>Gole</th>
+            <th>Drużyna 2</th>
+            </thead>
+            <tbody>
+            <tr th:each="match, iteration : ${matches}">
+                <td th:text="${match.id}" style="text-align: center" class="align-middle"></td>
+                <td style="text-align: center" class="align-middle"><input th:id="|chb${iteration.index}|" type="checkbox" class="chkCheckBoxId" name="checkBoxMatchId"
+                           th:value="${match.id}"/></td>
+                <td><!--                List to choose home teams from given season-->
+                    <select th:id="${'homeTeams'+iteration.index}" name="homeTeamsFromSeasonSelector"
+                            th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'">
+                        <option th:each="team : ${season.teams}"
+                                th:value="${team.teamName} + '-' + ${match.id}"
+                                th:text="${team.teamName}"
+                                th:selected="${team.teamName==match.homeTeam.teamName}"></option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" th:value="${match.homeScore}" name="homeScore"
+                           style="width: 35px; text-align:center" maxlength="2"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'"/>
+                    <input type="hidden" th:value="${match.id}" name="homeScoreId"/>
+                    :
+                    <input type="text" th:value="${match.awayScore}" name="awayScore"
+                           style="width: 35px; text-align:center" maxlength="2"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'"/>
+                    <input type="hidden" th:value="${match.id}" name="awayScoreId"/>
+                </td>
+
+                <td><!--                List to choose away teams from given season-->
+                    <select th:id="${'awayTeams'+iteration.index}" name="awayTeamsFromSeasonSelector"
+                            th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'">
+                        <option th:each="team : ${season.teams}"
+                                th:value="${team.teamName} + '-' + ${match.id}"
+                                th:text="${team.teamName}"
+                                th:selected="${team.teamName==match.awayTeam.teamName}"></option>
+                    </select>
+                </td>
+            </tr>
+            <button type="submit" class="btn btn-info col-1" name="action" value="delete"
+                    onclick="return confirm('Napewno chcesz usunąc wybrane elementy?')">Usuń
+            </button>
+            <button type="submit" class="btn btn-info col-1" name="action" value="save">Zapisz</button>
+            <a th:href="|/newmatch/${season.id}/${roundId}|" class="btn btn-info btn-sm">Nowy mecz</a>
+            </tbody>
+        </table>
+    </form>
+    <a th:href="|/seasons/show-rounds/${season.id}|" class="btn btn-outline-info btn-sm">Powrót do listy kolejek</a>
+</div>
+
+</body>
+</html>

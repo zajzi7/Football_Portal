@@ -45,6 +45,9 @@ public class Start implements CommandLineRunner {
         seasonService.addRound(
                 roundService.getRoundByInt(5),
                 seasonService.getSeason("2019/2020"));
+        seasonService.addRound(
+                roundService.getRoundByInt(6),
+                seasonService.getSeason("2018/2019"));
 
         userConfigRepository.setCurrentSeason(seasonService.getSeason("2018/2019"));
 //        System.out.println(seasonService.getSeasonById(1));
@@ -87,5 +90,11 @@ public class Start implements CommandLineRunner {
                 matchRepository.getMatchById(1),
                 roundRepository.getRoundByInt(4));
         */
+
+//        add teams to season
+        seasonService.addTeam(teamService.getTeamById(1), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(2), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(3), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(4), seasonService.getSeasonById(1));
     }
 }

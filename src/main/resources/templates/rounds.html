@@ -15,15 +15,21 @@
     <thead class="thead-dark">
     <th scope="col">ID</th>
     <th scope="col">Runda</th>
+    <th></th>
+    <th></th>
     </thead>
 
     <tbody>
     <tr th:each="round : ${rounds}">
         <th scope="row" th:text="${round.id}"></th>
-        <td th:text="${'Kolejka ' + round.roundNumber}"></td>
+        <td><a th:href="|/seasons/show-matches/${seasonId}/${round.id}|">
+            <span th:text="${'Kolejka ' + round.roundNumber}" title="Wgląd do meczy"></span></a></td>
+        <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
+        <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|">Usuń</a></td>
     </tr>
     </tbody>
 </table>
+    <a th:href="@{/seasons}" class="btn btn-outline-info btn-sm">Powrót do listy sezonów</a>
 </div>
 
 </body>
