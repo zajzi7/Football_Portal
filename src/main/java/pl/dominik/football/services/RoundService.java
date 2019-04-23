@@ -22,4 +22,5 @@ public interface RoundService {
 
     List<Round> getAllRounds();
 
+    int getSeasonIdByRoundId(int roundId);
 }

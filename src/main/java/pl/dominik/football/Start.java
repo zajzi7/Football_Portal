@@ -62,6 +62,7 @@ public class Start implements CommandLineRunner {
         teamService.createTeam("Czarni");
         teamService.createTeam("Naprzod");
         teamService.createTeam("Wisla");
+        teamService.createTeam("Korona");
 
         //manual creating matches just for tests
         matchService.addMatchResult(
@@ -96,5 +97,7 @@ public class Start implements CommandLineRunner {
         seasonService.addTeam(teamService.getTeamById(2), seasonService.getSeasonById(1));
         seasonService.addTeam(teamService.getTeamById(3), seasonService.getSeasonById(1));
         seasonService.addTeam(teamService.getTeamById(4), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(5), seasonService.getSeasonById(1));
+
     }
 }

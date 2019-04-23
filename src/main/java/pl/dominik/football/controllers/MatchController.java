@@ -37,6 +37,7 @@ public class MatchController {
         model.addAttribute("roundNumber", roundService.getRoundById(roundId).getRoundNumber());
         model.addAttribute("roundId", roundId);
         model.addAttribute("matches", matchService.getMatchesByRoundId(roundId));
+        model.addAttribute("pausedTeams", matchService.getPausedTeamsInRound(roundId));
         return "matches";
     }
 

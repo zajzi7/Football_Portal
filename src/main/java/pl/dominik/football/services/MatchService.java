@@ -20,4 +20,6 @@ public interface MatchService {
 
     void saveMatch(Match match);
 
+    List<Team> getPausedTeamsInRound(int roundId);
+
 }

@@ -76,11 +76,18 @@
                     </select>
                 </td>
             </tr>
-            <button type="submit" class="btn btn-info col-1" name="action" value="delete"
-                    onclick="return confirm('Napewno chcesz usunąc wybrane elementy?')">Usuń
-            </button>
-            <button type="submit" class="btn btn-info col-1" name="action" value="save">Zapisz</button>
-            <a th:href="|/newmatch/${season.id}/${roundId}|" class="btn btn-info btn-sm">Nowy mecz</a>
+            <tr th:if="${pausedTeams.size()} > 0">
+                <td colspan="5">Pauzujące drużyny:
+                    <span th:each="team : ${pausedTeams}"
+                          th:text="${team.teamName} + (${team}==${pausedTeams.get(pausedTeams.size()-1)} ? '' : ', ')">
+<!--                        If the team is the last element of the list then do not add a comma-->
+                    </span>
+                </td>
+            </tr>
+            <a th:href="|/newmatch/${season.id}/${roundId}|" class="btn btn-info mt-2 mr-1 mb-2">Nowy mecz</a>
+            <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="save">Zapisz</button>
+            <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="delete"
+                    onclick="return confirm('Napewno chcesz usunąc wybrane elementy?')">Usuń</button>
             </tbody>
         </table>
     </form>

@@ -2,6 +2,8 @@ package pl.dominik.football.services;
 
 import pl.dominik.football.domain.entity.Team;
 
+import java.util.List;
+
 public interface TeamService {
 
     void createTeam(String teamName);
@@ -11,5 +13,7 @@ public interface TeamService {
     Team getTeamByName(String teamName);
 
     Team getTeamById(int id);
+
+    List<Team> getTeamsBySeasonId(int seasonId);
 
 }

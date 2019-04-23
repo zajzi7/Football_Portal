@@ -7,12 +7,14 @@
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
 </head>
 <body>
-
+<div class="container">
 <form th:object="${match}" th:action="|/seasons/show-matches/${season.id}/${roundId}|" th:method="post">
-<!--    TODO-->
+
     <input type="text" th:field="*{homeScore}" class="form-control mb-3 col-2" placeholder="" />
+    :
+    <input type="text" th:field="*{awayScore}" class="form-control mb-3 col-2" placeholder="" />
     <button type="submit" class="btn btn-info col-1">Zapisz</button>
 </form>
-
+</div>
 </body>
 </html>

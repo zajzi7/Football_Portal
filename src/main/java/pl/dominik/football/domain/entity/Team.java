@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Team {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     @Id
     private int id;
 
@@ -21,7 +21,7 @@ public class Team {
     private String teamName;
 
     @ManyToOne
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private Season season;
 
     public Team(String teamName) {

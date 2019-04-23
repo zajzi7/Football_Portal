@@ -7,6 +7,7 @@ import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.MatchRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,6 +16,15 @@ public class MatchServiceImpl implements MatchService {
 
     @Autowired
     MatchRepository matchRepository;
+
+    @Autowired
+    SeasonService seasonService;
+
+    @Autowired
+    RoundService roundService;
+
+    @Autowired
+    TeamService teamService;
 
     @Override
     public Match getMatchById(int id) {
@@ -52,6 +62,35 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public void saveMatch(Match match) {
         matchRepository.save(match);
+    }
+
+    @Override
+    public List<Team> getPausedTeamsInRound(int roundId) {
+
+        boolean teamIsNotPresentInMatchesFlag = false;
+        List<Team> pausedTeams = new ArrayList<>();
+        int seasonId = roundService.getSeasonIdByRoundId(roundId);
+        List<Team> teams = teamService.getTeamsBySeasonId(seasonId);
+        List<Match> matches = matchRepository.getMatchesByRound_Id(roundId);
+
+        for (Team team : teams) {
+            for (Match match : matches) {
+                if (team.getId() != match.getAwayTeam().getId() && team.getId() != match.getHomeTeam().getId()) {
+                    teamIsNotPresentInMatchesFlag = true;
+                } else {
+                    teamIsNotPresentInMatchesFlag = false;
+                    break; //This team is present in matches of this round.
+                    // Set flag to false to not save this team to pausedTeams and break to next team
+                }
+            }
+
+            if (teamIsNotPresentInMatchesFlag) {
+                pausedTeams.add(team);
+                teamIsNotPresentInMatchesFlag = false;
+            }
+        }
+
+        return pausedTeams;
     }
 
 

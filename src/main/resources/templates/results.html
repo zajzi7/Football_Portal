@@ -22,6 +22,14 @@
             <td th:text="${result.homeScore} + ':' + ${result.awayScore}"></td>
             <td th:text="${result.awayTeam.teamName}"></td>
         </tr>
+        <tr th:if="${pausedTeams.size()} > 0">
+            <td colspan="5">Pauzujące drużyny:
+                <span th:each="team : ${pausedTeams}"
+                      th:text="${team.teamName} + (${team}==${pausedTeams.get(pausedTeams.size()-1)} ? '' : ', ')">
+<!--                        If the team is the last element of the list then do not add a comma-->
+                    </span>
+            </td>
+        </tr>
         </tbody>
     </table>
 </div>
