@@ -3,7 +3,6 @@ package pl.dominik.football.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -41,19 +40,17 @@ public class MatchController {
         return "matches";
     }
 
-    @RequestMapping("/newmatch/{seasonId}/{roundId}")
-    public String createMatch(@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId, Model model) {
-        model.addAttribute("season", seasonService.getSeasonById(seasonId));
-        model.addAttribute("roundId", roundId);
-        model.addAttribute("match", new Match());
-        return "create-match";
-    }
+    @RequestMapping(value = "/matches/process/{seasonId}/{roundId}", method = RequestMethod.POST, params = "action=addMatches")
+    //Create new match in DB and then redirect to list of matches
+    public String createMatches(@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId,
+                              HttpServletRequest request) {
 
-    @RequestMapping(value = "/seasons/show-matches/{seasonId}/{roundId}", method = RequestMethod.POST)
-    //Create new match in DB received from admin data and then redirect to list of matches
-    public String saveSeason(@ModelAttribute("match") Match match,
-                             @PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId) {
-        matchService.saveMatch(match);
+        int numberOfMatchesToAdd = Integer.parseInt(request.getParameter("numberOfMatchesToAdd"));
+        for ( ; numberOfMatchesToAdd > 0; numberOfMatchesToAdd--) {
+            Match match = new Match();
+            match.setRound(roundService.getRoundById(roundId));
+            matchService.saveMatch(match);
+        }
         return "redirect:/seasons/show-matches/" + seasonId + "/" + roundId;
     }
 
@@ -87,36 +84,66 @@ public class MatchController {
                 //Home team
                 for (String teamNameAndId : request.getParameterValues("homeTeamsFromSeasonSelector")) {
                     //Split th:option value - team name and match id (example: Husaria-3)
-                    String[] teamNameSplitId = teamNameAndId.split("-");
-                    if (matchId.equals(teamNameSplitId[1])) {
-                        match.setHomeTeam(teamService.getTeamByName(teamNameSplitId[0]));
+                    try {
+                        String[] teamNameSplitId = teamNameAndId.split("-");
+                        if (matchId.equals(teamNameSplitId[1])) {
+                            match.setHomeTeam(teamService.getTeamByName(teamNameSplitId[0]));
+                            //if team is null then set home team to null
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
                     }
                 }
 
                 //Home team score(goals)
                 for (String homeScore : request.getParameterValues("homeScore")) {
+                    try {
                     String homeScoreMatchId[] = request.getParameterValues("homeScoreId");
                     if (matchId.equals(homeScoreMatchId[i])) {
-                        match.setHomeScore(Integer.parseInt(homeScore));
+                        try {
+                            match.setHomeScore(Integer.parseInt(homeScore));
+                        } catch (NumberFormatException e) {
+                            match.setHomeScore(null); //if score value is empty ''
+                        }
                     }
                     i++;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
                 }
 
                 //Away team score(goals)
                 for (String awayScore : request.getParameterValues("awayScore")) {
-                    String awayScoreMatchId[] = request.getParameterValues("awayScoreId");
-                    if (matchId.equals(awayScoreMatchId[j])) {
-                        match.setAwayScore(Integer.parseInt(awayScore));
+                    try {
+                        String awayScoreMatchId[] = request.getParameterValues("awayScoreId");
+                        if (matchId.equals(awayScoreMatchId[j])) {
+                            try {
+                                match.setAwayScore(Integer.parseInt(awayScore));
+                            } catch (NumberFormatException e) {
+                                match.setAwayScore(null); //if score value is empty ''
+                            }
+                        }
+                        j++;
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
                     }
-                    j++;
                 }
 
                 //Away team
                 for (String teamNameAndId : request.getParameterValues("awayTeamsFromSeasonSelector")) {
                     //Split th:option value - team name and match id (example: Husaria-3)
-                    String[] teamNameSplitId = teamNameAndId.split("-");
-                    if (matchId.equals(teamNameSplitId[1])) {
-                        match.setAwayTeam(teamService.getTeamByName(teamNameSplitId[0]));
+                    try {
+                        String[] teamNameSplitId = teamNameAndId.split("-");
+                        if (matchId.equals(teamNameSplitId[1])) {
+                            match.setAwayTeam(teamService.getTeamByName(teamNameSplitId[0]));
+                            //if team is null then set away team to null
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
                     }
                 }
 

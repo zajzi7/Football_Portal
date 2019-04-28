@@ -18,6 +18,7 @@ public class TeamServiceImpl implements TeamService {
     public void createTeam(String teamName) {
         Team team = new Team(teamName);
         teamRepository.save(team);
+        //TODO check if team name exists
     }
 
     @Override

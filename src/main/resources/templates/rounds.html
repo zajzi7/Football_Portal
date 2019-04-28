@@ -4,31 +4,31 @@
 <head>
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
 </head>
 <body>
 
 <div class="container">
-<a th:href="${'/newround/'+seasonId}" class="btn btn-info btn-sm">Nowa runda</a>
-<table class="table table-bordered table-striped table-hover">
-    <caption>Rundy sezonu <span th:text="${seasonName}"></span></caption>
-    <thead class="thead-dark">
-    <th scope="col">ID</th>
-    <th scope="col">Runda</th>
-    <th></th>
-    <th></th>
-    </thead>
+    <a th:href="${'/newround/'+seasonId}" class="btn btn-info mt-2 mb-2">Nowa runda</a>
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Rundy sezonu <span th:text="${seasonName}"></span></caption>
+        <thead class="thead-dark">
+        <th scope="col" style="width: 5%; text-align: center">ID</th>
+        <th scope="col">Runda</th>
+        <th></th>
+        <th></th>
+        </thead>
 
-    <tbody>
-    <tr th:each="round : ${rounds}">
-        <th scope="row" th:text="${round.id}"></th>
-        <td><a th:href="|/seasons/show-matches/${seasonId}/${round.id}|">
-            <span th:text="${'Kolejka ' + round.roundNumber}" title="Wgląd do meczy"></span></a></td>
-        <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
-        <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|">Usuń</a></td>
-    </tr>
-    </tbody>
-</table>
+        <tbody>
+        <tr th:each="round : ${rounds}">
+            <th scope="row" th:text="${round.id}"></th>
+            <td><a th:href="|/seasons/show-matches/${seasonId}/${round.id}|">
+                <span th:text="${'Kolejka ' + round.roundNumber}" title="Wgląd do meczy"></span></a></td>
+            <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
+            <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|">Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
     <a th:href="@{/seasons}" class="btn btn-outline-info btn-sm">Powrót do listy sezonów</a>
 </div>
 

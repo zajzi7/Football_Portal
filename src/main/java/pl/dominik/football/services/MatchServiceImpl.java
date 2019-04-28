@@ -75,15 +75,18 @@ public class MatchServiceImpl implements MatchService {
 
         for (Team team : teams) {
             for (Match match : matches) {
-                if (team.getId() != match.getAwayTeam().getId() && team.getId() != match.getHomeTeam().getId()) {
+                if ((match.getHomeScore() != null && match.getAwayScore() != null) &&
+                    (match.getHomeScore() >= 0 && match.getAwayScore() >= 0) &&
+                    (match.getHomeTeam() != null && match.getAwayTeam() != null)) {
+
+                    if (team.getId() == match.getAwayTeam().getId() || team.getId() == match.getHomeTeam().getId()) {
+                        teamIsNotPresentInMatchesFlag = false;
+                        break; //This team is present in matches of this round.
+                        // Set flag to false to not save this team to pausedTeams and break to next team
+                    }
                     teamIsNotPresentInMatchesFlag = true;
-                } else {
-                    teamIsNotPresentInMatchesFlag = false;
-                    break; //This team is present in matches of this round.
-                    // Set flag to false to not save this team to pausedTeams and break to next team
                 }
             }
-
             if (teamIsNotPresentInMatchesFlag) {
                 pausedTeams.add(team);
                 teamIsNotPresentInMatchesFlag = false;
@@ -92,6 +95,5 @@ public class MatchServiceImpl implements MatchService {
 
         return pausedTeams;
     }
-
 
 }

@@ -8,6 +8,7 @@
 </head>
 <body>
 
+<div class="ml-4 mt-4">
     <form th:object="${round}" th:action="@{/rounds}" th:method="post">
         <!--    Hidden field necessary for updates-->
         <input type="hidden" th:field="*{id}"/>
@@ -17,6 +18,7 @@
         <input type="text" th:field="*{roundNumber}" class="form-control mb-3 col-2"/>
         <button type="submit" class="btn btn-info col-1">Zapisz</button>
     </form>
+</div>
 
 </body>
 </html>

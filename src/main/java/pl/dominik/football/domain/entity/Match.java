@@ -16,10 +16,10 @@ public class Match {
     private int id;
 
     @Getter @Setter
-    private int homeScore;
+    private Integer homeScore; //not int for null possibility
 
     @Getter @Setter
-    private int awayScore;
+    private Integer awayScore; //not int for null possibility
 
     @OneToOne
     @Getter @Setter

@@ -30,53 +30,58 @@
 <body>
 
 <div class="container">
-    <form th:method="post" th:action="|/matches/process/${season.id}/${roundId}|">
+    <form th:method="post" th:action="|/matches/process/${season.id}/${roundId}|" class="form-inline">
         <table class="table table-bordered table-striped">
             <caption><span th:text="|Mecze kolejki ${roundNumber} sezonu ${season.seasonName}|"></span></caption>
             <thead class="thead-dark">
-            <th style="width: 5%; text-align: center">ID</th>
-            <th style="width: 5%; text-align: center" class="align-middle"><input type="checkbox" id="checkBoxAll"/></th>
-            <th>Drużyna 1</th>
-            <th>Gole</th>
-            <th>Drużyna 2</th>
+            <th scope="col" style="width: 5%; text-align: center">ID</th>
+            <th scope="col" style="width: 5%; text-align: center" class="align-middle">
+                <input type="checkbox" id="checkBoxAll"/></th>
+            <th scope="col">Drużyna 1</th>
+            <th scope="col">Gole</th>
+            <th scope="col">Drużyna 2</th>
             </thead>
             <tbody>
             <tr th:each="match, iteration : ${matches}">
-                <td th:text="${match.id}" style="text-align: center" class="align-middle"></td>
-                <td style="text-align: center" class="align-middle"><input th:id="|chb${iteration.index}|" type="checkbox" class="chkCheckBoxId" name="checkBoxMatchId"
-                           th:value="${match.id}"/></td>
+                <th scope="row" th:text="${match.id}" style="text-align: center" class="align-middle"></th>
+                <td style="text-align: center" class="align-middle">
+                    <input th:id="|chb${iteration.index}|" type="checkbox" class="chkCheckBoxId" name="checkBoxMatchId"
+                           th:value="${match.id}"/>
+                </td>
                 <td><!--                List to choose home teams from given season-->
-                    <select th:id="${'homeTeams'+iteration.index}" name="homeTeamsFromSeasonSelector"
+                    <select th:id="${'homeTeams'+iteration.index}" name="homeTeamsFromSeasonSelector" class="form-control"
                             th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'">
+                        <option th:value="'null-' + ${match.id}" th:text="'Wybierz drużynę'"></option>
                         <option th:each="team : ${season.teams}"
                                 th:value="${team.teamName} + '-' + ${match.id}"
                                 th:text="${team.teamName}"
-                                th:selected="${team.teamName==match.homeTeam.teamName}"></option>
+                                th:selected="${match.homeTeam != null} and ${team.teamName==match.homeTeam.teamName}"></option>
                     </select>
                 </td>
                 <td>
-                    <input type="text" th:value="${match.homeScore}" name="homeScore"
-                           style="width: 35px; text-align:center" maxlength="2"
-                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'"/>
-                    <input type="hidden" th:value="${match.id}" name="homeScoreId"/>
+                    <input type="text" th:value="${match.homeScore}" name="homeScore" class="form-control"
+                           style="width: 40px; text-align:center" maxlength="2"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
+                    <input type="hidden" th:value="${match.id}" name="homeScoreId" />
                     :
-                    <input type="text" th:value="${match.awayScore}" name="awayScore"
-                           style="width: 35px; text-align:center" maxlength="2"
-                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'"/>
-                    <input type="hidden" th:value="${match.id}" name="awayScoreId"/>
+                    <input type="text" th:value="${match.awayScore}" name="awayScore" class="form-control"
+                           style="width: 40px; text-align:center" maxlength="2"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
+                    <input type="hidden" th:value="${match.id}" name="awayScoreId" />
                 </td>
 
                 <td><!--                List to choose away teams from given season-->
-                    <select th:id="${'awayTeams'+iteration.index}" name="awayTeamsFromSeasonSelector"
+                    <select th:id="${'awayTeams'+iteration.index}" name="awayTeamsFromSeasonSelector" class="form-control"
                             th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'">
+                        <option th:value="'null-' + ${match.id}" th:text="'Wybierz drużynę'"></option>
                         <option th:each="team : ${season.teams}"
                                 th:value="${team.teamName} + '-' + ${match.id}"
                                 th:text="${team.teamName}"
-                                th:selected="${team.teamName==match.awayTeam.teamName}"></option>
+                                th:selected="${match.awayTeam != null} and ${team.teamName==match.awayTeam.teamName}"></option>
                     </select>
                 </td>
             </tr>
-            <tr th:if="${pausedTeams.size()} > 0">
+            <tr th:if="${pausedTeams.size()} > 0"><!-- Visible only if there are skipped teams in this round-->
                 <td colspan="5">Pauzujące drużyny:
                     <span th:each="team : ${pausedTeams}"
                           th:text="${team.teamName} + (${team}==${pausedTeams.get(pausedTeams.size()-1)} ? '' : ', ')">
@@ -84,7 +89,11 @@
                     </span>
                 </td>
             </tr>
-            <a th:href="|/newmatch/${season.id}/${roundId}|" class="btn btn-info mt-2 mr-1 mb-2">Nowy mecz</a>
+            <button type="submit" name="action" value="addMatches"
+                    th:class="'btn btn-info mt-2 mb-2' + ${season.teams.size() > 1 ? '' : ' disabled'}">Dodaj mecz(e):
+            </button>
+            <input type="number" min="1" max="99" maxlength="2" th:value="${matches.size() == 0} ? ${season.teams.size()/2} : '1'"
+                   name="numberOfMatchesToAdd" class="form-control mr-2" style="width: 60px; border: 1px solid turquoise" />
             <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="save">Zapisz</button>
             <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="delete"
                     onclick="return confirm('Napewno chcesz usunąc wybrane elementy?')">Usuń</button>

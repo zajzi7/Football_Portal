@@ -5,6 +5,7 @@
     <title>Football App</title>
     <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+<!--    <link rel="stylesheet" th:href="@{/css/background.css}" />-->
 </head>
 <body>
 
@@ -17,7 +18,7 @@
         </thead>
 
         <tbody>
-        <tr th:each="result : ${results}">
+        <tr th:each="result : ${results}" th:if="${result.awayTeam!=null} and ${result.homeTeam!=null}">
             <td th:text="${result.homeTeam.teamName}"></td>
             <td th:text="${result.homeScore} + ':' + ${result.awayScore}"></td>
             <td th:text="${result.awayTeam.teamName}"></td>

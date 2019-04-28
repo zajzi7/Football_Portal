@@ -9,14 +9,13 @@
 <body>
 
 <div class="container">
-    <a th:href="newseason" class="btn btn-info btn-sm">Nowy sezon</a>
+    <a th:href="newseason" class="btn btn-info mt-2 mb-2">Nowy sezon</a>
 
     <table class="table table-bordered table-striped table-hover">
         <caption>Lista sezonów</caption>
         <thead class="thead-dark">
-        <th scope="col">ID</th>
+        <th scope="col" style="width: 5%; text-align: center">ID</th>
         <th scope="col">Sezon</th>
-        <th></th>
         <th></th>
         <th></th>
         <th></th>
@@ -27,14 +26,12 @@
             <th scope="row" th:text="${season.id}"></th>
 
             <!--        Season name + current season-->
-            <td><span th:text="${season.seasonName}"/>
-                <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></td>
-
-            <!--        Rounds of season-->
-            <td><a th:href="${'/seasons/show-rounds/'+season.id}">Rundy</a></td>
+            <td><a title="Kolejki" th:href="${'/seasons/show-rounds/'+season.id}">
+                <span th:text="${season.seasonName}"/>
+                <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></a></td>
 
             <!--        Edit season name-->
-            <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj</a></td>
+            <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj nazwę</a></td>
 
             <!--        Delete season-->
             <td><a th:href="${'/seasons/delete/'+season.id}"
