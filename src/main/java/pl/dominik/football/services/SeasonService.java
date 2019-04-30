@@ -5,6 +5,7 @@ import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
 
 import java.util.List;
+import java.util.Set;
 
 public interface SeasonService {
 
@@ -23,5 +24,7 @@ public interface SeasonService {
     void addRound(Round round, Season season);
 
     void addTeam(Team team, Season season);
+
+    Set<Season> getSeasonsContainsTeam(Team team);
 
 }

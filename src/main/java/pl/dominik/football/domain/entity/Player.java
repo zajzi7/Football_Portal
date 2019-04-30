@@ -26,6 +26,18 @@ public class Player {
     @Getter @Setter
     private String lastName;
 
+    @Getter @Setter
+    private int goals;
+
+    @Getter @Setter
+    private int assists;
+
+    @Getter @Setter
+    private int yellowCards;
+
+    @Getter @Setter
+    private int redCards;
+
     public Player(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;

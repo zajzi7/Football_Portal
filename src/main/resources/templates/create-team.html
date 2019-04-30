@@ -1,0 +1,23 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="ml-4 mt-4">
+<form th:object="${team}" th:action="@{/teams}" th:method="post">
+<!--    Hidden field necessary for updates-->
+    <input type="hidden" th:field="*{id}" />
+
+    <input type="text" th:field="*{teamName}" class="form-control mb-3 col-2" placeholder="Nazwa drużyny" />
+    <button name="action" th:value="${team.id == 0} ? 'newTeam' : 'editTeam'"
+            type="submit" class="btn btn-info col-1">Zapisz</button>
+</form>
+</div>
+
+</body>
+</html>

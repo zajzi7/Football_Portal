@@ -22,6 +22,11 @@ public class TeamServiceImpl implements TeamService {
     }
 
     @Override
+    public void saveTeam(Team team) {
+        teamRepository.save(team);
+    }
+
+    @Override
     public void deleteTeam(int id) {
         teamRepository.deleteById(id);
     }
@@ -47,5 +52,10 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public List<Team> getTeamsBySeasonId(int seasonId) {
         return teamRepository.getTeamsBySeason_Id(seasonId);
+    }
+
+    @Override
+    public List<Team> getAllTeams() {
+        return teamRepository.findAll();
     }
 }

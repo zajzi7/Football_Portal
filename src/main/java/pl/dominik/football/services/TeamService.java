@@ -8,6 +8,8 @@ public interface TeamService {
 
     void createTeam(String teamName);
 
+    void saveTeam(Team team);
+
     void deleteTeam(int id);
 
     Team getTeamByName(String teamName);
@@ -15,5 +17,7 @@ public interface TeamService {
     Team getTeamById(int id);
 
     List<Team> getTeamsBySeasonId(int seasonId);
+
+    List<Team> getAllTeams();
 
 }

@@ -16,10 +16,12 @@
         <thead class="thead-dark">
         <th scope="col" style="width: 5%; text-align: center">ID</th>
         <th scope="col">Sezon</th>
-        <th></th>
-        <th></th>
-        <th></th>
+        <th style="width: 15%"></th>
+        <th style="width: 15%"></th>
+        <th style="width: 10%"></th>
+        <th style="width: 15%"></th>
         </thead>
+
         <tbody>
         <tr th:each="season : ${seasons}">
             <!--        ID season-->
@@ -30,12 +32,16 @@
                 <span th:text="${season.seasonName}"/>
                 <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></a></td>
 
+            <!--        Assign teams to season-->
+            <td><a th:href="${'/assign-teams/'+season.id}">Przypisz drużyny</a></td>
+
             <!--        Edit season name-->
             <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj nazwę</a></td>
 
             <!--        Delete season-->
-            <td><a th:href="${'/seasons/delete/'+season.id}"
-                   th:if="${season.id!=currentSeasonId}">Usuń</a></td>
+            <td><a th:href="${'/seasons/delete/'+season.id}" th:if="${season.id!=currentSeasonId}"
+                   th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć Sezon ' + ${season.seasonName} +'?'+'\')'">
+                Usuń</a></td>
 
             <!--        Set season as current season-->
             <td><a th:href="${'/seasons/set-season/'+season.id}"

@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+<div class="container">
+    <a th:href="newteam" class="btn btn-info mt-2 mb-2">Nowa drużyna</a>
+
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Lista drużyn</caption>
+        <thead class="thead-dark">
+        <th scope="col" style="width: 5%; text-align: center">ID</th>
+        <th scope="col">Nazwa drużyny</th>
+        <th style="width: 15%"></th>
+        <th style="width: 10%"></th>
+        </thead>
+
+        <tbody>
+        <tr th:each="team : ${teams}">
+            <!--        ID team-->
+            <th scope="row" th:text="${team.id}"></th>
+
+            <!--        Team name-->
+            <td><span th:text="${team.teamName}"></span></td>
+
+            <!--        Edit team name-->
+            <td><a th:href="${'/teams/edit/'+team.id}">Edytuj nazwę</a></td>
+
+            <!--        Delete team-->
+            <td><a th:href="${'/teams/delete/'+team.id}"
+                   th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć drużynę ' + ${team.teamName} +'?'+'\')'">
+                Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

@@ -11,6 +11,7 @@ import pl.dominik.football.domain.repository.TeamRepository;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class SeasonServiceImpl implements SeasonService {
@@ -76,9 +77,14 @@ public class SeasonServiceImpl implements SeasonService {
     @Override
     public void addTeam(Team team, Season season) {
         season.addTeam(team);
-        team.setSeason(season);
+        team.assignToSeason(season);
         teamRepository.save(team);
         seasonRepository.save(season);
     }
 
+    @Override
+    public Set<Season> getSeasonsContainsTeam(Team team) {
+        //Don't delete! Workaround necessary to edit team
+        return seasonRepository.getSeasonsByTeamsEquals(team);
+    }
 }

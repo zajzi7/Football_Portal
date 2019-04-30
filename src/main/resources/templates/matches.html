@@ -60,12 +60,12 @@
                 </td>
                 <td>
                     <input type="text" th:value="${match.homeScore}" name="homeScore" class="form-control"
-                           style="width: 40px; text-align:center" maxlength="2"
+                           style="width: 45px; text-align:center" maxlength="2"
                            th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
                     <input type="hidden" th:value="${match.id}" name="homeScoreId" />
                     :
                     <input type="text" th:value="${match.awayScore}" name="awayScore" class="form-control"
-                           style="width: 40px; text-align:center" maxlength="2"
+                           style="width: 45px; text-align:center" maxlength="2"
                            th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
                     <input type="hidden" th:value="${match.id}" name="awayScoreId" />
                 </td>
@@ -90,13 +90,14 @@
                 </td>
             </tr>
             <button type="submit" name="action" value="addMatches"
-                    th:class="'btn btn-info mt-2 mb-2' + ${season.teams.size() > 1 ? '' : ' disabled'}">Dodaj mecz(e):
-            </button>
+                    class="btn btn-info mt-2 mb-2">Dodaj mecz(e):</button>
+
             <input type="number" min="1" max="99" maxlength="2" th:value="${matches.size() == 0} ? ${season.teams.size()/2} : '1'"
                    name="numberOfMatchesToAdd" class="form-control mr-2" style="width: 60px; border: 1px solid turquoise" />
+
             <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="save">Zapisz</button>
             <button type="submit" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" name="action" value="delete"
-                    onclick="return confirm('Napewno chcesz usunąc wybrane elementy?')">Usuń</button>
+                    onclick="return confirm('Napewno chcesz usunąć wybrane mecze?')">Usuń</button>
             </tbody>
         </table>
     </form>

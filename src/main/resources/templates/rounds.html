@@ -15,17 +15,19 @@
         <thead class="thead-dark">
         <th scope="col" style="width: 5%; text-align: center">ID</th>
         <th scope="col">Runda</th>
-        <th></th>
-        <th></th>
+        <th style="width: 15%"></th>
+        <th style="width: 10%"></th>
         </thead>
 
         <tbody>
         <tr th:each="round : ${rounds}">
-            <th scope="row" th:text="${round.id}"></th>
+            <th scope="row" style="width: 5%; text-align: center" th:text="${round.id}"></th>
             <td><a th:href="|/seasons/show-matches/${seasonId}/${round.id}|">
                 <span th:text="${'Kolejka ' + round.roundNumber}" title="Wgląd do meczy"></span></a></td>
-            <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
-            <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|">Usuń</a></td>
+            <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj nazwę</a></td>
+            <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|"
+                   th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć Kolejkę ' + ${round.roundNumber} +'?'+'\')'">
+                Usuń</a></td>
         </tr>
         </tbody>
     </table>

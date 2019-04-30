@@ -4,7 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 @NoArgsConstructor
@@ -21,11 +25,11 @@ public class Match {
     @Getter @Setter
     private Integer awayScore; //not int for null possibility
 
-    @OneToOne
+    @ManyToOne
     @Getter @Setter
     private Team homeTeam;
 
-    @OneToOne
+    @ManyToOne
     @Getter @Setter
     private Team awayTeam;
 
@@ -40,4 +44,5 @@ public class Match {
         this.awayScore = awayScore;
         this.round = round;
     }
+
 }

@@ -1,0 +1,51 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.4.0/jquery.min.js}"></script>
+
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <form th:action="|/assign-teams/${season.id}|" th:method="post" class="form-inline">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <!--All available teams-->
+                <td>
+                    <h6>Wszystkie dostępne drużyny</h6>
+                    <select id="allTeamsList" name="allTeamsList" multiple size="20" class="form-control" style="width: 100%">
+                        <option th:each="team : ${allTeams}" th:text="${team.teamName}" th:value="${team.teamName}"></option>
+                    </select>
+                </td>
+
+                <!--Arrows-->
+                <td style="text-align: center" class="align-middle">
+                    <button type="submit" name="action" value="leftToRight"
+                            class="btn btn-sm btn-warning text-white" style="font-weight: bold">>></button>
+                    <br/>
+                    <br/>
+                    <button type="submit" name="action" value="rightToLeft"
+                            class="btn btn-sm btn-warning text-white" style="font-weight: bold"><<</button>
+                </td>
+
+                <!--Season teams-->
+                <td>
+                    <h6>Drużyny przypisane do sezonu <span th:text="${season.seasonName}"></span></h6>
+                    <select id="seasonTeamsList" name="seasonTeamsList" multiple size="20" class="form-control" style="width: 100%">
+                        <option th:each="team : ${season.teams}" th:text="${team.teamName}" th:value="${team.teamName}"></option>
+                    </select>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>

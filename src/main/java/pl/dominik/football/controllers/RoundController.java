@@ -10,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.services.RoundService;
 
-import java.util.List;
-
 @Controller
 public class RoundController {
 
@@ -56,17 +54,5 @@ public class RoundController {
         roundService.deleteRound(roundId);
         return "redirect:/seasons/show-rounds/" + seasonId;
     }
-
-    @RequestMapping("/rounds")
-    //TODO this will be deleted. It's here only for tests
-    //Show all rounds in table
-    public String getAllRounds(Model model) {
-        //Get all rounds
-        List<Round> rounds = roundService.getAllRounds();
-        model.addAttribute("rounds", rounds);
-        return "rounds";
-    }
-
-
 
 }
