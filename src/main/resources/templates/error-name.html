@@ -1,0 +1,22 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</head>
+<body>
+
+<div class="ml-4 mt-4">
+    <h2>Taka nazwa już istnieje!</h2>
+    <button onclick="goBack()" class="btn btn-info col-1 ml-2 mt-2 mr-1 mb-2" >Powrót</button>
+</div>
+
+</body>
+</html>

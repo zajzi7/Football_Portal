@@ -30,7 +30,6 @@ public class SeasonController {
     @RequestMapping("/newseason")
     //Form to create new season by admin
     public String createSeason(Model model) {
-        //TODO check if Season name already exist
         model.addAttribute("season", new Season());
         return "create-season";
     }
@@ -38,14 +37,23 @@ public class SeasonController {
     @RequestMapping(value = "/seasons", method = RequestMethod.POST)
     //Create new season in DB received from admin data and then redirect to season list
     public String saveSeason(@ModelAttribute("season") Season season) {
+
+        List<Season> seasons = seasonService.getSeasonList();
+        for (Season s : seasons) {
+            if (s.getSeasonName().equals(season.getSeasonName())) {
+                //loop to check if season name entered by admin already exists
+                return "error-name";
+            }
+        }
+
         seasonService.saveSeason(season);
         return "redirect:/seasons";
     }
 
     @RequestMapping(value = "/seasons/edit/{id}")
     public String updateSeason(@PathVariable("id") int id, Model model) {
-        //TODO check if Season name already exist
-        model.addAttribute("season", seasonService.getSeasonById(id));
+        Season season = seasonService.getSeasonById(id);
+        model.addAttribute("season", season);
         return "create-season";
     }
 

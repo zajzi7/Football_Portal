@@ -33,13 +33,20 @@ public class TeamController {
     @RequestMapping("/newteam")
     //Form to create new team by admin
     public String createTeam(Model model) {
-        //TODO check if Team name already exist
         model.addAttribute("team", new Team());
         return "create-team";
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=editTeam")
     public String editTeam(@ModelAttribute("team") Team team) {
+        List<Team> allTeams = teamService.getAllTeams();
+
+        for (Team t : allTeams) {
+            if (t.getTeamName().equals(team.getTeamName())) {
+                //loop to check if team name entered by admin already exists
+                return "error-name";
+            }
+        }
 
         Set<Season> seasons = seasonService.getSeasonsContainsTeam(team);
         team.setSeason(seasons); //Don't delete! Workaround necessary to edit team
@@ -51,6 +58,14 @@ public class TeamController {
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=newTeam")
     //Create new team in DB received from admin data and then redirect to season list
     public String saveTeam(@ModelAttribute("team") Team team) {
+        List<Team> allTeams = teamService.getAllTeams();
+
+        for (Team t : allTeams) {
+            if (t.getTeamName().equals(team.getTeamName())) {
+                //loop to check if team name entered by admin already exists
+                return "error-name";
+            }
+        }
         teamService.saveTeam(team);
         return "redirect:/teams";
     }
@@ -64,7 +79,6 @@ public class TeamController {
 
     @RequestMapping(value = "/teams/edit/{id}")
     public String updateTeam(@PathVariable("id") int id, Model model) {
-        //TODO check if Team name already exist
         model.addAttribute("team", teamService.getTeamById(id));
         return "create-team";
     }

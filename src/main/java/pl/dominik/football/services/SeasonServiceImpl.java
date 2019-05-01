@@ -76,6 +76,7 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Override
     public void addTeam(Team team, Season season) {
+        //TODO this method will be removed probably
         season.addTeam(team);
         team.assignToSeason(season);
         teamRepository.save(team);
