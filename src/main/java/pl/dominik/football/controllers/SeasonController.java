@@ -1,8 +1,12 @@
 package pl.dominik.football.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +17,7 @@ import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.UserConfigService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -27,6 +32,13 @@ public class SeasonController {
     @Autowired
     RoundService roundService;
 
+    //Remove leading and trailing whitespace
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
     @RequestMapping("/newseason")
     //Form to create new season by admin
     public String createSeason(Model model) {
@@ -36,12 +48,18 @@ public class SeasonController {
 
     @RequestMapping(value = "/seasons", method = RequestMethod.POST)
     //Create new season in DB received from admin data and then redirect to season list
-    public String saveSeason(@ModelAttribute("season") Season season) {
+    public String saveSeason(
+            @Valid @ModelAttribute("season") Season season,
+            BindingResult bindingResult) {
 
+        if (bindingResult.hasErrors()) {
+            return "create-season";
+        }
+
+        //Check if the season name entered by admin already exists
         List<Season> seasons = seasonService.getSeasonList();
         for (Season s : seasons) {
             if (s.getSeasonName().equals(season.getSeasonName())) {
-                //loop to check if season name entered by admin already exists
                 return "error-name";
             }
         }

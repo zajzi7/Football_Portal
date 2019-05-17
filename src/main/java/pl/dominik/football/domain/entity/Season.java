@@ -3,6 +3,7 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
@@ -15,6 +16,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -22,6 +25,7 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class Season {
 
     @Id
@@ -29,16 +33,18 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Getter @Setter
+    @NotNull(message = "Błąd wprowadzenia danych")
+    @Size(min = 1, message = "Nazwa sezonu musi zawierać conajmniej 1 znak")
+    @Getter @Setter @ToString.Exclude
     private String seasonName;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.REMOVE)
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private List<Round> rounds = new ArrayList<>();
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(mappedBy = "season")
-    @Getter @Setter
+    @Getter @Setter @ToString.Exclude
     private Set<Team> teams = new HashSet<>();
 
     public Season(String seasonName) {
@@ -53,6 +59,10 @@ public class Season {
 
     public void addTeam(Team team) {
         this.teams.add(team);
+    }
+
+    public void removeTeam(Team team) {
+        this.teams.remove(team);
     }
 
     @PreRemove

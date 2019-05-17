@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.RoundService;
+import pl.dominik.football.services.TeamService;
 
 import java.util.List;
 
@@ -20,6 +21,9 @@ public class ResultsController {
     @Autowired
     RoundService roundService;
 
+    @Autowired
+    TeamService teamService;
+
     @RequestMapping("/results")
     public String showResults(Model model) {
 
@@ -27,7 +31,7 @@ public class ResultsController {
         //TODO choose which round to display
         List<Match> matchesList = matchService.getAllMatches();
         model.addAttribute("results", matchesList);
-        model.addAttribute("pausedTeams", matchService.getPausedTeamsInRound(1));
+        model.addAttribute("pausedTeams", teamService.getPausedTeamsInRound(1));
         return "results";
     }
 }

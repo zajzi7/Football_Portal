@@ -3,11 +3,18 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 @Entity
 @NoArgsConstructor
+@ToString
 public class H2h {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,25 +22,28 @@ public class H2h {
     @Id
     private int id;
 
-    @OneToOne
+    @ManyToOne
     @Getter @Setter
-    private Season season;
+    private RankingData ranking;
+
+    @ManyToOne
+    @Getter @Setter
+    private Season season; //Needed mainly for the RankingData @PreRemove
 
     @OneToOne
     @Getter @Setter
-    private Team teamOne;
-
-    @OneToOne
-    @Getter @Setter
-    private Team teamTwo;
+    private Team oppositeTeam;
 
     @Getter @Setter
     private int pointsH2h;
 
     @Getter @Setter
-    private int goalsDiffH2h;
+    private int goalsScoredH2h;
 
     @Getter @Setter
-    private int goalsAwayH2h;
+    private int goalsConcededH2h;
+
+    @Getter @Setter
+    private int goalsScoredAwayH2h;
 
 }

@@ -2,9 +2,11 @@ package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
+import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.domain.repository.RoundRepository;
 import pl.dominik.football.domain.repository.SeasonRepository;
 import pl.dominik.football.domain.repository.TeamRepository;
@@ -24,6 +26,12 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Autowired
     TeamRepository teamRepository;
+
+    @Autowired
+    RankingDataRepository rankingDataRepository;
+
+    @Autowired
+    H2hService h2hService;
 
     @Override
     public void createSeason(String seasonName) {
@@ -76,9 +84,15 @@ public class SeasonServiceImpl implements SeasonService {
 
     @Override
     public void addTeam(Team team, Season season) {
-        //TODO this method will be removed probably
         season.addTeam(team);
         team.assignToSeason(season);
+
+        RankingData ranking = new RankingData();
+        ranking.setTeam(team);
+        ranking.setSeason(season);
+        ranking = h2hService.generateH2h(ranking);
+        rankingDataRepository.save(ranking);
+
         teamRepository.save(team);
         seasonRepository.save(season);
     }

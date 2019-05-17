@@ -20,4 +20,7 @@ public interface TeamService {
 
     List<Team> getAllTeams();
 
+    List<Team> getPausedTeamsInRound(int roundId);
+
+//    boolean teamHasNotPlayedAnyMatchesInSeason(Team team, int seasonId);
 }

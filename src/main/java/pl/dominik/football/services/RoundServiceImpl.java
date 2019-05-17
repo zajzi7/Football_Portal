@@ -72,11 +72,6 @@ public class RoundServiceImpl implements RoundService {
     }
 
     @Override
-    public List<Round> getAllRounds() {
-        return roundRepository.findAll();
-    }
-
-    @Override
     @Transactional
     public int getSeasonIdByRoundId(int roundId) {
         return em.createQuery("select r.season.id from Round r where r.id=:roundId", Integer.class)

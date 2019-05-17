@@ -11,4 +11,5 @@ public interface SeasonRepository extends JpaRepository<Season, Integer> {
     Season getSeasonBySeasonNameEquals(String seasonName);
 
     Set<Season> getSeasonsByTeamsEquals(Team team);
+
 }

@@ -20,8 +20,6 @@ public interface RoundService {
 
     void deleteRound(int id);
 
-    List<Round> getAllRounds();
-
     int getSeasonIdByRoundId(int roundId);
 
 }

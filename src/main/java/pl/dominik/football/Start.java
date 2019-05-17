@@ -4,7 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.dominik.football.domain.repository.UserConfigRepository;
-import pl.dominik.football.services.*;
+import pl.dominik.football.services.MatchService;
+import pl.dominik.football.services.PlayerService;
+import pl.dominik.football.services.RoundService;
+import pl.dominik.football.services.SeasonService;
+import pl.dominik.football.services.TeamService;
 
 @Component
 public class Start implements CommandLineRunner {
@@ -64,6 +68,13 @@ public class Start implements CommandLineRunner {
         teamService.createTeam("Wisla");
         teamService.createTeam("Korona");
 
+        //add teams to season
+        seasonService.addTeam(teamService.getTeamById(1), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(2), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(3), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(4), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamById(5), seasonService.getSeasonById(1));
+
         //manual creating matches just for tests
         matchService.addMatchResult(
                 teamService.getTeamByName("Husaria"),
@@ -83,21 +94,7 @@ public class Start implements CommandLineRunner {
                 1,4,
                 roundService.getRoundByInt(4));
 
-        //add matches to round
-        /*roundRepository.addMatch(
-                matchRepository.getMatchById(2),
-                roundRepository.getRoundByInt(4));
-        roundRepository.addMatch(
-                matchRepository.getMatchById(1),
-                roundRepository.getRoundByInt(4));
-        */
 
-//        add teams to season
-        seasonService.addTeam(teamService.getTeamById(1), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(2), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(3), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(4), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(5), seasonService.getSeasonById(1));
 
     }
 }

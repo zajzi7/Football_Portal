@@ -11,6 +11,7 @@ import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
+import pl.dominik.football.utilities.RankingDataComponent;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -29,6 +30,9 @@ public class MatchController {
     @Autowired
     TeamService teamService;
 
+    @Autowired
+    RankingDataComponent rankingDataComponent;
+
     @RequestMapping("/seasons/show-matches/{seasonId}/{roundId}")
     public String showMatchesByRoundId(
             @PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId, Model model) {
@@ -36,7 +40,7 @@ public class MatchController {
         model.addAttribute("roundNumber", roundService.getRoundById(roundId).getRoundNumber());
         model.addAttribute("roundId", roundId);
         model.addAttribute("matches", matchService.getMatchesByRoundId(roundId));
-        model.addAttribute("pausedTeams", matchService.getPausedTeamsInRound(roundId));
+        model.addAttribute("pausedTeams", teamService.getPausedTeamsInRound(roundId));
         return "matches";
     }
 
@@ -72,6 +76,15 @@ public class MatchController {
         if (request.getParameterValues("checkBoxMatchId") != null) {
             for (String matchId : request.getParameterValues("checkBoxMatchId")) {
                 Match match = matchService.getMatchById(Integer.parseInt(matchId));
+
+                //Create a copy of the match to help the RankingData if values are null
+                Match matchCopy = new Match();
+                matchCopy.setHomeTeam(match.getHomeTeam());
+                matchCopy.setAwayTeam(match.getAwayTeam());
+                matchCopy.setHomeScore(match.getHomeScore());
+                matchCopy.setAwayScore(match.getAwayScore());
+                matchCopy.setRound(match.getRound());
+
                 int i = 0; //home goals id iteration
                 int j = 0; //away goals id iteration
 
@@ -147,8 +160,40 @@ public class MatchController {
                     }
                 }
 
-                matchService.saveMatch(match); //Save match and iterate to next checkbox
-            }
+
+//              -----RankingData-----
+
+//                1) if matchCopy is ok and the incoming match is ok
+//                   create or update if the ranking-data with this team exists
+                if (matchCopy.someValueIsNull() == false && match.someValueIsNull() == false) {
+                    rankingDataComponent.undoMatch(matchCopy, true);
+                    Match matchReversed = matchCopy.reverseMatch();
+                    rankingDataComponent.undoMatch(matchReversed, false);
+                    matchService.saveMatchAndAddRankingData(match);
+                }
+
+//                2) if matchCopy is ok and the incoming match is null
+//                   undo match
+                else if (matchCopy.someValueIsNull() == false && match.someValueIsNull() == true) {
+                    rankingDataComponent.undoMatch(matchCopy, true);
+                    Match matchReversed = matchCopy.reverseMatch();
+                    rankingDataComponent.undoMatch(matchReversed, false);
+                    matchService.saveMatch(match);
+                }
+
+//                3) if matchCopy is null and the incoming match is ok
+//                   create or update if the ranking-data with this team exists
+                else if (matchCopy.someValueIsNull() == true && match.someValueIsNull() == false) {
+                    matchService.saveMatchAndAddRankingData(match);
+                }
+
+//                4) if match is null and the incoming match is null
+//                   just save match to the database
+                else if (matchCopy.someValueIsNull() == true && match.someValueIsNull() == true) {
+                    matchService.saveMatch(match);
+                }
+
+            } //iterate to the next selected checkbox
         }
         return "redirect:/seasons/show-matches/" + seasonId + "/" + roundId;
     }

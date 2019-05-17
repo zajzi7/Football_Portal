@@ -3,22 +3,40 @@ package pl.dominik.football.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.dominik.football.services.RankingService;
+import pl.dominik.football.domain.entity.RankingData;
+import pl.dominik.football.domain.repository.RankingDataRepository;
+import pl.dominik.football.services.MatchService;
+import pl.dominik.football.services.SeasonService;
+import pl.dominik.football.services.TeamService;
+import pl.dominik.football.utilities.SortTeams;
+
+import java.util.List;
 
 @Controller
 public class RankingController {
 
     @Autowired
-    RankingService rankingService;
+    TeamService teamService;
 
-    @RequestMapping("/ranking")
-    public String getRanking(Model model) {
+    @Autowired
+    MatchService matchService;
 
-        //show team ranking in table
-        //List<Player> teamRanking = rankingService.generateRanking();
-        //model.addAttribute("ranking", teamRanking);
+    @Autowired
+    RankingDataRepository rankingDataRepository;
+
+    @Autowired
+    SeasonService seasonService;
+
+    @RequestMapping("/ranking/{id}")
+    public String getRanking(@PathVariable("id") int seasonId, Model model) {
+
+        List<RankingData> rankingData = rankingDataRepository.getRankingDataBySeasonId(seasonId);
+        rankingData.sort(new SortTeams());
+        model.addAttribute("teams", rankingData);
 
         return "ranking";
     }
+
 }

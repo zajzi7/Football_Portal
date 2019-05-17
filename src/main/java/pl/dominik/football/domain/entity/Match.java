@@ -3,14 +3,17 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.dominik.football.utilities.MatchEntityListener;
 
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
 @Entity
+@EntityListeners(MatchEntityListener.class)
 @NoArgsConstructor
 public class Match {
 
@@ -43,6 +46,28 @@ public class Match {
         this.homeScore = homeScore;
         this.awayScore = awayScore;
         this.round = round;
+    }
+
+    //===Logical part===
+
+    public boolean someValueIsNull() {
+        if (this.homeTeam == null ||
+                this.awayTeam == null ||
+                this.homeScore == null ||
+                this.awayScore == null) {
+            return true;
+        }
+        return false;
+    }
+
+    public Match reverseMatch() {
+        Match matchReversed = new Match();
+        matchReversed.setRound(this.round);
+        matchReversed.setHomeTeam(this.awayTeam);
+        matchReversed.setAwayTeam(this.homeTeam);
+        matchReversed.setHomeScore(this.awayScore);
+        matchReversed.setAwayScore(this.homeScore);
+        return matchReversed;
     }
 
 }

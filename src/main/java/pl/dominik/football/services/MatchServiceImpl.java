@@ -2,14 +2,16 @@ package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.MatchRepository;
+import pl.dominik.football.utilities.RankingDataComponent;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class MatchServiceImpl implements MatchService {
@@ -18,13 +20,10 @@ public class MatchServiceImpl implements MatchService {
     MatchRepository matchRepository;
 
     @Autowired
-    SeasonService seasonService;
-
-    @Autowired
     RoundService roundService;
 
     @Autowired
-    TeamService teamService;
+    RankingDataComponent rankingDataComponent;
 
     @Override
     public Match getMatchById(int id) {
@@ -47,7 +46,7 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public void addMatchResult(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {
         Match match = new Match(homeTeam, awayTeam, homeScore, awayScore, round);
-        matchRepository.save(match);
+        saveMatchAndAddRankingData(match);
     }
 
     public List<Match> getMatchesByRoundId(int roundId) {
@@ -65,35 +64,78 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public List<Team> getPausedTeamsInRound(int roundId) {
+    @Transactional
+    public void saveMatchAndAddRankingData(Match match) {
+        //Save match to the database
+        matchRepository.save(match);
 
-        boolean teamIsNotPresentInMatchesFlag = false;
-        List<Team> pausedTeams = new ArrayList<>();
-        int seasonId = roundService.getSeasonIdByRoundId(roundId);
-        List<Team> teams = teamService.getTeamsBySeasonId(seasonId);
-        List<Match> matches = matchRepository.getMatchesByRound_Id(roundId);
+        //Reverse match to treat away team as home team
+        Match reversedMatch = match.reverseMatch();
 
-        for (Team team : teams) {
-            for (Match match : matches) {
-                if ((match.getHomeScore() != null && match.getAwayScore() != null) &&
-                    (match.getHomeScore() >= 0 && match.getAwayScore() >= 0) &&
-                    (match.getHomeTeam() != null && match.getAwayTeam() != null)) {
+        //Add home team to the ranking
+        rankingDataComponent.addMatch(match, true);
+        rankingDataComponent.addMatch(reversedMatch, false);
+    }
 
-                    if (team.getId() == match.getAwayTeam().getId() || team.getId() == match.getHomeTeam().getId()) {
-                        teamIsNotPresentInMatchesFlag = false;
-                        break; //This team is present in matches of this round.
-                        // Set flag to false to not save this team to pausedTeams and break to next team
+    @Override
+    public void removeTeamFromMatchesBySeasonId(Team team, int seasonId) {
+        //Used when removing team from the season
+        List<Round> rounds = roundService.getRoundsBySeasonId(seasonId);
+        List<Match> matches = null;
+
+        //Iterate each round to then iterate each match and set the team in match to null
+        for (Round r : rounds) {
+
+            if (r.getMatches().isEmpty()) {
+                break;
+            } else {
+                matches = matchRepository.getMatchesByRound_Id(r.getId());
+            }
+
+            for (Match m : matches) {
+
+                if (m.getHomeTeam() != null &&
+                        m.getHomeTeam().getTeamName().equals(team.getTeamName())) {
+
+                    //Undo RankingData
+                    if (m.getAwayTeam() != null) {
+                        rankingDataComponent.undoMatch(m, true);
+                        Match matchReversed = m.reverseMatch();
+                        rankingDataComponent.undoMatch(matchReversed, false);
                     }
-                    teamIsNotPresentInMatchesFlag = true;
+
+                    //Remove the Match from a Set of Teams(Team entity)
+                    Set<Match> matchesHomeTeam = m.getHomeTeam().getMatchHomeTeam();
+                    matchesHomeTeam.remove(m.getHomeTeam());
+                    m.getHomeTeam().setMatchHomeTeam(matchesHomeTeam);
+
+                    //Set the match to null
+                    m.setHomeTeam(null);
+                    matchRepository.save(m);
+                }
+
+                if (m.getAwayTeam() != null &&
+                        m.getAwayTeam().getTeamName().equals(team.getTeamName())) {
+
+                    //Undo RankingData
+                    if (m.getHomeTeam() != null) {
+                        rankingDataComponent.undoMatch(m, true);
+                        Match matchReversed = m.reverseMatch();
+                        rankingDataComponent.undoMatch(matchReversed, false);
+                    }
+
+                    //Remove the Match from a Set of Teams(Team entity)
+                    Set<Match> matchesAwayTeam = m.getAwayTeam().getMatchAwayTeam();
+                    matchesAwayTeam.remove(m.getAwayTeam());
+                    m.getAwayTeam().setMatchAwayTeam(matchesAwayTeam);
+
+                    //Set the match to null
+                    m.setAwayTeam(null);
+
+                    matchRepository.save(m);
                 }
             }
-            if (teamIsNotPresentInMatchesFlag) {
-                pausedTeams.add(team);
-                teamIsNotPresentInMatchesFlag = false;
-            }
         }
-
-        return pausedTeams;
     }
 
 }

@@ -20,6 +20,7 @@ public interface MatchService {
 
     void saveMatch(Match match);
 
-    List<Team> getPausedTeamsInRound(int roundId);
+    void saveMatchAndAddRankingData(Match match);
 
+    void removeTeamFromMatchesBySeasonId(Team team, int seasonId);
 }

@@ -7,11 +7,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
+import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
+import pl.dominik.football.utilities.RankingDataComponent;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
@@ -29,6 +32,12 @@ public class TeamController {
 
     @Autowired
     SeasonService seasonService;
+
+    @Autowired
+    RankingDataComponent rankingDataComponent;
+
+    @Autowired
+    RankingDataRepository rankingDataRepository;
 
     @RequestMapping("/newteam")
     //Form to create new team by admin
@@ -118,8 +127,7 @@ public class TeamController {
                 Team team = teamService.getTeamByName(teamName);
 
                 if (!(season.getTeams().contains(team))) {
-                    team.assignToSeason(season);
-                    teamService.saveTeam(team); //seasonService.saveSeason is unnecessary
+                    seasonService.addTeam(team, season);
                 }
             }
         } catch (NullPointerException e) { //when none of the values is selected
@@ -138,8 +146,23 @@ public class TeamController {
                 Team team = teamService.getTeamByName(teamName);
 
                 if (season.getTeams().contains(team)) {
+
+                    //remove the team from matches
+                    matchService.removeTeamFromMatchesBySeasonId(team, seasonId);
+
+                    //remove the season from the team
                     team.removeFromSeason(season);
+
+                    //remove the team RankingData
+                    RankingData ranking = rankingDataRepository.getRankingDataByTeamIdAndSeasonId(team.getId(), seasonId);
+                    if (ranking != null) {
+                        rankingDataRepository.delete(ranking);
+                    }
+
                     teamService.saveTeam(team); //seasonService.saveSeason is unnecessary
+
+                    //remove the team from the season
+                    season.removeTeam(team);
                 }
             }
         } catch (NullPointerException e) { //when none of the values is selected
