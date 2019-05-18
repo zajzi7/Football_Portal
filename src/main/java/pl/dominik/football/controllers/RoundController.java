@@ -49,7 +49,7 @@ public class RoundController {
         }
 
         try {
-            //Check if roundNumber value entered by the admin is already exists in this season
+            //Check if the roundNumber value entered by the admin already exists in this season
             //(handle @UniqueConstraint in the Round class)
             roundService.assignRoundToSeasonWithId(round, seasonId);
         } catch (DataIntegrityViolationException e) {

@@ -65,7 +65,7 @@ public class SeasonController {
         }
 
         try {
-            //Check if seasonName value entered by the admin is already exists
+            //Check if the seasonName value entered by the admin already exists
             //(handle @Column(unique=true) in the Season class)
             seasonService.saveSeason(season);
 

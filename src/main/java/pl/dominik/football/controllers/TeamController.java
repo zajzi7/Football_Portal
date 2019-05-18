@@ -1,8 +1,15 @@
 package pl.dominik.football.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +24,7 @@ import pl.dominik.football.services.TeamService;
 import pl.dominik.football.utilities.RankingDataComponent;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -39,6 +47,17 @@ public class TeamController {
     @Autowired
     RankingDataRepository rankingDataRepository;
 
+    //Auxiliary variable to get String value from validation.messages.properties and add to the error
+    @Value("${pl.team.validation.alreadyExist.message}")
+    String teamNameAlreadyExists;
+
+    //Remove leading and trailing whitespace
+    @InitBinder
+    public void initBinder(WebDataBinder dataBinder) {
+        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+    }
+
     @RequestMapping("/newteam")
     //Form to create new team by admin
     public String createTeam(Model model) {
@@ -47,35 +66,52 @@ public class TeamController {
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=editTeam")
-    public String editTeam(@ModelAttribute("team") Team team) {
-        List<Team> allTeams = teamService.getAllTeams();
+    public String editTeam(@Valid @ModelAttribute("team") Team team, BindingResult bindingResult) {
 
-        for (Team t : allTeams) {
-            if (t.getTeamName().equals(team.getTeamName())) {
-                //loop to check if team name entered by admin already exists
-                return "error-name";
-            }
+        //Check if the teamName value entered by the admin contains errors(validation @NotNull, @Size in the Team class)
+        if (bindingResult.hasErrors()) {
+            return "create-team";
         }
 
-        Set<Season> seasons = seasonService.getSeasonsContainsTeam(team);
-        team.setSeason(seasons); //Don't delete! Workaround necessary to edit team
+        try {
+            //Check if the teamName value entered by the admin already exists
+            //(handle @Column(unique=true) in the Team class)
+            Set<Season> seasons = seasonService.getSeasonsContainsTeam(team);
+            team.setSeason(seasons); //Don't delete! Workaround necessary to edit team
+            teamService.saveTeam(team);
 
-        teamService.saveTeam(team);
+        } catch (DataIntegrityViolationException e) {
+            //Team name already exists - add new error to the bindingResult
+            ObjectError error = new ObjectError("teamName", teamNameAlreadyExists);
+            bindingResult.addError(error);
+            return "create-team";
+        }
+
+        //If everything went well then redirect to the teams list
         return "redirect:/teams";
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=newTeam")
     //Create new team in DB received from admin data and then redirect to season list
-    public String saveTeam(@ModelAttribute("team") Team team) {
-        List<Team> allTeams = teamService.getAllTeams();
+    public String saveTeam(@Valid @ModelAttribute("team") Team team, BindingResult bindingResult) {
 
-        for (Team t : allTeams) {
-            if (t.getTeamName().equals(team.getTeamName())) {
-                //loop to check if team name entered by admin already exists
-                return "error-name";
-            }
+        //Check if the teamName value entered by the admin contains errors(validation @NotNull, @Size in the Team class)
+        if (bindingResult.hasErrors()) {
+            return "create-team";
         }
-        teamService.saveTeam(team);
+
+        try {
+            //Check if the teamName value entered by the admin already exists
+            //(handle @Column(unique=true) in the Team class)
+            teamService.saveTeam(team);
+        } catch (DataIntegrityViolationException e) {
+            //Team name already exists - add new error to the bindingResult
+            ObjectError error = new ObjectError("teamName", teamNameAlreadyExists);
+            bindingResult.addError(error);
+            return "create-team";
+        }
+
+        //If everything went well then redirect to the teams list
         return "redirect:/teams";
     }
 
