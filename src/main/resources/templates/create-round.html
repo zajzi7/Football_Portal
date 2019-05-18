@@ -9,13 +9,16 @@
 <body>
 
 <div class="ml-4 mt-4">
-    <form th:object="${round}" th:action="@{/rounds}" th:method="post">
+    <form th:object="${round}" th:action="|/rounds|" th:method="post">
         <!--    Hidden field necessary for updates-->
         <input type="hidden" th:field="*{id}"/>
-<!--        Handle season id to add round to proper season-->
-        <input type="hidden" th:value="${seasonId}" name="seasonId" />
-<!--        Input round number-->
-        <input type="text" th:field="*{roundNumber}" class="form-control mb-3 col-2"/>
+        <!--    Handle season id to add round to proper season-->
+        <input type="hidden" th:value="${seasonId}" name="seasonId"/>
+        <!--    Input round number-->
+        <input type="number" th:field="*{roundNumber}" class="form-control mb-3 col-2"/>
+        <!--    Errors-->
+        <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+        <!--    Save-->
         <button type="submit" class="btn btn-info col-1">Zapisz</button>
     </form>
 </div>
