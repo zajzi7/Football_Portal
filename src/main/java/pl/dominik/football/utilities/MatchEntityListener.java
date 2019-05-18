@@ -39,5 +39,5 @@ public class MatchEntityListener {
         Match matchReversed = match.reverseMatch();
         rankingDataComponent.undoMatch(matchReversed, false);
     }
-    
+
 }

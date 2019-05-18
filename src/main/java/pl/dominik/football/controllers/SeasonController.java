@@ -1,10 +1,13 @@
 package pl.dominik.football.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -32,6 +35,10 @@ public class SeasonController {
     @Autowired
     RoundService roundService;
 
+    //Auxiliary variable to get String value from validation.messages.properties and add to the error
+    @Value("${pl.season.validation.alreadyExist.message}")
+    String seasonNameAlreadyExists;
+
     //Remove leading and trailing whitespace
     @InitBinder
     public void initBinder(WebDataBinder dataBinder) {
@@ -52,19 +59,24 @@ public class SeasonController {
             @Valid @ModelAttribute("season") Season season,
             BindingResult bindingResult) {
 
+        //Check if seasonName value entered by the admin contains errors(validation @NotNull, @Size in the Season class)
         if (bindingResult.hasErrors()) {
             return "create-season";
         }
 
-        //Check if the season name entered by admin already exists
-        List<Season> seasons = seasonService.getSeasonList();
-        for (Season s : seasons) {
-            if (s.getSeasonName().equals(season.getSeasonName())) {
-                return "error-name";
-            }
+        try {
+            //Check if seasonName value entered by the admin is already exists
+            //(handle @Column(unique=true) in the Season class)
+            seasonService.saveSeason(season);
+
+        } catch (DataIntegrityViolationException e) {
+            //Season name already exists - add new error to the bindingResult
+            ObjectError error = new ObjectError("seasonName", seasonNameAlreadyExists);
+            bindingResult.addError(error);
+            return "create-season";
         }
 
-        seasonService.saveSeason(season);
+        //If everything went well then redirect to the seasons list
         return "redirect:/seasons";
     }
 

@@ -8,6 +8,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -33,8 +34,9 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "Błąd wprowadzenia danych")
-    @Size(min = 1, message = "Nazwa sezonu musi zawierać conajmniej 1 znak")
+    @NotNull(message = "{pl.season.validation.notNull.message}")
+    @Size(min = 2, message = "{pl.season.validation.size.message}")
+    @Column(unique = true)
     @Getter @Setter @ToString.Exclude
     private String seasonName;
 

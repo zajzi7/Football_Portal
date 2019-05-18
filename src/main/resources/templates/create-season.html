@@ -14,7 +14,7 @@
     <input type="hidden" th:field="*{id}" />
 
     <input type="text" th:field="*{seasonName}" class="form-control mb-3 col-2" placeholder="Nazwa sezonu" />
-    <p class="alert alert-danger" th:if="${#fields.hasErrors('seasonName')}" th:errors="*{seasonName}"></p>
+    <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
     <button type="submit" class="btn btn-info col-1">Zapisz</button>
 </form>
 </div>
