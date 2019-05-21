@@ -13,6 +13,8 @@ public interface H2hService {
 
     List<H2h> getH2hsByOppositeTeam(Team team);
 
+    List<H2h> getH2hsBySeason(Season season);
+
     List<H2h> getH2hsByOppositeTeamAndSeason(Team team, Season season);
 
     void deleteById(int id);

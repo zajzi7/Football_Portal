@@ -10,6 +10,8 @@ import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
 
+import java.time.LocalDate;
+
 @Component
 public class Start implements CommandLineRunner {
 
@@ -35,10 +37,9 @@ public class Start implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
         //manual creating round just for tests
-        roundService.createRound(4);
-        roundService.createRound(5);
-        roundService.createRound(6);
-
+        roundService.createRound(4, LocalDate.of(2019, 5, 19));
+        roundService.createRound(5, LocalDate.of(2019, 5, 26));
+        roundService.createRound(6, LocalDate.of(2019, 6, 2));
 
         //manual creating season just for tests
         seasonService.createSeason("2018/2019");
@@ -93,8 +94,6 @@ public class Start implements CommandLineRunner {
                 teamService.getTeamByName("Husaria"),
                 1,4,
                 roundService.getRoundByInt(4));
-
-
 
     }
 }

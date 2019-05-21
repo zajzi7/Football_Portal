@@ -9,6 +9,7 @@ import pl.dominik.football.domain.repository.RoundRepository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,8 +34,9 @@ public class RoundServiceImpl implements RoundService {
     }
 
     @Override
-    public void createRound(int roundNumber) {
+    public void createRound(int roundNumber, LocalDate date) {
         Round round = new Round(roundNumber);
+        round.setRoundStartDate(date);
         roundRepository.save(round);
     }
 
@@ -77,6 +79,26 @@ public class RoundServiceImpl implements RoundService {
         return em.createQuery("select r.season.id from Round r where r.id=:roundId", Integer.class)
                 .setParameter("roundId", roundId)
                 .getSingleResult();
+    }
+
+    @Override
+    public LocalDate generateNextRoundDefaultDate(Season season) {
+        //Get all the rounds from the season
+        List<Round> rounds = getRoundsBySeasonId(season.getId());
+
+        if (rounds.size() > 0) { //If there is more than one Round in Season created so far
+
+            //Sort list by the roundNumber
+            rounds.sort((o1, o2) -> ((Integer) o2.getRoundNumber()).compareTo(o1.getRoundNumber()));
+
+            //Get first(round with the biggest roundNumber) element
+            Round lastRound = rounds.get(0);
+
+            //Return last round date + 1 week
+            return lastRound.getRoundStartDate().plusWeeks(1);
+        }
+
+        return null;
     }
 
 }

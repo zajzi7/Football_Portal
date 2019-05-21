@@ -27,6 +27,9 @@ public class Player {
     private String lastName;
 
     @Getter @Setter
+    private int age;
+
+    @Getter @Setter
     private int goals;
 
     @Getter @Setter

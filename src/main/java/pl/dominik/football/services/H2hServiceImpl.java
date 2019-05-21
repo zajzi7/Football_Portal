@@ -44,6 +44,11 @@ public class H2hServiceImpl implements H2hService {
     }
 
     @Override
+    public List<H2h> getH2hsBySeason(Season season) {
+        return h2hRepository.getH2hsBySeason(season);
+    }
+
+    @Override
     public List<H2h> getH2hsByOppositeTeamAndSeason(Team team, Season season) {
         return h2hRepository.getH2hsByOppositeTeamAndSeason(team, season);
     }

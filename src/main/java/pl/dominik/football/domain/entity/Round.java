@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,6 +20,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,6 +44,11 @@ public class Round {
     @Getter @Setter
     private int roundNumber;
 
+    @Getter @Setter
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @NotNull(message = "{pl.round.validation.date.notNull.message}")
+    private LocalDate roundStartDate;
+
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "round", cascade = CascadeType.REMOVE)
     @Getter @Setter
     private List<Match> matches = new ArrayList<>();
@@ -52,6 +60,10 @@ public class Round {
 
     public Round(int roundNumber) {
         this.roundNumber = roundNumber;
+    }
+
+    public Round(LocalDate date) {
+        this.roundStartDate = date;
     }
 
     //TODO add multiple rounds

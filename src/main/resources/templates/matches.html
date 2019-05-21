@@ -37,16 +37,28 @@
             <th scope="col" style="width: 5%; text-align: center">ID</th>
             <th scope="col" style="width: 5%; text-align: center" class="align-middle">
                 <input type="checkbox" id="checkBoxAll"/></th>
+            <th scope="col">Data</th>
+            <th scope="col">Czas</th>
             <th scope="col">Drużyna 1</th>
             <th scope="col">Gole</th>
             <th scope="col">Drużyna 2</th>
             </thead>
-            <tbody>
+            <tbody style="text-align: center">
             <tr th:each="match, iteration : ${matches}">
                 <th scope="row" th:text="${match.id}" style="text-align: center" class="align-middle"></th>
                 <td style="text-align: center" class="align-middle">
                     <input th:id="|chb${iteration.index}|" type="checkbox" class="chkCheckBoxId" name="checkBoxMatchId"
                            th:value="${match.id}"/>
+                </td>
+                <td>
+                    <input type="date" class="form-control col-9" name="matchDate" th:value="${match.matchDate}"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
+                    <input type="hidden" th:value="${match.id}" name="matchDateId" />
+                </td>
+                <td>
+                    <input type="time" class="form-control" name="matchStartTime" th:value="${match.matchStartTime}"
+                           th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
+                    <input type="hidden" th:value="${match.id}" name="matchStartTimeId" />
                 </td>
                 <td><!--                List to choose home teams from given season-->
                     <select th:id="${'homeTeams'+iteration.index}" name="homeTeamsFromSeasonSelector" class="form-control"
@@ -58,7 +70,7 @@
                                 th:selected="${match.homeTeam != null} and ${team.teamName==match.homeTeam.teamName}"></option>
                     </select>
                 </td>
-                <td>
+                <td style="text-align: center">
                     <input type="text" th:value="${match.homeScore}" name="homeScore" class="form-control"
                            style="width: 45px; text-align:center" maxlength="2"
                            th:attr="onchange='document.getElementById(onchangeWrapper(' + ${iteration.index} + ')).checked=true'" />
@@ -82,7 +94,7 @@
                 </td>
             </tr>
             <tr th:if="${pausedTeams.size()} > 0"><!-- Visible only if there are skipped teams in this round-->
-                <td colspan="5">Pauzujące drużyny:
+                <td colspan="7" style="text-align: left">Pauzujące drużyny:
                     <span th:each="team : ${pausedTeams}"
                           th:text="${team.teamName} + (${team}==${pausedTeams.get(pausedTeams.size()-1)} ? '' : ', ')">
 <!--                        If the team is the last element of the list then do not add a comma-->

@@ -72,8 +72,10 @@ public class RankingData {
     private void deleteRankingData() { //remove all H2h assigned to this RankingData
         H2hService h2hService = BeanUtil.getBean(H2hService.class);
 
-        for (H2h headToHead : this.h2h) {
-            h2hService.delete(headToHead);
+        if (this.h2h != null) {
+            for (H2h headToHead : this.h2h) {
+                h2hService.delete(headToHead);
+            }
         }
 
         List<H2h> h2hsByOppositeTeamAndSeason = h2hService.getH2hsByOppositeTeamAndSeason(this.team, this.season);

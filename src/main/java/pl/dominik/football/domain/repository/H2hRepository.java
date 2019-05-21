@@ -16,4 +16,5 @@ public interface H2hRepository extends JpaRepository<H2h, Integer> {
 
     H2h getH2hByOppositeTeamAndRanking(Team team, RankingData ranking);
 
+    List<H2h> getH2hsBySeason(Season season);
 }

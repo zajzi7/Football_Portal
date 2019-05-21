@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.services.RoundService;
+import pl.dominik.football.services.SeasonService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
 
 @Controller
 public class RoundController {
@@ -26,10 +28,15 @@ public class RoundController {
     @Autowired
     RoundService roundService;
 
+    @Autowired
+    SeasonService seasonService;
+
     @RequestMapping(value = "/newround/{id}")
     //Form to create new round by admin
     public String createRoundBySeasonId(@PathVariable("id") int id, Model model) {
-        model.addAttribute("round", new Round());
+        LocalDate date = roundService.generateNextRoundDefaultDate(seasonService.getSeasonById(id));
+
+        model.addAttribute("round", new Round(date));
         model.addAttribute("seasonId", id);
         return "create-round";
     }

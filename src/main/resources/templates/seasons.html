@@ -14,26 +14,26 @@
     <table class="table table-bordered table-striped table-hover">
         <caption>Lista sezonów</caption>
         <thead class="thead-dark">
-        <th scope="col" style="width: 5%; text-align: center">ID</th>
-        <th scope="col">Sezon</th>
-        <th style="width: 15%"></th>
-        <th style="width: 15%"></th>
-        <th style="width: 10%"></th>
-        <th style="width: 15%"></th>
+        <th scope="col" style="width: 5%; text-align: center">ID</th><!-- ID-->
+        <th scope="col">Sezon</th><!-- Season name-->
+        <th style="width: 17%"></th><!-- Assign/delete teams to season-->
+        <th style="width: 15%"></th><!-- Edit season name-->
+        <th style="width: 10%"></th><!-- Delete season-->
+        <th style="width: 15%"></th><!-- Current season-->
         </thead>
 
-        <tbody>
+        <tbody style="text-align: center">
         <tr th:each="season : ${seasons}">
             <!--        ID season-->
             <th scope="row" th:text="${season.id}"></th>
 
             <!--        Season name + current season-->
-            <td><a title="Kolejki" th:href="${'/seasons/show-rounds/'+season.id}">
+            <td style="text-align: left"><a title="Kolejki" th:href="${'/seasons/show-rounds/'+season.id}">
                 <span th:text="${season.seasonName}"/>
                 <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></a></td>
 
             <!--        Assign teams to season-->
-            <td><a th:href="${'/assign-teams/'+season.id}">Przypisz drużyny</a></td>
+            <td><a th:href="${'/assign-teams/'+season.id}">Przypisz/usuń drużyny</a></td>
 
             <!--        Edit season name-->
             <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj nazwę</a></td>

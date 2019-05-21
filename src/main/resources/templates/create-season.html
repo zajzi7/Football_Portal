@@ -18,6 +18,7 @@
         <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
         <!--    Save-->
         <button type="submit" class="btn btn-info col-1">Zapisz</button>
+        <a th:href="|/seasons|" class="btn btn-info col-1">Powrót</a>
     </form>
 </div>
 

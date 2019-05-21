@@ -35,9 +35,11 @@ public class MatchEntityListener {
             return;
         }
 
-        rankingDataComponent.undoMatch(match, true);
-        Match matchReversed = match.reverseMatch();
-        rankingDataComponent.undoMatch(matchReversed, false);
+        if (match.someValueIsNull() == false) {
+            rankingDataComponent.undoMatch(match, true);
+            Match matchReversed = match.reverseMatch();
+            rankingDataComponent.undoMatch(matchReversed, false);
+        }
     }
 
 }

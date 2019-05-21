@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Entity
 @EntityListeners(MatchEntityListener.class)
@@ -21,6 +23,12 @@ public class Match {
     @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Getter @Setter
+    private LocalDate matchDate;
+
+    @Getter @Setter
+    private LocalTime matchStartTime;
 
     @Getter @Setter
     private Integer homeScore; //not int for null possibility

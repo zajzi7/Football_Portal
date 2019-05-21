@@ -46,6 +46,8 @@ public class MatchServiceImpl implements MatchService {
     @Override
     public void addMatchResult(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {
         Match match = new Match(homeTeam, awayTeam, homeScore, awayScore, round);
+        //Initial match date is round date
+        match.setMatchDate(roundService.getRoundById(round.getId()).getRoundStartDate());
         saveMatchAndAddRankingData(match);
     }
 

@@ -6,6 +6,9 @@ import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
+import pl.dominik.football.domain.repository.RankingDataRepository;
+import pl.dominik.football.services.H2hService;
+import pl.dominik.football.utilities.BeanUtil;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -37,16 +40,19 @@ public class Season {
     @NotNull(message = "{pl.season.validation.notNull.message}")
     @Size(min = 2, message = "{pl.season.validation.size.message}")
     @Column(unique = true)
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
+    @ToString.Exclude
     private String seasonName;
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.REMOVE)
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
+    @ToString.Exclude
     private List<Round> rounds = new ArrayList<>();
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(mappedBy = "season")
-    @Getter @Setter @ToString.Exclude
+    @Getter @Setter
+    @ToString.Exclude
     private Set<Team> teams = new HashSet<>();
 
     public Season(String seasonName) {
@@ -68,9 +74,30 @@ public class Season {
     }
 
     @PreRemove
-    private void deleteSeasonFromTeams() {
-        for (Team t : teams) { //teams
+    private void deleteSeason() {
+        //Teams
+        for (Team t : teams) {
             t.getSeason().remove(this);
+        }
+
+        //H2h
+        H2hService h2hService = BeanUtil.getBean(H2hService.class);
+        List<H2h> h2hsBySeason = h2hService.getH2hsBySeason(this);
+        if (h2hsBySeason != null) {
+            for (H2h h2h : h2hsBySeason) {
+                h2hService.delete(h2h);
+            }
+        }
+
+        //RankingData
+        RankingDataRepository rankingDataRepository = BeanUtil.getBean(RankingDataRepository.class);
+        List<RankingData> rankingList = rankingDataRepository.getRankingDataBySeasonId(this.getId());
+
+        if (rankingList != null) {
+            for (RankingData ranking : rankingList) {
+                ranking.setH2h(null);
+                rankingDataRepository.delete(ranking);
+            }
         }
     }
 }

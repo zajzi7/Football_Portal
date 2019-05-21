@@ -14,6 +14,8 @@ import pl.dominik.football.services.TeamService;
 import pl.dominik.football.utilities.RankingDataComponent;
 
 import javax.servlet.http.HttpServletRequest;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Controller
 public class MatchController {
@@ -47,12 +49,14 @@ public class MatchController {
     @RequestMapping(value = "/matches/process/{seasonId}/{roundId}", method = RequestMethod.POST, params = "action=addMatches")
     //Create new match in DB and then redirect to list of matches
     public String createMatches(@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId,
-                              HttpServletRequest request) {
+                                HttpServletRequest request) {
 
         int numberOfMatchesToAdd = Integer.parseInt(request.getParameter("numberOfMatchesToAdd"));
-        for ( ; numberOfMatchesToAdd > 0; numberOfMatchesToAdd--) {
+        for (; numberOfMatchesToAdd > 0; numberOfMatchesToAdd--) {
             Match match = new Match();
             match.setRound(roundService.getRoundById(roundId));
+            //Initial match date is round date
+            match.setMatchDate(roundService.getRoundById(roundId).getRoundStartDate());
             matchService.saveMatch(match);
         }
         return "redirect:/seasons/show-matches/" + seasonId + "/" + roundId;
@@ -87,6 +91,8 @@ public class MatchController {
 
                 int i = 0; //home goals id iteration
                 int j = 0; //away goals id iteration
+                int k = 0; //date id iteration
+                int l = 0; //time id iteration
 
                 /* 1) All data comes from view(even not selected checkboxes).
                 matchId = selected checkboxes.
@@ -112,15 +118,15 @@ public class MatchController {
                 //Home team score(goals)
                 for (String homeScore : request.getParameterValues("homeScore")) {
                     try {
-                    String homeScoreMatchId[] = request.getParameterValues("homeScoreId");
-                    if (matchId.equals(homeScoreMatchId[i])) {
-                        try {
-                            match.setHomeScore(Integer.parseInt(homeScore));
-                        } catch (NumberFormatException e) {
-                            match.setHomeScore(null); //if score value is empty ''
+                        String homeScoreMatchId[] = request.getParameterValues("homeScoreId");
+                        if (matchId.equals(homeScoreMatchId[i])) {
+                            try {
+                                match.setHomeScore(Integer.parseInt(homeScore));
+                            } catch (NumberFormatException e) {
+                                match.setHomeScore(null); //if score value is empty ''
+                            }
                         }
-                    }
-                    i++;
+                        i++;
                     } catch (ArrayIndexOutOfBoundsException e) {
                         e.printStackTrace();
                         continue;
@@ -160,11 +166,39 @@ public class MatchController {
                     }
                 }
 
+                //Date
+                for (String matchDate : request.getParameterValues("matchDate")) {
+                    String matchDateId[] = request.getParameterValues("matchDateId");
+                    try {
+                        if (matchId.equals(matchDateId[k])) {
+                            match.setMatchDate(LocalDate.parse(matchDate));
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    k++;
+                }
+
+                //Time
+                for (String matchStartTime : request.getParameterValues("matchStartTime")) {
+                    String matchStartTimeId[] = request.getParameterValues("matchStartTimeId");
+                    try {
+                        if (matchId.equals(matchStartTimeId[l]) && (!(matchStartTime.equals("")))) {
+                            match.setMatchStartTime(LocalTime.parse(matchStartTime));
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        e.printStackTrace();
+                        continue;
+                    }
+                    l++;
+                }
+
 
 //              -----RankingData-----
 
 //                1) if matchCopy is ok and the incoming match is ok
-//                   create or update if the ranking-data with this team exists
+//                   update the ranking-data
                 if (matchCopy.someValueIsNull() == false && match.someValueIsNull() == false) {
                     rankingDataComponent.undoMatch(matchCopy, true);
                     Match matchReversed = matchCopy.reverseMatch();
@@ -182,7 +216,7 @@ public class MatchController {
                 }
 
 //                3) if matchCopy is null and the incoming match is ok
-//                   create or update if the ranking-data with this team exists
+//                   update the ranking-data
                 else if (matchCopy.someValueIsNull() == true && match.someValueIsNull() == false) {
                     matchService.saveMatchAndAddRankingData(match);
                 }
