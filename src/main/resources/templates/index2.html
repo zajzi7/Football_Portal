@@ -1,0 +1,154 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Football App</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <!--    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />-->
+    <link rel="stylesheet" href="css/styles.css"/>
+    <link rel="stylesheet" href="css/icons/css/fontello.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="app">
+
+    <!--    Header(logo etc.)-->
+    <div class="header">
+        <div class="logo_crest">
+            <img th:src="@{/img/herb-logo2.png}"/>
+        </div>
+        <div class="header_title">KS&nbsp;Husaria Łapczyca</div>
+        <!--        Menu-->
+        <div>
+            <ol id="menu">
+                <li><a th:href="@{/}"><i class="icon-home-outline"></i></a></li>
+                <li class="dol"><a href="#"><i
+                        class="icon-football-or-soccer-board-with-results-of-games"></i>Tabela</a>
+                    <ul>
+                        <li><a href="#">link - 1</a></li>
+
+                        <li class="prawo"><a href="#">link - 2</a>
+                            <ol>
+                                <li><a href="#">dodany - 1</a></li>
+                                <li><a href="#">dodany - 2</a></li>
+                                <li><a href="#">dodany - 3</a></li>
+                                <li><a href="#">dodany - 4</a></li>
+                                <li><a href="#">dodany - 5</a></li>
+                                <li><a href="#">dodany - 6</a></li>
+                            </ol>
+                        </li>
+
+                        <li class="prawo"><a href="#">link - 3</a>
+                            <ol>
+                                <li><a href="#">dodany - 1</a></li>
+                                <li><a href="#">dodany - 2</a></li>
+                                <li><a href="#">dodany - 3</a></li>
+                                <li><a href="#">dodany - 4</a></li>
+                            </ol>
+                        </li>
+
+                        <li><a href="#">link - 4</a></li>
+                        <li><a href="#">link - 5</a></li>
+                    </ul>
+                </li>
+
+                <li class="dol"><a href="#"><i class="icon-calendar"></i>Terminarz</a>
+                    <ul>
+                        <li><a href="#">link - 1</a></li>
+
+                        <li class="prawo"><a href="#">link - 2</a>
+                            <ol>
+                                <li><a href="#">dodany - 1</a></li>
+                                <li><a href="#">dodany - 2</a></li>
+                                <li><a href="#">dodany - 3</a></li>
+                                <li><a href="#">dodany - 4</a></li>
+                                <li><a href="#">dodany - 5</a></li>
+                            </ol>
+                        </li>
+
+                        <li><a href="#">link - 3</a></li>
+                    </ul>
+                </li>
+                <li class="dol"><a href="#"><i class="icon-dollar" style="padding-right: 5px"></i>Sponsorzy</a>
+                    <ul>
+                        <li><a href="#">link - 1</a></li>
+                        <li><a href="#">link - 2</a></li>
+                        <li><a href="#">link - 3</a></li>
+                        <li><a href="#">link - 4</a></li>
+                    </ul>
+                </li>
+                <li><a href="#"><i class="icon-mail"></i>Kontakt</a></li>
+            </ol>
+        </div>
+    </div>
+
+    <!--    Main content-->
+    <div class="content">
+
+        <!--        News-->
+        <div class="all_news">
+            <div class="single_news" th:each="news : ${newsList}">
+                <div class="news_title">
+                    <span th:text="${news.title}"></span>
+                </div>
+                <div class="news_content">
+                    <span th:utext="${news.content}"></span>
+                    <!--                    <a th:text="${news.content}"></a>-->
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <div class="ranking">
+                <div class="ranking_head">Tabela</div>
+                <div class="ranking_content">
+
+                    <table class="table-fill">
+                        <thead>
+                        <th scope="col" class="text-center">#</th>
+                        <th scope="col" class="text-left">Drużyna</th>
+                        <th scope="col" class="text-center">M</th>
+                        <th scope="col" class="text-center">Pkt</th>
+                        </thead>
+
+                        <tbody class="table-hover">
+                        <tr th:each="team, iteration : ${teams}">
+                            <td class="text-center" th:text="${iteration.index + 1}"></td>
+                            <td class="text-left icon-football-badge" th:text="${team.team.teamName}"></td>
+                            <td class="text-center" th:text="${team.matchesPlayed}"></td>
+                            <td class="text-center" th:text="${team.points}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br />
+                    <a>Pokaż pełną tabelę</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="links">
+            <div class="links_header">Przydatne linki:</div>
+            <div class="all_columns">
+                <div class="single_column">
+                    <a href="http://podokreg.bochnia.pl">PPN Bochnia</a><br/>
+                    <a href="http://ksbochnia.pl">Komisja Sędziowska</a><br/>
+                </div>
+                <div class="single_column">
+                    <a href="https://www.pzpn.pl">PZPN</a>
+                </div>
+                <div class="single_column">
+                    <a href="http://www.mzpnkrakow.pl">MZPN</a>
+                </div>
+            </div>
+        </div>
+        <div class="author">
+            <a href="https://www.linkedin.com/in/dominix77/" target="_blank">
+                <i class="icon-linkedin linkedin_styles"></i> Dominik Drabina &copy; 2019</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

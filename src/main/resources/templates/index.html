@@ -31,6 +31,16 @@
     <hr/>
     <a th:href="results">Wyniki</a>
     <hr/>
+    <a th:href="@{/create-news}">Nowy news</a>
+    <hr/>
+    <table class="table table-bordered table-striped" th:each="news : ${newsList}">
+        <tr>
+            <td th:text="${news.title}"></td>
+        </tr>
+        <tr>
+            <td th:text="${news.content}"></td>
+        </tr>
+    </table>
 </div>
 
 </body>

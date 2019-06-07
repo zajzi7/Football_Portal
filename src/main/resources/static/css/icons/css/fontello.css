@@ -1,0 +1,100 @@
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot?81989414');
+  src: url('../font/fontello.eot?81989414#iefix') format('embedded-opentype'),
+       url('../font/fontello.woff2?81989414') format('woff2'),
+       url('../font/fontello.woff?81989414') format('woff'),
+       url('../font/fontello.ttf?81989414') format('truetype'),
+       url('../font/fontello.svg?81989414#fontello') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Chrome hack: SVG is rendered more smooth in Windozze. 100% magic, uncomment if you need it. */
+/* Note, that will break hinting! In other OS-es font will be not as sharp as it could be */
+/*
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+  @font-face {
+    font-family: 'fontello';
+    src: url('../font/fontello.svg?81989414#fontello') format('svg');
+  }
+}
+*/
+ 
+ [class^="icon-"]:before, [class*=" icon-"]:before {
+  font-family: "fontello";
+  font-style: normal;
+  font-weight: normal;
+  speak: none;
+ 
+  display: inline-block;
+  text-decoration: inherit;
+  width: 1em;
+  margin-right: .2em;
+  text-align: center;
+  /* opacity: .8; */
+ 
+  /* For safety - reset parent styles, that can break glyph codes*/
+  font-variant: normal;
+  text-transform: none;
+ 
+  /* fix buttons height, for twitter bootstrap */
+  line-height: 1em;
+ 
+  /* Animation center compensation - margins should be symmetric */
+  /* remove if not needed */
+  margin-left: .2em;
+ 
+  /* you can be more comfortable with increased icons size */
+  /* font-size: 120%; */
+ 
+  /* Font smoothing. That was taken from TWBS */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+ 
+  /* Uncomment for 3D effect */
+  /* text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); */
+}
+ 
+.icon-black-and-white-whistle-variant:before { content: '\e800'; } /* '' */
+.icon-down-dir-1:before { content: '\e801'; } /* '' */
+.icon-right-dir:before { content: '\e802'; } /* '' */
+.icon-checkered-flags:before { content: '\e803'; } /* '' */
+.icon-couple-of-football-cones:before { content: '\e804'; } /* '' */
+.icon-football-ball-variant:before { content: '\e805'; } /* '' */
+.icon-football-coach-screaming:before { content: '\e806'; } /* '' */
+.icon-football-court-top-view:before { content: '\e807'; } /* '' */
+.icon-football-fans-group:before { content: '\e808'; } /* '' */
+.icon-football-goalkeeper-catching-the-ball:before { content: '\e809'; } /* '' */
+.icon-football-in-midair:before { content: '\e80a'; } /* '' */
+.icon-football-jersey-shirt:before { content: '\e80b'; } /* '' */
+.icon-football-long-socks:before { content: '\e80c'; } /* '' */
+.icon-football-player-blocking-another-player:before { content: '\e80d'; } /* '' */
+.icon-football-player-using-head-to-hit-ball:before { content: '\e80e'; } /* '' */
+.icon-football-player-attempting-to-kick-ball:before { content: '\e80f'; } /* '' */
+.icon-football-sports-gloves:before { content: '\e810'; } /* '' */
+.icon-football-trophy-cup:before { content: '\e811'; } /* '' */
+.icon-timer-clock:before { content: '\e812'; } /* '' */
+.icon-menu-outline:before { content: '\e813'; } /* '' */
+.icon-home-outline:before { content: '\e814'; } /* '' */
+.icon-football-or-soccer-board-with-results-of-games:before { content: '\e815'; } /* '' */
+.icon-football-ball:before { content: '\e816'; } /* '' */
+.icon-football-badge:before { content: '\e817'; } /* '' */
+.icon-football-card-with-cross-mark:before { content: '\e818'; } /* '' */
+.icon-football-signal-of-a-game-announcement-of-one-team-vs-other:before { content: '\e819'; } /* '' */
+.icon-football-team-bench:before { content: '\e81a'; } /* '' */
+.icon-football-yellow-warning-card:before { content: '\e81b'; } /* '' */
+.icon-inflatable-cheerer:before { content: '\e81c'; } /* '' */
+.icon-football-stats-graphic:before { content: '\e81d'; } /* '' */
+.icon-camera-alt:before { content: '\e81e'; } /* '' */
+.icon-mail:before { content: '\e81f'; } /* '' */
+.icon-location:before { content: '\e820'; } /* '' */
+.icon-at:before { content: '\e821'; } /* '' */
+.icon-thumbs-up:before { content: '\e822'; } /* '' */
+.icon-calendar:before { content: '\e823'; } /* '' */
+.icon-exclamation:before { content: '\e824'; } /* '' */
+.icon-dollar:before { content: '\e825'; } /* '' */
+.icon-phone-squared:before { content: '\f098'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+.icon-soccer-ball:before { content: '\f1e3'; } /* '' */
+.icon-facebook-squared:before { content: '\f308'; } /* '' */
+.icon-linkedin:before { content: '\f318'; } /* '' */
