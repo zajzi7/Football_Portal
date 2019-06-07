@@ -64,19 +64,25 @@ public class Start implements CommandLineRunner {
         playerService.createPlayer("Dominik", "Drabina");
         playerService.createPlayer("Zdzislaw", "Mruk");
 
+        String team1 = "Husaria Łapczyca";
+        String team2 = "Czarni Kobyle";
+        String team3 = "Naprzód Sobolów";
+        String team4 = "Wisła Grobla";
+        String team5 = "Korona Brzeźnica";
+
         //manual creating teams just for tests
-        teamService.createTeam("Husaria Łapczyca");
-        teamService.createTeam("Czarni Kobyle");
-        teamService.createTeam("Naprzód Sobolów");
-        teamService.createTeam("Wisła Grobla");
-        teamService.createTeam("Korona Brzeźnica");
+        teamService.createTeam(team1);
+        teamService.createTeam(team2);
+        teamService.createTeam(team3);
+        teamService.createTeam(team4);
+        teamService.createTeam(team5);
 
         //add teams to season
-        seasonService.addTeam(teamService.getTeamById(1), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(2), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(3), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(4), seasonService.getSeasonById(1));
-        seasonService.addTeam(teamService.getTeamById(5), seasonService.getSeasonById(1));
+        seasonService.addTeam(teamService.getTeamByName(team1), seasonService.getSeason("2018/2019"));
+        seasonService.addTeam(teamService.getTeamByName(team2), seasonService.getSeason("2018/2019"));
+        seasonService.addTeam(teamService.getTeamByName(team3), seasonService.getSeason("2018/2019"));
+        seasonService.addTeam(teamService.getTeamByName(team4), seasonService.getSeason("2018/2019"));
+        seasonService.addTeam(teamService.getTeamByName(team5), seasonService.getSeason("2018/2019"));
 
         //manual creating matches just for tests
         matchService.addMatchResult(
