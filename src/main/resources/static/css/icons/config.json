@@ -471,6 +471,12 @@
       "css": "linkedin",
       "code": 62232,
       "src": "entypo"
+    },
+    {
+      "uid": "f978da58836f23373882916f05fb70b4",
+      "css": "doc",
+      "code": 59430,
+      "src": "linecons"
     }
   ]
 }

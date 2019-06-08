@@ -1,0 +1,45 @@
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+
+  .ranking {
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+
+    .ranking_head {
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+      background: rgb(74, 117, 161); /* Old browsers */
+      background: -moz-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* FF3.6-15 */
+      background: -webkit-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* Chrome10-25,Safari5.1-6 */
+      background: linear-gradient(to bottom, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a75a1', endColorstr='#3d6691', GradientType=0); /* IE6-9 */
+
+      padding: 0.55em;
+      font-size: 1.2em;
+      font-weight: 700;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+    }
+
+    .ranking_content {
+      background: #fff;
+      font-size: 1.1em;
+      color: black;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+  }
+}
+
+@media (min-width: 641px) {
+
+  .sidebar {
+    //margin: 0 0 15px 15px;
+    //width: auto;
+  }
+}
