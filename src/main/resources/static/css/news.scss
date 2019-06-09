@@ -16,7 +16,7 @@
     }
 
     .news_title {
-      font-size: 1.2em;
+      font-size: 1em;
       font-weight: 700;
       padding: 0.55em;
       border-top-left-radius: 8px;
@@ -38,7 +38,7 @@
 
     .news_content {
       background: #fff;
-      font-size: 1.1em;
+      font-size: 0.9em;
       line-height: 1.6em;
       color: black;
       padding: 15px;
@@ -53,5 +53,15 @@
   .all_news {
     //width: 75%;
     margin-right: 20px;
+
+    .single_news {
+      .news_title {
+        font-size: 1.2em;
+      }
+
+      .news_content {
+        font-size: 1.1em;
+      }
+    }
   }
 }
