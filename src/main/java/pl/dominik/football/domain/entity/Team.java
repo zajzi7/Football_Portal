@@ -41,6 +41,9 @@ public class Team {
     @Getter @Setter
     private String teamName;
 
+    @Getter @Setter
+    private String crestSource;
+
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "homeTeam")
     @Getter @Setter

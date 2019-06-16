@@ -26,7 +26,7 @@
         </div>
         <div class="header_title">KS&nbsp;Husaria Łapczyca</div>
         <!--        Menu-->
-        <div>
+        <div style="z-index: 1">
             <ol id="menu">
                 <li><a th:href="@{/}"><i class="icon-home-outline"></i></a></li>
                 <li class="dol"><a href="#"><i
@@ -55,6 +55,10 @@
                         </li>
 
                         <li><a href="#">link - 4</a></li>
+                        <li><a href="#">link - 5</a></li>
+                        <li><a href="#">link - 5</a></li>
+                        <li><a href="#">link - 5</a></li>
+                        <li><a href="#">link - 5</a></li>
                         <li><a href="#">link - 5</a></li>
                     </ul>
                 </li>
@@ -89,18 +93,89 @@
         </div>
     </div>
 
+    <div class="previous_next_match">
+
+        <!--        Previous match-->
+        <div class="previous_match">
+            <div class="previous_match_title icon-back-in-time">
+                Poprzedni mecz
+            </div>
+            <div class="previous_match_content">
+                <div class="match_exist" th:if="${previousMatch != null}">
+                    <div class="match_score">
+                        <img th:src="${previousMatch.homeTeam.crestSource}"
+                             width="90px" height="auto" style="padding: 0 7px;"/>
+                        <span th:text="${previousMatch.homeTeam.teamName}"></span>&nbsp;
+                        <div th:if="${previousMatchScoreIsNull == false}">
+                            <span th:text="${previousMatch.homeScore}"></span>
+                            :
+                            <span th:text="${previousMatch.awayScore}"></span>
+                        </div>
+                        <div th:if="${previousMatchScoreIsNull}">
+                            &nbsp;-&nbsp;:&nbsp;-&nbsp;
+                        </div>
+                        &nbsp;<span th:text="${previousMatch.awayTeam.teamName}"></span>
+                        <img th:src="${previousMatch.awayTeam.crestSource}"
+                             width="90px" height="auto" style="padding: 0 7px;"/>
+                    </div>
+                    <div class="match_date_time">
+                        <div class="match_date">
+                            <i class="icon-calendar" style="color: brown;"></i>Data:&nbsp;<span
+                                th:text="${#temporals.format(previousMatch.matchDate, 'dd.MM.yyyy')}"></span>
+                        </div>
+                        <div class="match_time">
+                            <i class="icon-clock" style="color: blueviolet;"></i>Godzina:&nbsp;<span
+                                th:text="${#temporals.format(previousMatch.matchStartTime, 'HH:mm')}"></span>12:45
+                        </div>
+                    </div>
+                </div>
+                <div class="match_not_exist" th:if="${previousMatch == null}" style="font-style: italic">
+                    Brak ostatnich meczy
+                </div>
+            </div>
+        </div>
+
+        <!--        Next mach-->
+        <div class="next_match">
+            <div class="next_match_title icon-clock">
+                Następny mecz
+            </div>
+            <div class="next_match_content">
+                <div class="match_exist" th:if="${nextMatch != null}">
+                    <span th:text="${nextMatch.homeTeam.teamName}"></span>
+                    1:1
+                </div>
+                <div class="match_not_exist" th:if="${nextMatch == null}" style="font-style: italic">
+                    Brak nadchodzących meczy
+                </div>
+            </div>
+        </div>
+
+    </div>
+
     <!--    Main content-->
     <div class="content">
 
         <!--        News-->
         <div class="all_news">
             <div class="single_news" th:each="news : ${newsList}">
-                <div class="news_title">
-                    <span th:text="${news.title}"></span>
+<!--                <div class="news_title">-->
+<!--                    <span th:text="${news.title}"></span>-->
+<!--                </div>-->
+                <div style="position: relative; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <a href="#">
+                    <img class="news_image" th:src="${news.mainImageSource}"
+                         style="border-top-left-radius: 8px; border-top-right-radius: 8px;" />
+                    <h2 class="news_title2" th:text="${news.title}" style="
+                    color: #fff; position: absolute; top:70%; font-size: 1.2em; font-weight: 700; text-shadow: 5px 5px 10px #000; padding: 0 1em;
+"></h2>
+                    </a>
                 </div>
+
                 <div class="news_content">
-                    <span th:utext="${news.content}"></span>
-                    <!--                    <a th:text="${news.content}"></a>-->
+                    <br />
+                    <span th:utext="${#strings.substringBefore(news.content, '<!--more-->')}"></span>
+                    <a style="color:blue;">...&nbsp;>Czytaj&nbsp;więcej<</a>
                 </div>
             </div>
         </div>
@@ -121,14 +196,43 @@
                         <tbody class="table-hover">
                         <tr th:each="team, iteration : ${teams}">
                             <td class="text-center" th:text="${iteration.index + 1}"></td>
-                            <td class="text-left icon-football-badge" th:text="${team.team.teamName}"></td>
+                            <td class="text-left">
+                                <img th:src="${team.team.crestSource}" width="auto" height="16vh" style="padding-right: 5px;" align="left" th:text="${team.team.teamName}" />
+                            </td>
                             <td class="text-center" th:text="${team.matchesPlayed}"></td>
                             <td class="text-center" th:text="${team.points}"></td>
                         </tr>
                         </tbody>
                     </table>
-                    <br />
+                    <br/>
                     <a>> Pokaż pełną tabelę <</a>
+                </div>
+            </div>
+            <div class="results">
+                <div class="results_head icon-football-ball">Ostatnia kolejka</div>
+                <div class="results_content">
+                    <div th:each="match : ${lastRound.matches}" class="single_match">
+                        <div class="team_name">
+                            <img th:src="${match.homeTeam.crestSource}"
+                                 width="30px" height="auto"/>
+                            <span th:text="${match.homeTeam.teamName}"></span>
+                        </div>
+                        <div class="score">
+                            <span th:text="${match.homeScore}" th:if="${match.homeScore > match.awayScore}" style="color: #319a31"></span>
+                            <span th:text="${match.homeScore}" th:if="${match.homeScore < match.awayScore}" style="color: #ff3131"></span>
+                            <span th:text="${match.homeScore}" th:if="${match.homeScore == match.awayScore}" style="color: orange"></span>
+                            <span style="color: orange;">:</span>
+                            <span th:text="${match.awayScore}" th:if="${match.homeScore > match.awayScore}" style="color: #ff3131"></span>
+                            <span th:text="${match.awayScore}" th:if="${match.homeScore < match.awayScore}" style="color: #319a31"></span>
+                            <span th:text="${match.awayScore}" th:if="${match.homeScore == match.awayScore}" style="color: orange"></span>
+                        </div>
+                        <div class="team_name">
+                            <span th:text="${match.awayTeam.teamName}"></span>
+                            <img th:src="${match.awayTeam.crestSource}"
+                                 width="30px" height="auto"/>
+                        </div>
+                    </div>
+                    <a>> Kolejki <</a>
                 </div>
             </div>
         </div>
@@ -142,6 +246,7 @@
                     <a href="http://ksbochnia.pl">Komisja Sędziowska</a><br/>
                 </div>
                 <div class="single_column">
+                    <a href="http://www.90minut.pl/ligireg.php?id_sezon=93&id_okreg=5">90minut.pl</a><br />
                     <a href="https://www.pzpn.pl">PZPN</a>
                 </div>
                 <div class="single_column">

@@ -25,4 +25,6 @@ public interface RoundService {
     int getSeasonIdByRoundId(int roundId);
 
     LocalDate generateNextRoundDefaultDate(Season season);
+
+    Round getLastRound(Season season);
 }

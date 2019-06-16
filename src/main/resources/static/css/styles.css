@@ -1,4 +1,11 @@
 @charset "UTF-8";
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+/* Old browsers */
+/* FF3.6-15 */
+/* Chrome10-25,Safari5.1-6 */
+/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/* IE6-9 fallback on horizontal gradient */
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#008a00+0,30a31b+20,3aa82b+65,1f891f+100 */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
   margin: 0;
@@ -48,6 +55,110 @@ body {
   flex-direction: column;
   margin: 0px 20px;
   /*** Table Styles **/ }
+  .app .previous_next_match {
+    display: flex;
+    flex-direction: row;
+    color: #000;
+    margin-top: 20px;
+    justify-content: space-between; }
+    .app .previous_next_match .previous_match {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      margin-right: 20px;
+      -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      border-radius: 8px; }
+      .app .previous_next_match .previous_match .previous_match_title {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+        background: #008a00;
+        background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
+        padding: 0.55em;
+        font-weight: 700;
+        font-size: 1.2em;
+        color: #fff;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px; }
+        .app .previous_next_match .previous_match .previous_match_title::before {
+          font-family: 'Fontello';
+          content: '\e828';
+          margin: 0; }
+      .app .previous_next_match .previous_match .previous_match_content {
+        font-size: 1em;
+        padding: 15px;
+        background: #fff;
+        text-align: center;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center; }
+        .app .previous_next_match .previous_match .previous_match_content .match_exist {
+          display: flex;
+          flex-direction: column;
+          align-items: center; }
+          .app .previous_next_match .previous_match .previous_match_content .match_exist .match_score {
+            font-size: 1.2em;
+            display: flex;
+            flex-direction: row;
+            align-items: center; }
+          .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
+            display: flex;
+            flex-direction: row; }
+            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_date {
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              margin-right: 1em; }
+            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_time {
+              display: flex;
+              flex-direction: row;
+              align-items: center; }
+    .app .previous_next_match .next_match {
+      display: flex;
+      flex-direction: column;
+      width: 50%;
+      -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      border-radius: 8px; }
+      .app .previous_next_match .next_match .next_match_title {
+        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+        background: #008a00;
+        background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
+        padding: 0.55em;
+        font-weight: 700;
+        font-size: 1.2em;
+        color: #fff;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px; }
+        .app .previous_next_match .next_match .next_match_title::before {
+          font-family: 'Fontello';
+          content: '\e827';
+          margin: 0; }
+      .app .previous_next_match .next_match .next_match_content {
+        font-size: 1em;
+        padding: 15px;
+        background: #fff;
+        text-align: center;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        display: flex;
+        flex: 1;
+        align-items: center;
+        justify-content: center; }
+        .app .previous_next_match .next_match .next_match_content .match_exist {
+          display: flex;
+          flex-direction: row;
+          align-items: center; }
   .app .content {
     display: flex;
     flex-direction: column;
@@ -65,7 +176,7 @@ body {
     animation: float 5s infinite; }
   .app th {
     color: #fff;
-    background: #1b1e24;
+    background: #05345f;
     border-bottom: 1px solid #9ea7af;
     border-right: 1px solid #343a45;
     padding: 1em;
@@ -128,7 +239,8 @@ body {
 @media (min-width: 641px) {
   .app .content {
     flex-direction: row;
-    justify-content: space-between; } }
+    justify-content: space-between;
+    margin: 25px 0; } }
 /* usuni─Öcie domy┼Ťlnych w┼éa┼Ťciwo┼Ťci CSS z element├│w - ol - oraz - ul */
 #menu, #menu ul, #menu ol {
   list-style-type: none;
@@ -319,7 +431,7 @@ body {
     display: none;
     font-size: 0.6em; } }
 .footer {
-  background: rgba(21, 21, 21, 0.7);
+  background: rgba(21, 21, 21, 0.65);
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -382,23 +494,20 @@ body {
 .sidebar {
   display: flex;
   flex-direction: column;
-  width: auto; }
+  width: auto;
+  margin-left: 20px; }
   .sidebar .ranking {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45); }
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 8px; }
     .sidebar .ranking .ranking_head {
       /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
-      background: #4a75a1;
-      /* Old browsers */
-      background: -moz-linear-gradient(top, #4a75a1 0%, #49749f 44%, #3d6691 100%);
-      /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, #4a75a1 0%, #49749f 44%, #3d6691 100%);
-      /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, #4a75a1 0%, #49749f 44%, #3d6691 100%);
-      /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a75a1', endColorstr='#3d6691', GradientType=0);
-      /* IE6-9 */
+      background: #008a00;
+      background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
       padding: 0.55em;
       font-size: 1.2em;
       font-weight: 700;
@@ -412,13 +521,61 @@ body {
       text-align: center;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px; }
+  .sidebar .results {
+    margin-top: 20px;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 8px; }
+    .sidebar .results .results_head {
+      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+      background: #008a00;
+      background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
+      padding: 0.55em;
+      font-size: 1.2em;
+      font-weight: 700;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+    .sidebar .results .results_content {
+      background: #fff;
+      font-size: 1em;
+      color: black;
+      padding: 15px;
+      text-align: center;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center; }
+      .sidebar .results .results_content .single_match {
+        display: flex;
+        margin: 0.7em 0;
+        width: 100%; }
+        .sidebar .results .results_content .single_match .team_name {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 42%; }
+        .sidebar .results .results_content .single_match .score {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: 16%;
+          padding: 0 1em;
+          font-weight: 700; }
 
+@media (min-width: 1000px) {
+  .sidebar {
+    min-width: 25%; } }
 .header {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(21, 21, 21, 0.7);
+  background: rgba(21, 21, 21, 0.65);
   padding: 10px 25px 15px 25px;
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -453,16 +610,17 @@ body {
     padding: 15px 0 10px 0; } }
 .all_news {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%; }
   .all_news .single_news {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     border-radius: 8px;
-    margin: 10px 0px; }
-    .all_news .single_news:first-child {
-      margin: 0 0 10px 0; }
+    background: #fff;
+    margin: 0 0px 20px 0; }
     .all_news .single_news .news_title {
       font-size: 1em;
       font-weight: 700;
@@ -483,22 +641,58 @@ body {
       .all_news .single_news .news_title::before {
         font-family: 'Fontello';
         content: '\e826'; }
+    .all_news .single_news .news_image {
+      width: 100%;
+      opacity: 1; }
+      .all_news .single_news .news_image:hover {
+        opacity: 0.7;
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out; }
     .all_news .single_news .news_content {
       background: #fff;
       font-size: 0.9em;
       line-height: 1.6em;
       color: black;
-      padding: 15px;
+      padding: 1.5em 1.5em;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px; }
 
+@media (max-width: 449px) {
+  .news_image {
+    max-height: 300px; } }
+@media (min-width: 450px) {
+  .news_image {
+    max-height: 370px; }
+
+  .single_news {
+    width: 48%;
+    margin: 0 20px 20px 0; } }
 @media (min-width: 641px) {
-  .all_news {
-    margin-right: 20px; }
-    .all_news .single_news .news_title {
+  .single_news {
+    width: unset; }
+    .single_news .news_title {
       font-size: 1.2em; }
-    .all_news .single_news .news_content {
+    .single_news .news_content {
       font-size: 1.1em; } }
+@media (min-width: 768px) {
+  .single_news {
+    width: 48%;
+    margin: 0 20px 20px 0; } }
+@media (min-width: 900px) {
+  .news_image {
+    max-height: 370px; }
+
+  .single_news {
+    width: 48.5%;
+    margin: 0 20px 20px 0; } }
+@media (min-width: 1000px) {
+  .single_news {
+    width: 48.5%;
+    margin: 0 20px 20px 0; } }
+@media (min-width: 1200px) {
+  .single_news {
+    width: 49%;
+    margin: 0 20px 20px 0; } }
 .hamburger_menu {
   background: #11af11c7;
   border-radius: 5px;

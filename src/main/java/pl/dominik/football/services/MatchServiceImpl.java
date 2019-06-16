@@ -9,6 +9,7 @@ import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.MatchRepository;
 import pl.dominik.football.utilities.RankingDataComponent;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -24,6 +25,9 @@ public class MatchServiceImpl implements MatchService {
 
     @Autowired
     RankingDataComponent rankingDataComponent;
+
+    @Autowired
+    UserConfigService userConfigService;
 
     @Override
     public Match getMatchById(int id) {
@@ -140,4 +144,27 @@ public class MatchServiceImpl implements MatchService {
         }
     }
 
+    @Override
+    public Match findPreviousMatch() {
+        Team favouriteTeam = userConfigService.getFavouriteTeam();
+
+        //Get first element of the previous matches collection
+        try {
+            return matchRepository.findPreviousMatch(favouriteTeam, LocalDate.now()).get(0);
+        } catch (IndexOutOfBoundsException e) { //if there is no previous match
+            return null;
+        }
+    }
+
+    @Override
+    public Match findNextMatch() {
+        Team favouriteTeam = userConfigService.getFavouriteTeam();
+
+        //Get first element of the next matches collection
+        try {
+            return matchRepository.findNextMatch(favouriteTeam, LocalDate.now()).get(0);
+        } catch (IndexOutOfBoundsException e) { //if there is no next match
+            return null;
+        }
+    }
 }

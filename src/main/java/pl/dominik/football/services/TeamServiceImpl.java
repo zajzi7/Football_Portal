@@ -100,4 +100,10 @@ public class TeamServiceImpl implements TeamService {
         }
         return pausedTeams;
     }
+
+    @Override
+    public void setCrest(Team team, String imageSource) {
+        team.setCrestSource(imageSource);
+        teamRepository.save(team);
+    }
 }

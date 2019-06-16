@@ -8,25 +8,29 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 
 @Entity
 @NoArgsConstructor
-public class News {
+public class Menu {
 
     @Getter @Setter
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Getter @Setter
     private String title;
 
     @Getter @Setter
-    @Lob
-    private String content;
+    private int parentId = 0;
 
-    @Getter @Setter
-    private String mainImageSource;
+    public Menu(String title) {
+        this.title = title;
+    }
+
+    public Menu(String title, int parentId) {
+        this.title = title;
+        this.parentId = parentId;
+    }
 
 }

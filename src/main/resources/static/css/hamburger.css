@@ -1,0 +1,9 @@
+.hamburger_menu {
+  text-align: center;
+  font-size: 1.7em;
+  align-self: flex-end;
+  position: fixed; }
+  .hamburger_menu .hamburger_title {
+    font-size: 0.5em; }
+
+/*# sourceMappingURL=hamburger.css.map */

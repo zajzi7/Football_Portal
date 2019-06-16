@@ -21,4 +21,8 @@ public class UserConfig {
     @OneToOne(cascade = CascadeType.ALL)
     private Season currentSeason;
 
+    @Getter @Setter
+    @OneToOne
+    private Team favouriteTeam;
+
 }

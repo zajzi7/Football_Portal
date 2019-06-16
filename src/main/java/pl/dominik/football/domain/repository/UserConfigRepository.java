@@ -3,6 +3,7 @@ package pl.dominik.football.domain.repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.entity.UserConfig;
 import pl.dominik.football.services.SeasonService;
 
@@ -29,6 +30,12 @@ public class UserConfigRepository {
     }
 
     @Transactional
+    public void setFavouriteTeam(Team team) {
+        userConfig.setFavouriteTeam(team);
+        em.merge(userConfig);
+    }
+
+    @Transactional
     public void setCurrentSeasonById(int id) {
         Season season = seasonService.getSeasonById(id);
         setCurrentSeason(season);
@@ -44,4 +51,9 @@ public class UserConfigRepository {
     public int getId() {
         return em.createQuery("select uc.id from UserConfig uc", Integer.class).getSingleResult();
     }
+
+    public Team getFavouriteTeam() {
+        return em.createQuery("select uc.favouriteTeam from UserConfig uc where uc.id=1", Team.class).getSingleResult();
+    }
+
 }

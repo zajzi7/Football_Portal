@@ -23,4 +23,9 @@ public interface MatchService {
     void saveMatchAndAddRankingData(Match match);
 
     void removeTeamFromMatchesBySeasonId(Team team, int seasonId);
+
+    Match findPreviousMatch();
+
+    Match findNextMatch();
+
 }

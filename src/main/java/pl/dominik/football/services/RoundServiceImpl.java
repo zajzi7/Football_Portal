@@ -22,6 +22,9 @@ public class RoundServiceImpl implements RoundService {
     @Autowired
     SeasonService seasonService;
 
+    @Autowired
+    UserConfigService userConfigService;
+
     @PersistenceContext
     EntityManager em;
 
@@ -99,6 +102,21 @@ public class RoundServiceImpl implements RoundService {
         }
 
         return null;
+    }
+
+    @Override
+    public Round getLastRound(Season season) {
+        List<Round> rounds = roundRepository.findLastRound(season, LocalDate.now());
+
+        //Check if the last round has matches. If not then return the previous round
+        for (Round r : rounds) {
+            if (r.getMatches().size() > 0) {
+                return r;
+            }
+        }
+
+        //Return the last round on the iteration fail
+        return rounds.get(0);
     }
 
 }

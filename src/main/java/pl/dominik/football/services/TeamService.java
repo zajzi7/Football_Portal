@@ -22,5 +22,7 @@ public interface TeamService {
 
     List<Team> getPausedTeamsInRound(int roundId);
 
+    void setCrest(Team team, String imageSource);
+
 //    boolean teamHasNotPlayedAnyMatchesInSeason(Team team, int seasonId);
 }

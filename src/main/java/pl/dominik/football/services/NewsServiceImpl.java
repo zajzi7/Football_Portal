@@ -24,10 +24,11 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public void addNews(String title, String content) {
+    public void addNews(String title, String image, String content) {
         News news = new News();
         news.setTitle(title);
         news.setContent(content);
+        news.setMainImageSource(image);
         newsRepository.save(news);
     }
 

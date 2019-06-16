@@ -10,5 +10,5 @@ public interface NewsService {
 
     List<News> getAllNews();
 
-    void addNews(String title, String content);
+    void addNews(String title, String image, String content);
 }

@@ -1,7 +1,10 @@
 
 .all_news {
   display: flex;
-  flex-direction: column;
+  //flex-direction: column;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
   width: 100%;
 
   .single_news {
@@ -9,10 +12,11 @@
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     border-radius: 8px;
-    margin: 10px 0px;
+    background: #fff;
+    margin: 0 0px 20px 0;
 
     &:first-child {
-      margin: 0 0 10px 0;
+      //margin: 0 0 10px 0;
     }
 
     .news_title {
@@ -36,32 +40,85 @@
 
     }
 
+    .news_image {
+      width: 100%;
+      //max-height: 300px;
+      opacity: 1;
+      &:hover {
+        opacity: 0.7;
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+      }
+    }
+
     .news_content {
       background: #fff;
       font-size: 0.9em;
       line-height: 1.6em;
       color: black;
-      padding: 15px;
+      padding: 1.5em 1.5em;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
     }
   }
 }
+@media (max-width: 449px) {
+  .news_image {
+    max-height: 300px;
+  }
+}
+@media (min-width: 450px) {
+  .news_image {
+    max-height: 370px;
+  }
+  .single_news {
+    width: 48%;
+    margin: 0 20px 20px 0;
+  }
+}
 
 @media (min-width: 641px) {
+  .single_news {
+    width: unset;
 
-  .all_news {
-    //width: 75%;
-    margin-right: 20px;
-
-    .single_news {
-      .news_title {
-        font-size: 1.2em;
-      }
-
-      .news_content {
-        font-size: 1.1em;
-      }
+    .news_title {
+      font-size: 1.2em;
     }
+
+    .news_content {
+      font-size: 1.1em;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  //.news_image {
+  //  max-height: 370px;
+  //}
+  .single_news {
+    width: 48%;
+    margin: 0 20px 20px 0;
+  }
+}
+@media (min-width: 900px) {
+  .news_image {
+    max-height: 370px;
+  }
+  .single_news {
+    width: 48.5%;
+    margin: 0 20px 20px 0;
+  }
+}
+
+@media (min-width: 1000px) {
+  .single_news {
+    width: 48.5%;
+    margin: 0 20px 20px 0;
+  }
+}
+@media (min-width: 1200px) {
+  .single_news {
+    width: 49%;
+    margin: 0 20px 20px 0;
   }
 }
