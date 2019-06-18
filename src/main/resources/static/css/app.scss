@@ -1,7 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
-  //background: #1c1c1c;
   background-color: #878c00;
   background-image: url("../img/football-no-lines.png");
   //font-family: "Open Sans", Impact;
@@ -17,7 +16,7 @@ body {
 
   .previous_next_match {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     color: #000;
     margin-top: 20px;
     justify-content: space-between;
@@ -25,33 +24,26 @@ body {
     .previous_match {
       display: flex;
       flex-direction: column;
-      width: 50%;
+      width: 100%;
       margin-right: 20px;
       -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
+      border-radius: $border-radius_header;
 
       .previous_match_title {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
-        //background: rgb(74, 117, 161); /* Old browsers */
-        //background: -moz-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* FF3.6-15 */
-        //background: -webkit-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-        //background: linear-gradient(to bottom, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a75a1', endColorstr='#3d6691', GradientType=0); /* IE6-9 */
-
         background: $background_header1;
         background: $background_header2;
         background: $background_header3;
         background: $background_header4;
         filter: $filter;
 
-        padding: 0.55em;
-        font-weight: 700;
-        font-size: 1.2em;
+        padding: $padding_header;
+        font-weight: $font_weight_header;
+        font-size: $font_size_header_small;
         color: #fff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        border-top-left-radius: $border_radius_header;
+        border-top-right-radius: $border_radius_header;
 
         &::before {
           font-family: 'Fontello';
@@ -112,32 +104,26 @@ body {
     .next_match {
       display: flex;
       flex-direction: column;
-      width: 50%;
+      width: 100%;
       -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
+      border-radius: $border_radius_header;
+      margin-top: 20px;
 
       .next_match_title {
-        /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
-        //background: rgb(74, 117, 161); /* Old browsers */
-        //background: -moz-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* FF3.6-15 */
-        //background: -webkit-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-        //background: linear-gradient(to bottom, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        //filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a75a1', endColorstr='#3d6691', GradientType=0); /* IE6-9 */
-
         background: $background_header1;
         background: $background_header2;
         background: $background_header3;
         background: $background_header4;
         filter: $filter;
 
-        padding: 0.55em;
-        font-weight: 700;
-        font-size: 1.2em;
+        padding: $padding_header;
+        font-weight: $font-weight_header;
+        font-size: $font_size_header;
         color: #fff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
+        border-top-left-radius: $border_radius_header;
+        border-top-right-radius: $border_radius_header;
 
         &::before {
           font-family: 'Fontello';
@@ -152,8 +138,8 @@ body {
         padding: 15px;
         background: #fff;
         text-align: center;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
+        border-bottom-left-radius: $border_radius_header;
+        border-bottom-right-radius: $border_radius_header;
         display: flex;
         flex: 1;
         align-items: center;
@@ -182,16 +168,6 @@ body {
   .linkedin_styles {
     background: #0077B5;
   }
-
-  //.ranking_table {
-  //  border: 1px solid #dee2e6;
-  //
-  //  th {
-  //    color: #fff;
-  //    background-color: #343a40;
-  //    border-color: #454d55;
-  //  }
-  //}
 
   /*** Table Styles **/
 
@@ -283,7 +259,6 @@ body {
     padding: 1em;
     text-align: left;
     vertical-align: middle;
-    //font-weight: 300;
     //font-size: 18px;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1;
@@ -322,6 +297,20 @@ body {
 @media (min-width: 641px) {
 
   .app {
+
+    .previous_next_match {
+      flex-direction: row;
+
+      .previous_match {
+        width: 50%;
+      }
+
+      .next_match {
+        width: 50%;
+        margin-top: 0;
+      }
+    }
+
     .content {
       flex-direction: row;
       justify-content: space-between;
@@ -330,6 +319,24 @@ body {
   }
 
 }
+
+@media (min-width: 641px) {
+
+  .app {
+
+    .previous_next_match {
+
+      .previous_match {
+        .previous_match_title {
+          font-size: $font-size_header;
+        }
+      }
+
+
+    }
+  }
+}
+
 
 //@media (max-width: 639px) {
 //  .app {

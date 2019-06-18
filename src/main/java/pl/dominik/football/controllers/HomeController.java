@@ -2,14 +2,17 @@ package pl.dominik.football.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.Player;
 import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.domain.repository.NewsRepository;
 import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.domain.repository.UserConfigRepository;
 import pl.dominik.football.services.MatchService;
@@ -32,6 +35,9 @@ public class HomeController {
     NewsService newsService;
 
     @Autowired
+    NewsRepository newsRepository;
+
+    @Autowired
     RankingDataRepository rankingDataRepository;
 
     @Autowired
@@ -47,14 +53,15 @@ public class HomeController {
     MatchService matchService;
 
     @RequestMapping("/")
-    public String homepage(Model model) {
+    public String homepage(Model model, @RequestParam(defaultValue = "1") int page) {
 
         int seasonId = userConfigRepository.getCurrentSeasonId();
         Season season = seasonService.getSeasonById(seasonId);
 
 
         //News
-        model.addAttribute("newsList", newsService.getAllNews());
+        model.addAttribute("newsList", newsRepository.findAll(PageRequest.of(page - 1, 6)));
+        model.addAttribute("currentPage", page);
 
 
         //Ranking

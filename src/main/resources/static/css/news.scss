@@ -1,72 +1,87 @@
 
-.all_news {
+.news_and_pagination {
   display: flex;
-  //flex-direction: column;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
+  flex-direction: column;
 
-  .single_news {
-    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    border-radius: 8px;
-    background: #fff;
-    margin: 0 0px 20px 0;
+  .all_news {
+    display: flex;
+    //flex-direction: column;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
 
-    &:first-child {
-      //margin: 0 0 10px 0;
-    }
-
-    .news_title {
-      font-size: 1em;
-      font-weight: 700;
-      padding: 0.55em;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-
-      /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
-      background: rgb(74, 117, 161); /* Old browsers */
-      background: -moz-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* FF3.6-15 */
-      background: -webkit-linear-gradient(top, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* Chrome10-25,Safari5.1-6 */
-      background: linear-gradient(to bottom, rgba(74, 117, 161, 1) 0%, rgba(73, 116, 159, 1) 44%, rgba(61, 102, 145, 1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4a75a1', endColorstr='#3d6691', GradientType=0); /* IE6-9 */
-
-      &::before {
-        font-family: 'Fontello';
-        content: '\e826';
-      }
-
-    }
-
-    .news_image {
-      width: 100%;
-      //max-height: 300px;
-      opacity: 1;
-      &:hover {
-        opacity: 0.7;
-        -webkit-transition: .3s ease-in-out;
-        transition: .3s ease-in-out;
-      }
-    }
-
-    .news_content {
+    .single_news {
+      -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+      border-radius: $border_radius_header;
       background: #fff;
-      font-size: 0.9em;
-      line-height: 1.6em;
+      margin: 0 0px 20px 0;
+
+      &:first-child {
+        //margin: 0 0 10px 0;
+      }
+
+      .news_image {
+        width: 100%;
+        //max-height: 300px;
+        opacity: 1;
+
+        &:hover {
+          opacity: 0.7;
+          -webkit-transition: .3s ease-in-out;
+          transition: .3s ease-in-out;
+        }
+      }
+
+      .news_content {
+        background: #fff;
+        font-size: 0.9em;
+        line-height: 1.6em;
+        color: black;
+        padding: 1.5em 1.5em;
+        border-bottom-left-radius: $border-radius_header;
+        border-bottom-right-radius: $border_radius_header;
+      }
+    }
+  }
+
+  .news_pagination {
+    display: flex;
+    justify-content: center;
+    color: #000;
+    background: #fff;
+    padding: 1em;
+    text-align: center;
+    border-radius: $border_radius_header;
+
+    .news_pagination_block {
+      border: 1px solid green;
+      border-radius: 4px;
+      padding: 0.1em 0.5em;
+      margin: 0 0.15em;
       color: black;
-      padding: 1.5em 1.5em;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+
+      &:hover {
+        color: #fff;
+        background: green;
+      }
+    }
+
+    .news_pagination_block_active {
+      color: #fff;
+      background: green;
     }
   }
 }
+
 @media (max-width: 449px) {
   .news_image {
     max-height: 300px;
   }
 }
+
 @media (min-width: 450px) {
   .news_image {
     max-height: 370px;
@@ -80,10 +95,6 @@
 @media (min-width: 641px) {
   .single_news {
     width: unset;
-
-    .news_title {
-      font-size: 1.2em;
-    }
 
     .news_content {
       font-size: 1.1em;
@@ -100,6 +111,7 @@
     margin: 0 20px 20px 0;
   }
 }
+
 @media (min-width: 900px) {
   .news_image {
     max-height: 370px;
@@ -116,6 +128,7 @@
     margin: 0 20px 20px 0;
   }
 }
+
 @media (min-width: 1200px) {
   .single_news {
     width: 49%;
