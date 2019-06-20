@@ -14,6 +14,16 @@ body {
   flex-direction: column;
   margin: 0px 20px;
 
+  .color_score_win {
+    color: #319a31;
+  }
+  .color_score_lose {
+    color: #ff3131;
+  }
+  .color_score_draw {
+    color: orange;
+  }
+
   .previous_next_match {
     display: flex;
     flex-direction: column;
@@ -69,34 +79,60 @@ body {
           flex-direction: column;
           align-items: center;
 
-          .match_score {
-            font-size: 1.2em;
+          .match_team_score {
+            font-size: $font_size_content_small;
             display: flex;
             flex-direction: row;
             align-items: center;
+
+            .match_teamname_crest {
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+
+              .match_crest {
+                width: 50px;
+                height: auto;
+                //padding: 0 7px;
+              }
+            }
+
+            .match_score {
+              font-weight: 700;
+              color: orange;
+              display: flex;
+              padding: 0 0.4em;
+            }
+
           }
 
           .match_date_time {
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 0.7em;
+            font-size: 0.85em;
 
             .match_date {
               display: flex;
               flex-direction: row;
               align-items: center;
-              margin-right: 1em;
+              padding: 0 0.5em;
             }
 
             .match_time {
               display: flex;
               flex-direction: row;
               align-items: center;
+              padding: 0 0.5em;
             }
           }
         }
 
         .match_not_exist {
-
+          font-style: italic;
         }
       }
     }
@@ -120,7 +156,7 @@ body {
 
         padding: $padding_header;
         font-weight: $font-weight_header;
-        font-size: $font_size_header;
+        font-size: $font_size_header_small;
         color: #fff;
         border-top-left-radius: $border_radius_header;
         border-top-right-radius: $border_radius_header;
@@ -152,7 +188,7 @@ body {
         }
 
         .match_not_exist {
-
+          font-style: italic;
         }
       }
     }
@@ -175,7 +211,7 @@ body {
     background: white;
     border-radius: 3px;
     border-collapse: collapse;
-    font-size: 0.7em;
+    font-size: 0.8em;
     //height: 320px;
     //margin: auto;
     //max-width: 600px;
@@ -183,6 +219,17 @@ body {
     width: 100%;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
     animation: float 5s infinite;
+  }
+
+  .table_crest_teamname {
+    display: flex;
+    align-items: center;
+    .table_crest_img {
+      padding-right: 0.4em;
+      width: auto;
+      height: 4.5vh;
+      float: left;
+    }
   }
 
   th {
@@ -193,7 +240,7 @@ body {
     border-right: 1px solid #343a45;
     //font-size: 23px;
     //font-weight: 100;
-    padding: 1em;
+    padding: 1em 0;
     text-align: left;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle;
@@ -207,11 +254,11 @@ body {
   th:last-child {
     border-top-right-radius: 3px;
     border-right: none;
-    width: 10%;
+    width: 12%;
   }
 
   th:nth-last-child(2) {
-    width: 10%;
+    width: 12%;
   }
 
   tr {
@@ -256,7 +303,7 @@ body {
 
   td {
     background: #FFFFFF;
-    padding: 1em;
+    padding: 1em 0;
     text-align: left;
     vertical-align: middle;
     //font-size: 18px;
@@ -270,6 +317,7 @@ body {
 
   th.text-left {
     text-align: left;
+    padding-left: 0.6em;
   }
 
   th.text-center {
@@ -282,6 +330,7 @@ body {
 
   td.text-left {
     text-align: left;
+    padding-left: 0.6em;
   }
 
   td.text-center {
@@ -320,7 +369,7 @@ body {
 
 }
 
-@media (min-width: 641px) {
+@media (min-width: 321px) {
 
   .app {
 
@@ -330,16 +379,32 @@ body {
         .previous_match_title {
           font-size: $font-size_header;
         }
+
+        .previous_match_content {
+          .match_exist {
+            .match_team_score {
+              font-size: 1.2em;
+
+              .match_crest {
+                width: 50px;
+              }
+            }
+
+            .match_date_time {
+              font-size: 1.2em;
+              margin-top: 1em;
+            }
+          }
+        }
+      }
+
+      .next_match {
+        .next_match_title {
+          font-size: $font-size_header;
+        }
       }
 
 
     }
   }
 }
-
-
-//@media (max-width: 639px) {
-//  .app {
-//    margin: 0px 15px;
-//  }
-//}

@@ -19,7 +19,7 @@
       filter: $filter;
 
       padding: $padding_header;
-      font-size: $font_size_header;
+      font-size: $font_size_header_small;
       font-weight: $font_weight_header;
       border-top-left-radius: $border_radius_header;
       border-top-right-radius: $border_radius_header;
@@ -27,7 +27,7 @@
 
     .ranking_content {
       background: #fff;
-      font-size: 1.1em;
+      font-size: $font_size_content_small;
       color: black;
       padding: 15px;
       text-align: center;
@@ -51,7 +51,7 @@
       filter: $filter;
 
       padding: $padding_header;
-      font-size: $font_size_header;
+      font-size: $font_size_header_small;
       font-weight: $font_weight_header;
       border-top-left-radius: $border_radius_header;
       border-top-right-radius: $border_radius_header;
@@ -59,7 +59,7 @@
 
     .results_content {
       background: #fff;
-      font-size: 1em;
+      font-size: $font_size_content_small;
       color: black;
       padding: 15px;
       text-align: center;
@@ -77,8 +77,13 @@
         .team_name {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: space-evenly;
           width: 42%;
+
+          .results_crest {
+            width: auto;
+            height: 4.5vh;
+          }
         }
 
         .score {
@@ -97,11 +102,34 @@
   }
 }
 
+@media (min-width: 321px) {
+
+  .sidebar {
+    .ranking {
+      .ranking_head {
+        font-size: $font_size_header;
+      }
+      .ranking_content {
+        font-size: 1.1em;
+      }
+    }
+    .results {
+      .results_head {
+        font-size: $font_size_header;
+      }
+      .results_content {
+        font-size: 1em;
+      }
+    }
+  }
+}
+
 @media (max-width: 640px) {
 
   .sidebar {
     margin-left: 0;
     margin-top: 20px;
+    margin-bottom: 10px;
   }
 }
 
