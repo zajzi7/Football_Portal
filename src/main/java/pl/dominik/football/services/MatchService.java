@@ -24,8 +24,8 @@ public interface MatchService {
 
     void removeTeamFromMatchesBySeasonId(Team team, int seasonId);
 
-    Match findPreviousMatch();
+    Match findPreviousMatch(int whichMatchFromList);
 
-    Match findNextMatch();
+    Match findNextMatch(int whichMatchFromList);
 
 }

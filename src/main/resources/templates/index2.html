@@ -3,9 +3,12 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Football App</title>
+    <meta name="author" content="Dominik Drabina">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />-->
     <link rel="stylesheet" href="css/styles.css"/>
     <link rel="stylesheet" href="css/icons/css/fontello.css"/>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap" rel="stylesheet">
@@ -179,9 +182,16 @@
                     </div>
 
                     <div class="news_content">
-                        <br/>
-                        <span th:utext="${#strings.substringBefore(news.content, '<!--more-->')}"></span>
-                        <a style="color:blue;">...&nbsp;>Czytaj&nbsp;więcej<</a>
+                        <div class="date_author">
+                            <div class="date"
+                                 th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yy&nbsp;HH:mm')}|">
+                            </div>
+
+                            <div class="author" th:text="|Autor:&nbsp;${news.author}|"></div>
+                        </div>
+
+                        <span class="news_text" th:utext="${#strings.substringBefore(news.content, '<!--more-->')}"></span>
+                        <a class="news_text" style="color:blue;">...&nbsp;>Czytaj&nbsp;więcej<</a>
                     </div>
                 </div>
             </div>
@@ -197,7 +207,6 @@
                     <a class="news_pagination_block" th:href="|/?page=${currentPage - 1}|"
                        title="Poprzednia strona"><</a>
                 </div>
-
 
                 <div class="numbering_element" th:each="i : ${#numbers.sequence
                 (currentPage < 3 ? 1 : newsList.totalPages-currentPage==2 ? currentPage-2 : newsList.totalPages-currentPage==1 ? currentPage-3 : newsList.totalPages-currentPage==0 ? currentPage-4 : currentPage - 2,
@@ -252,7 +261,7 @@
             </div>
             <div class="results">
                 <div class="results_head icon-football-ball">Ostatnia kolejka</div>
-                <div class="results_content">
+                <div class="results_content" th:if="${lastRound} != null">
                     <div th:each="match : ${lastRound.matches}" class="single_match">
                         <div class="team_name">
                             <img class="results_crest" th:src="${match.homeTeam.crestSource}"
@@ -278,6 +287,8 @@
                     </div>
                     <a>> Kolejki <</a>
                 </div>
+                <div class="results_content" style="font-style: italic" th:if="${lastRound} == null"
+                     th:text="'Brak wprowadzonych kolejek'"></div>
             </div>
         </div>
     </div>

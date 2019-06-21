@@ -145,24 +145,26 @@ public class MatchServiceImpl implements MatchService {
     }
 
     @Override
-    public Match findPreviousMatch() {
+    public Match findPreviousMatch(int whichMatchFromList) {
         Team favouriteTeam = userConfigService.getFavouriteTeam();
 
+        //TODO make comment
         //Get first element of the previous matches collection
         try {
-            return matchRepository.findPreviousMatch(favouriteTeam, LocalDate.now()).get(0);
+            return matchRepository.findPreviousMatch(favouriteTeam, LocalDate.now()).get(whichMatchFromList);
         } catch (IndexOutOfBoundsException e) { //if there is no previous match
             return null;
         }
     }
 
     @Override
-    public Match findNextMatch() {
+    public Match findNextMatch(int whichMatchFromList) {
         Team favouriteTeam = userConfigService.getFavouriteTeam();
 
-        //Get first element of the next matches collection
+        //TODO make comment
+        //Get first element of the next matches collection(if the whichMatchFromList is 0)
         try {
-            return matchRepository.findNextMatch(favouriteTeam, LocalDate.now()).get(0);
+            return matchRepository.findNextMatch(favouriteTeam, LocalDate.now()).get(whichMatchFromList);
         } catch (IndexOutOfBoundsException e) { //if there is no next match
             return null;
         }

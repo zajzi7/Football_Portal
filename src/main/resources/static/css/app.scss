@@ -92,8 +92,8 @@ body {
               justify-content: center;
 
               .match_crest {
-                width: 50px;
-                height: auto;
+                width: auto;
+                height: 12vh;
                 //padding: 0 7px;
               }
             }
@@ -406,5 +406,10 @@ body {
 
 
     }
+  }
+}
+@media (min-width: 1600px) {
+  .app {
+    margin: 0 10em;
   }
 }

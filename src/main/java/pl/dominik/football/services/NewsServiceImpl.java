@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.News;
 import pl.dominik.football.domain.repository.NewsRepository;
 
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 
 @Service
@@ -29,6 +31,7 @@ public class NewsServiceImpl implements NewsService{
         news.setTitle(title);
         news.setContent(content);
         news.setMainImageSource(image);
+        news.setDateTime(LocalDateTime.now(ZoneId.of("Europe/Paris")));
         newsRepository.save(news);
     }
 

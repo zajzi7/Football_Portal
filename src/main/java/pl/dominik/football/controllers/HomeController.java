@@ -73,13 +73,19 @@ public class HomeController {
         //Previous match
         Match previousMatch;
         boolean previousMatchScoreIsNull = true;
+        int i = 0;
         try {
-            previousMatch = matchService.getMatchById(matchService.findPreviousMatch().getId());
+            do {
+                previousMatch = matchService.getMatchById(matchService.findPreviousMatch(i).getId());
+                if (previousMatch.getHomeTeam() == null || previousMatch.getAwayTeam() == null) {
+                    previousMatch = null;
+                }
+                i++;
+            } while (previousMatch == null);
             if (previousMatch.getHomeScore() != null && previousMatch.getAwayScore() != null) {
                 previousMatchScoreIsNull = false;
             }
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             previousMatch = null;
         }
         model.addAttribute("previousMatch", previousMatch);
@@ -89,8 +95,15 @@ public class HomeController {
         //Next Match
         Match nextMatch;
         boolean nextMatchScoreIsNull = true;
+        int j = 0;
         try {
-            nextMatch = matchService.getMatchById(matchService.findNextMatch().getId());
+            do {
+                nextMatch = matchService.getMatchById(matchService.findNextMatch(j).getId());
+                if (nextMatch.getHomeTeam() == null || nextMatch.getAwayTeam() == null) {
+                    nextMatch = null;
+                }
+                j++;
+            } while (nextMatch == null);
             if (nextMatch.getHomeScore() != null && nextMatch.getAwayScore() != null) {
                 nextMatchScoreIsNull = false;
             }

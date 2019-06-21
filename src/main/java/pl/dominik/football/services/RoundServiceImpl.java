@@ -116,7 +116,11 @@ public class RoundServiceImpl implements RoundService {
         }
 
         //Return the last round on the iteration fail
-        return rounds.get(0);
+        try {
+            return rounds.get(0);
+        } catch (IndexOutOfBoundsException e) {
+            return null;
+        }
     }
 
 }

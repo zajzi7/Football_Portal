@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import java.time.LocalDateTime;
 
 @Entity
 @NoArgsConstructor
@@ -28,5 +29,11 @@ public class News {
 
     @Getter @Setter
     private String mainImageSource;
+
+    @Getter @Setter
+    private LocalDateTime dateTime;
+
+    @Getter @Setter
+    private String author = "Dominik";
 
 }

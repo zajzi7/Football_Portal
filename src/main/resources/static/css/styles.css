@@ -117,8 +117,8 @@ body {
               align-items: center;
               justify-content: center; }
               .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
-                width: 50px;
-                height: auto; }
+                width: auto;
+                height: 12vh; }
             .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_score {
               font-weight: 700;
               color: orange;
@@ -296,6 +296,9 @@ body {
     margin-top: 1em; }
   .app .previous_next_match .next_match .next_match_title {
     font-size: 1.2em; } }
+@media (min-width: 1600px) {
+  .app {
+    margin: 0 10em; } }
 /* usuni─Öcie domy┼Ťlnych w┼éa┼Ťciwo┼Ťci CSS z element├│w - ol - oraz - ul */
 #menu, #menu ul, #menu ol {
   list-style-type: none;
@@ -721,6 +724,15 @@ body {
         padding: 1.5em 1.5em;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px; }
+        .news_and_pagination .all_news .single_news .news_content .date_author {
+          display: flex;
+          flex-wrap: wrap;
+          font-size: 0.9em;
+          justify-content: space-between;
+          color: gray;
+          margin-bottom: 1em; }
+        .news_and_pagination .all_news .single_news .news_content .news_text {
+          font-size: 1.2em; }
   .news_and_pagination .news_pagination {
     display: flex;
     justify-content: center;
@@ -767,14 +779,15 @@ body {
   .news_and_pagination .all_news .single_news {
     width: calc(50% - 10px); }
     .news_and_pagination .all_news .single_news .news_image {
-      max-height: 370px; }
-
-  .single_news {
-    width: calc(50% - 10px);
-    margin: 0 20px 20px 0; } }
+      max-height: 370px; } }
 @media (min-width: 900px) {
   .news_image {
     max-height: 370px; } }
+@media (min-width: 1600px) {
+  .news_and_pagination .all_news .single_news {
+    width: calc(33.33% - 10px); }
+    .news_and_pagination .all_news .single_news .news_image {
+      max-height: 370px; } }
 .hamburger_menu {
   background: #11af11c7;
   border-radius: 5px;
