@@ -411,5 +411,22 @@ body {
 @media (min-width: 1600px) {
   .app {
     margin: 0 10em;
+
+    .previous_next_match {
+      .previous_match {
+        .previous_match_content {
+          .match_exist {
+            .match_team_score {
+              .match_teamname_crest {
+                .match_crest {
+                  height: 8vh;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
   }
 }

@@ -43,6 +43,11 @@ table {
   border-spacing: 0; }
 
 body {
+  font-size: 16px; }
+
+@media (min-width: 1600px) {
+  font-size: 50px; }
+body {
   background-color: #878c00;
   background-image: url("../img/football-no-lines.png");
   font-family: 'Open Sans', sans-serif;
@@ -298,7 +303,9 @@ body {
     font-size: 1.2em; } }
 @media (min-width: 1600px) {
   .app {
-    margin: 0 10em; } }
+    margin: 0 10em; }
+    .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
+      height: 8vh; } }
 /* usuni─Öcie domy┼Ťlnych w┼éa┼Ťciwo┼Ťci CSS z element├│w - ol - oraz - ul */
 #menu, #menu ul, #menu ol {
   list-style-type: none;
@@ -493,6 +500,7 @@ body {
   -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
   -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  margin-bottom: 20px;
   display: flex;
   flex-direction: row; }
   .footer a:link {
@@ -784,10 +792,8 @@ body {
   .news_image {
     max-height: 370px; } }
 @media (min-width: 1600px) {
-  .news_and_pagination .all_news .single_news {
-    width: calc(33.33% - 10px); }
-    .news_and_pagination .all_news .single_news .news_image {
-      max-height: 370px; } }
+  .news_and_pagination .all_news .single_news .news_image {
+    max-height: 370px; } }
 .hamburger_menu {
   background: #11af11c7;
   border-radius: 5px;
