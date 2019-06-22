@@ -1,14 +1,12 @@
 package pl.dominik.football.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.dominik.football.domain.entity.Match;
-import pl.dominik.football.domain.entity.Player;
 import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
@@ -20,13 +18,16 @@ import pl.dominik.football.services.NewsService;
 import pl.dominik.football.services.PlayerService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
+import pl.dominik.football.services.UserConfigService;
 import pl.dominik.football.utilities.SortTeams;
 
-import javax.persistence.NonUniqueResultException;
 import java.util.List;
 
 @Controller
 public class HomeController {
+
+    @Autowired
+    UserConfigService userConfigService;
 
     @Autowired
     PlayerService playerService;
@@ -41,9 +42,6 @@ public class HomeController {
     RankingDataRepository rankingDataRepository;
 
     @Autowired
-    UserConfigRepository userConfigRepository;
-
-    @Autowired
     SeasonService seasonService;
 
     @Autowired
@@ -55,7 +53,7 @@ public class HomeController {
     @RequestMapping("/")
     public String homepage(Model model, @RequestParam(defaultValue = "1") int page) {
 
-        int seasonId = userConfigRepository.getCurrentSeasonId();
+        int seasonId = userConfigService.getCurrentSeasonId();
         Season season = seasonService.getSeasonById(seasonId);
 
 
