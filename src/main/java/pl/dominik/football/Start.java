@@ -3,7 +3,6 @@ package pl.dominik.football;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
-import pl.dominik.football.domain.repository.UserConfigRepository;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.NewsService;
 import pl.dominik.football.services.PlayerService;
