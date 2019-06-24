@@ -1,7 +1,6 @@
 package pl.dominik.football.controllers.accessible;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.dominik.football.domain.entity.Match;
@@ -23,7 +22,6 @@ import java.util.List;
 public class AdviceController {
 
     @Autowired
-    @Qualifier("userConfigService")
     UserConfigService userConfigService;
 
     @Autowired
@@ -82,7 +80,8 @@ public class AdviceController {
                 }
                 j++;
             } while (nextMatch == null);
-        } catch (NullPointerException e) {
+        }
+        catch (NullPointerException e) {
             nextMatch = null;
         }
         return nextMatch;

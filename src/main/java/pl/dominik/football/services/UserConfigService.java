@@ -2,6 +2,7 @@ package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
@@ -11,7 +12,7 @@ import pl.dominik.football.domain.repository.UserConfigRepository;
 public class UserConfigService {
 
     @Autowired
-    @Qualifier("userConfigRepository")
+    @Lazy
     UserConfigRepository userConfigRepository;
 
     public void setCurrentSeason(Season season) {

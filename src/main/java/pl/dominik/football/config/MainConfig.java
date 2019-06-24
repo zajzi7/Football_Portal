@@ -5,14 +5,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 @Configuration
-@EnableAsync
 @PropertySource("classpath:validation.messages.properties")
 public class MainConfig {
 
