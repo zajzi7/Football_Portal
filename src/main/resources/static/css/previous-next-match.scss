@@ -1,0 +1,243 @@
+
+.previous_next_match {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  margin-top: 20px;
+  justify-content: space-between;
+
+  .previous_match {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 20px;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: $border-radius_header;
+
+    .previous_match_title {
+      background: $background_header1;
+      background: $background_header2;
+      background: $background_header3;
+      background: $background_header4;
+      filter: $filter;
+
+      padding: $padding_header;
+      font-weight: $font_weight_header;
+      font-size: $font_size_header_small;
+      color: #fff;
+      border-top-left-radius: $border_radius_header;
+      border-top-right-radius: $border_radius_header;
+
+      &::before {
+        font-family: 'Fontello';
+        content: '\e828';
+        margin: 0;
+      }
+    }
+
+    .previous_match_content {
+      font-size: 1em;
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+
+      .match_exist {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .match_team_score {
+          font-size: $font_size_content_small;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .match_teamname_crest {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            .match_crest {
+              width: auto;
+              height: 12vh;
+              //padding: 0 7px;
+            }
+          }
+
+          .match_score {
+            font-weight: 700;
+            color: orange;
+            display: flex;
+            padding: 0 0.4em;
+          }
+
+        }
+
+        .match_date_time {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 0.7em;
+          font-size: 0.85em;
+
+          .match_date {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 0.5em;
+          }
+
+          .match_time {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 0.5em;
+          }
+        }
+      }
+
+      .match_not_exist {
+        font-style: italic;
+      }
+    }
+  }
+
+  .next_match {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: $border_radius_header;
+    margin-top: 20px;
+
+    .next_match_title {
+      background: $background_header1;
+      background: $background_header2;
+      background: $background_header3;
+      background: $background_header4;
+      filter: $filter;
+
+      padding: $padding_header;
+      font-weight: $font-weight_header;
+      font-size: $font_size_header_small;
+      color: #fff;
+      border-top-left-radius: $border_radius_header;
+      border-top-right-radius: $border_radius_header;
+
+      &::before {
+        font-family: 'Fontello';
+        content: '\e827';
+        margin: 0;
+      }
+
+    }
+
+    .next_match_content {
+      font-size: 1em;
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+      border-bottom-left-radius: $border_radius_header;
+      border-bottom-right-radius: $border_radius_header;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center;
+
+      .match_exist {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .match_not_exist {
+        font-style: italic;
+      }
+    }
+  }
+}
+
+
+@media (min-width: 641px) {
+
+  .previous_next_match {
+    flex-direction: row;
+
+    .previous_match {
+      width: 50%;
+    }
+
+    .next_match {
+      width: 50%;
+      margin-top: 0;
+    }
+  }
+
+}
+
+@media (min-width: 321px) {
+
+  .previous_next_match {
+
+    .previous_match {
+      .previous_match_title {
+        font-size: $font-size_header;
+      }
+
+      .previous_match_content {
+        .match_exist {
+          .match_team_score {
+            font-size: 1.2em;
+
+            .match_crest {
+              width: 50px;
+            }
+          }
+
+          .match_date_time {
+            font-size: 1.2em;
+            margin-top: 1em;
+          }
+        }
+      }
+    }
+
+    .next_match {
+      .next_match_title {
+        font-size: $font-size_header;
+      }
+    }
+  }
+}
+
+@media (min-width: 1600px) {
+
+  .previous_next_match {
+    .previous_match {
+      .previous_match_content {
+        .match_exist {
+          .match_team_score {
+            .match_teamname_crest {
+              .match_crest {
+                height: 8vh;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}

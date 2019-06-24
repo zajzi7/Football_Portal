@@ -173,63 +173,8 @@
     <div class="content">
 
         <!--        News-->
-        <div class="news_and_pagination">
-            <div class="all_news">
-                <div class="single_news" th:each="news : ${newsList}">
-                    <div class="news_image">
-                        <a href="#">
-                            <img class="news_image" th:src="${news.mainImageSource}"/>
-                            <h2 class="news_title" th:text="${news.title}"></h2>
-                        </a>
-                    </div>
-
-                    <div class="news_content">
-                        <div class="date_author">
-                            <div class="date"
-                                 th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yy,&nbsp;HH:mm')}|">
-                            </div>
-
-                            <div class="author" th:text="|Autor:&nbsp;${news.author}|"></div>
-                        </div>
-
-                        <span class="news_text"
-                              th:utext="${#strings.substringBefore(news.content, '<!--more-->')}"></span>
-                        <a class="news_text" style="color:blue;">...&nbsp;>Czytaj&nbsp;więcej<</a>
-                    </div>
-                </div>
-            </div>
-            <div class="news_pagination">
-
-                <!--/* First page */-->
-                <div class="numbering_element" th:if="${currentPage > 3}">
-                    <a class="news_pagination_block" th:href="|/|" title="Pierwsza strona"><<</a>
-                </div>
-
-                <!--/* Previous page '>' button */-->
-                <div class="numbering_element" th:if="${currentPage > 1}">
-                    <a class="news_pagination_block" th:href="|/?page=${currentPage - 1}|"
-                       title="Poprzednia strona"><</a>
-                </div>
-
-                <div class="numbering_element" th:each="i : ${#numbers.sequence
-                (currentPage < 3 ? 1 : newsList.totalPages-currentPage==2 ? currentPage-2 : newsList.totalPages-currentPage==1 ? currentPage-3 : newsList.totalPages-currentPage==0 ? currentPage-4 : currentPage - 2,
-                newsList.totalPages-currentPage < 3 ? newsList.totalPages : currentPage==1 ? currentPage+4 : currentPage==2 ? currentPage+3 : currentPage+2)}">
-                    <a class="news_pagination_block" th:text="${i}"
-                       th:title="'Strona ' + ${i}"
-                       th:classappend="${currentPage} == ${i} ? 'news_pagination_block_active'"
-                       th:href="|/?page=${i}|"></a>
-                </div>
-
-                <!--/* Next page '>' button */-->
-                <div class="numbering_element" th:if="${currentPage < newsList.totalPages}">
-                    <a class="news_pagination_block" th:href="|/?page=${currentPage + 1}|" title="Następna strona">></a>
-                </div>
-
-                <!--/* Last page */-->
-                <div class="numbering_element" th:if="${currentPage < newsList.totalPages-2}">
-                    <a class="news_pagination_block" th:href="|/?page=${newsList.totalPages}|" title="Ostatnia strona">>></a>
-                </div>
-            </div>
+        <div layout:fragment="content">
+            <div style="color:black;background: white">Sample content</div>
         </div>
 
         <div class="sidebar">

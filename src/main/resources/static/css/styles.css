@@ -6,7 +6,7 @@
 /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 /* IE6-9 fallback on horizontal gradient */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -57,163 +57,36 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  margin: 0px 20px;
-  /*** Table Styles **/ }
+  margin: 0px 20px; }
   .app .color_score_win {
     color: #319a31; }
   .app .color_score_lose {
     color: #ff3131; }
   .app .color_score_draw {
     color: orange; }
-  .app .previous_next_match {
-    display: flex;
-    flex-direction: column;
-    color: #000;
-    margin-top: 20px;
-    justify-content: space-between; }
-    .app .previous_next_match .previous_match {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      margin-right: 20px;
-      -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      border-radius: 8px; }
-      .app .previous_next_match .previous_match .previous_match_title {
-        background: #008a00;
-        background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
-        padding: 0.55em;
-        font-weight: 700;
-        font-size: 1em;
-        color: #fff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px; }
-        .app .previous_next_match .previous_match .previous_match_title::before {
-          font-family: 'Fontello';
-          content: '\e828';
-          margin: 0; }
-      .app .previous_next_match .previous_match .previous_match_content {
-        font-size: 1em;
-        padding: 15px;
-        background: #fff;
-        text-align: center;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: center; }
-        .app .previous_next_match .previous_match .previous_match_content .match_exist {
-          display: flex;
-          flex-direction: column;
-          align-items: center; }
-          .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
-            font-size: 0.85em;
-            display: flex;
-            flex-direction: row;
-            align-items: center; }
-            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest {
-              display: flex;
-              flex-direction: column;
-              align-items: center;
-              justify-content: center; }
-              .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
-                width: auto;
-                height: 12vh; }
-            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_score {
-              font-weight: 700;
-              color: orange;
-              display: flex;
-              padding: 0 0.4em; }
-          .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 0.7em;
-            font-size: 0.85em; }
-            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_date {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              padding: 0 0.5em; }
-            .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_time {
-              display: flex;
-              flex-direction: row;
-              align-items: center;
-              padding: 0 0.5em; }
-        .app .previous_next_match .previous_match .previous_match_content .match_not_exist {
-          font-style: italic; }
-    .app .previous_next_match .next_match {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-      border-radius: 8px;
-      margin-top: 20px; }
-      .app .previous_next_match .next_match .next_match_title {
-        background: #008a00;
-        background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-        filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
-        padding: 0.55em;
-        font-weight: 700;
-        font-size: 1em;
-        color: #fff;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px; }
-        .app .previous_next_match .next_match .next_match_title::before {
-          font-family: 'Fontello';
-          content: '\e827';
-          margin: 0; }
-      .app .previous_next_match .next_match .next_match_content {
-        font-size: 1em;
-        padding: 15px;
-        background: #fff;
-        text-align: center;
-        border-bottom-left-radius: 8px;
-        border-bottom-right-radius: 8px;
-        display: flex;
-        flex: 1;
-        align-items: center;
-        justify-content: center; }
-        .app .previous_next_match .next_match .next_match_content .match_exist {
-          display: flex;
-          flex-direction: row;
-          align-items: center; }
-        .app .previous_next_match .next_match .next_match_content .match_not_exist {
-          font-style: italic; }
   .app .content {
     display: flex;
     flex-direction: column;
     width: 100%;
     margin: 20px 0px; }
-  .app .linkedin_styles {
-    background: #0077B5; }
-  .app .table-fill {
-    background: white;
-    border-radius: 3px;
-    border-collapse: collapse;
-    font-size: 0.8em;
-    width: 100%;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    animation: float 5s infinite; }
-  .app .table_crest_teamname {
-    display: flex;
-    align-items: center; }
-    .app .table_crest_teamname .table_crest_img {
-      padding-right: 0.4em;
-      width: auto;
-      height: 4.5vh;
-      float: left; }
-  .app th {
+
+@media (min-width: 641px) {
+  .app .content {
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 25px 0; } }
+@media (min-width: 1600px) {
+  .app {
+    margin: 0 10em; } }
+.table-fill {
+  background: white;
+  border-radius: 3px;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite; }
+  .table-fill th {
     color: #fff;
     background: #05345f;
     border-bottom: 1px solid #9ea7af;
@@ -222,90 +95,219 @@ body {
     text-align: left;
     text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
     vertical-align: middle; }
-  .app th:first-child {
+  .table-fill th:first-child {
     border-top-left-radius: 3px;
     width: 10%; }
-  .app th:last-child {
+  .table-fill th:last-child {
     border-top-right-radius: 3px;
     border-right: none;
     width: 12%; }
-  .app th:nth-last-child(2) {
+  .table-fill th:nth-last-child(2) {
     width: 12%; }
-  .app tr {
+  .table-fill tr {
     border-top: 1px solid #C1C3D1;
     border-bottom-: 1px solid #C1C3D1;
     color: #000;
     font-weight: normal;
     text-shadow: 0 1px 1px rgba(255, 255, 255, 0.1); }
-  .app tr:hover td {
+  .table-fill tr:hover td {
     background: #4E5066;
     color: #FFFFFF;
     border-top: 1px solid #22262e; }
-  .app tr:first-child {
+  .table-fill tr:first-child {
     border-top: none; }
-  .app tr:last-child {
+  .table-fill tr:last-child {
     border-bottom: none; }
-  .app tr:nth-child(odd) td {
+  .table-fill tr:nth-child(odd) td {
     background: #EBEBEB; }
-  .app tr:nth-child(odd):hover td {
+  .table-fill tr:nth-child(odd):hover td {
     background: #4E5066; }
-  .app tr:last-child td:first-child {
+  .table-fill tr:last-child td:first-child {
     border-bottom-left-radius: 3px; }
-  .app tr:last-child td:last-child {
+  .table-fill tr:last-child td:last-child {
     border-bottom-right-radius: 3px; }
-  .app td {
+  .table-fill td {
     background: #FFFFFF;
     padding: 1em 0;
     text-align: left;
     vertical-align: middle;
     text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
     border-right: 1px solid #C1C3D1; }
-  .app td:last-child {
+  .table-fill td:last-child {
     border-right: 0px; }
-  .app th.text-left {
+  .table-fill th.text-left {
     text-align: left;
     padding-left: 0.6em; }
-  .app th.text-center {
+  .table-fill th.text-center {
     text-align: center; }
-  .app th.text-right {
+  .table-fill th.text-right {
     text-align: right; }
-  .app td.text-left {
+  .table-fill td.text-left {
     text-align: left;
     padding-left: 0.6em; }
-  .app td.text-center {
+  .table-fill td.text-center {
     text-align: center; }
-  .app td.text-right {
+  .table-fill td.text-right {
     text-align: right; }
 
+.table_crest_teamname {
+  display: flex;
+  align-items: center; }
+  .table_crest_teamname .table_crest_img {
+    padding-right: 0.4em;
+    width: auto;
+    height: 4.5vh;
+    float: left; }
+
+.previous_next_match {
+  display: flex;
+  flex-direction: column;
+  color: #000;
+  margin-top: 20px;
+  justify-content: space-between; }
+  .previous_next_match .previous_match {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-right: 20px;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 8px; }
+    .previous_next_match .previous_match .previous_match_title {
+      background: #008a00;
+      background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
+      padding: 0.55em;
+      font-weight: 700;
+      font-size: 1em;
+      color: #fff;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+      .previous_next_match .previous_match .previous_match_title::before {
+        font-family: 'Fontello';
+        content: '\e828';
+        margin: 0; }
+    .previous_next_match .previous_match .previous_match_content {
+      font-size: 1em;
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center; }
+      .previous_next_match .previous_match .previous_match_content .match_exist {
+        display: flex;
+        flex-direction: column;
+        align-items: center; }
+        .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
+          font-size: 0.85em;
+          display: flex;
+          flex-direction: row;
+          align-items: center; }
+          .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center; }
+            .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
+              width: auto;
+              height: 12vh; }
+          .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_score {
+            font-weight: 700;
+            color: orange;
+            display: flex;
+            padding: 0 0.4em; }
+        .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-top: 0.7em;
+          font-size: 0.85em; }
+          .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_date {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 0.5em; }
+          .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_time {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 0.5em; }
+      .previous_next_match .previous_match .previous_match_content .match_not_exist {
+        font-style: italic; }
+  .previous_next_match .next_match {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+    border-radius: 8px;
+    margin-top: 20px; }
+    .previous_next_match .next_match .next_match_title {
+      background: #008a00;
+      background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
+      filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
+      padding: 0.55em;
+      font-weight: 700;
+      font-size: 1em;
+      color: #fff;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px; }
+      .previous_next_match .next_match .next_match_title::before {
+        font-family: 'Fontello';
+        content: '\e827';
+        margin: 0; }
+    .previous_next_match .next_match .next_match_content {
+      font-size: 1em;
+      padding: 15px;
+      background: #fff;
+      text-align: center;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+      display: flex;
+      flex: 1;
+      align-items: center;
+      justify-content: center; }
+      .previous_next_match .next_match .next_match_content .match_exist {
+        display: flex;
+        flex-direction: row;
+        align-items: center; }
+      .previous_next_match .next_match .next_match_content .match_not_exist {
+        font-style: italic; }
+
 @media (min-width: 641px) {
-  .app .previous_next_match {
+  .previous_next_match {
     flex-direction: row; }
-    .app .previous_next_match .previous_match {
+    .previous_next_match .previous_match {
       width: 50%; }
-    .app .previous_next_match .next_match {
+    .previous_next_match .next_match {
       width: 50%;
-      margin-top: 0; }
-  .app .content {
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 25px 0; } }
+      margin-top: 0; } }
 @media (min-width: 321px) {
-  .app .previous_next_match .previous_match .previous_match_title {
+  .previous_next_match .previous_match .previous_match_title {
     font-size: 1.2em; }
-  .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
+  .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
     font-size: 1.2em; }
-    .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_crest {
+    .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_crest {
       width: 50px; }
-  .app .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
+  .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
     font-size: 1.2em;
     margin-top: 1em; }
-  .app .previous_next_match .next_match .next_match_title {
+  .previous_next_match .next_match .next_match_title {
     font-size: 1.2em; } }
 @media (min-width: 1600px) {
-  .app {
-    margin: 0 10em; }
-    .app .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
-      height: 8vh; } }
+  .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
+    height: 8vh; } }
 /* usuni─Öcie domy┼Ťlnych w┼éa┼Ťciwo┼Ťci CSS z element├│w - ol - oraz - ul */
 #menu, #menu ul, #menu ol {
   list-style-type: none;
@@ -529,6 +531,8 @@ body {
       .footer .links .all_columns .single_column {
         text-align: center;
         padding: 0.5em; }
+  .footer .linkedin_styles {
+    background: #0077B5; }
   .footer .author {
     border-left: #fff 1px solid;
     display: flex;
@@ -700,6 +704,7 @@ body {
     justify-content: space-between;
     width: 100%; }
     .news_and_pagination .all_news .single_news {
+      overflow-x: auto;
       -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
       box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);

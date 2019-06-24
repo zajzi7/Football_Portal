@@ -1,5 +1,5 @@
 plugins {
-	id 'org.springframework.boot' version '2.2.0.M3'
+	id 'org.springframework.boot' version '2.2.0.M4'
 	id 'java'
 }
 
@@ -24,7 +24,7 @@ dependencies {
 
 	//Database
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	compile 'org.hibernate:hibernate-gradle-plugin:5.4.2.Final'
+	compile 'org.hibernate:hibernate-gradle-plugin:5.4.3.Final'
 	runtimeOnly 'mysql:mysql-connector-java'
 	//implementation 'com.h2database:h2'
 
@@ -34,6 +34,9 @@ dependencies {
 	compile 'org.webjars:bootstrap:4.3.1'
 	compile group: 'org.webjars', name: 'jquery', version: '3.4.0'
 	compile group: 'io.bit3', name: 'jsass', version: '5.8.0'
+
+	compile group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '2.4.1'
+
 
 	//Security
 	//implementation 'org.springframework.boot:spring-boot-starter-security'

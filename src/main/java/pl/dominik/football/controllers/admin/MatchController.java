@@ -1,4 +1,4 @@
-package pl.dominik.football.controllers;
+package pl.dominik.football.controllers.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

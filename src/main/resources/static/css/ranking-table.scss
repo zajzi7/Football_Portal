@@ -1,0 +1,137 @@
+
+.table-fill {
+  background: white;
+  border-radius: 3px;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  //height: 320px;
+  //margin: auto;
+  //max-width: 600px;
+  //padding: 5px;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+
+
+  th {
+    //color: #D5DDE5;
+    color: #fff;
+    background: #05345f;
+    border-bottom: 1px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    //font-size: 23px;
+    //font-weight: 100;
+    padding: 1em 0;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+  }
+
+  th:first-child {
+    border-top-left-radius: 3px;
+    width: 10%;
+  }
+
+  th:last-child {
+    border-top-right-radius: 3px;
+    border-right: none;
+    width: 12%;
+  }
+
+  th:nth-last-child(2) {
+    width: 12%;
+  }
+
+  tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom-: 1px solid #C1C3D1;
+    //color: #666B85;
+    color: #000;
+    //font-size: 16px;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  }
+
+  tr:hover td {
+    background: #4E5066;
+    color: #FFFFFF;
+    border-top: 1px solid #22262e;
+  }
+
+  tr:first-child {
+    border-top: none;
+  }
+
+  tr:last-child {
+    border-bottom: none;
+  }
+
+  tr:nth-child(odd) td {
+    background: #EBEBEB;
+  }
+
+  tr:nth-child(odd):hover td {
+    background: #4E5066;
+  }
+
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 3px;
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 3px;
+  }
+
+  td {
+    background: #FFFFFF;
+    padding: 1em 0;
+    text-align: left;
+    vertical-align: middle;
+    //font-size: 18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #C1C3D1;
+  }
+
+  td:last-child {
+    border-right: 0px;
+  }
+
+  th.text-left {
+    text-align: left;
+    padding-left: 0.6em;
+  }
+
+  th.text-center {
+    text-align: center;
+  }
+
+  th.text-right {
+    text-align: right;
+  }
+
+  td.text-left {
+    text-align: left;
+    padding-left: 0.6em;
+  }
+
+  td.text-center {
+    text-align: center;
+  }
+
+  td.text-right {
+    text-align: right;
+  }
+
+}
+
+.table_crest_teamname {
+  display: flex;
+  align-items: center;
+
+  .table_crest_img {
+    padding-right: 0.4em;
+    width: auto;
+    height: 4.5vh;
+    float: left;
+  }
+}

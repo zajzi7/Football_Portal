@@ -1,16 +1,12 @@
-package pl.dominik.football.controllers;
+package pl.dominik.football.controllers.accessible;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
-import pl.dominik.football.domain.repository.NewsRepository;
 import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.NewsService;
@@ -22,20 +18,14 @@ import pl.dominik.football.utilities.SortTeams;
 
 import java.util.List;
 
-@Controller
-public class HomeController {
+@ControllerAdvice(basePackages = {"pl.dominik.football.controllers.accessible"})
+public class AdviceController {
 
     @Autowired
     UserConfigService userConfigService;
 
     @Autowired
     PlayerService playerService;
-
-    @Autowired
-    NewsService newsService;
-
-    @Autowired
-    NewsRepository newsRepository;
 
     @Autowired
     RankingDataRepository rankingDataRepository;
@@ -49,27 +39,19 @@ public class HomeController {
     @Autowired
     MatchService matchService;
 
-    @RequestMapping("/")
-    public String homepage(Model model, @RequestParam(defaultValue = "1") int page) {
-
+    //Ranking
+    @ModelAttribute("teams")
+    public List<RankingData> rankingTeams() {
         int seasonId = userConfigService.getCurrentSeasonId();
-        Season season = seasonService.getSeasonById(seasonId);
-
-
-        //News
-        model.addAttribute("newsList", newsRepository.findAll(PageRequest.of(page - 1, 6)));
-        model.addAttribute("currentPage", page);
-
-
-        //Ranking
         List<RankingData> rankingData = rankingDataRepository.getRankingDataBySeasonId(seasonId);
         rankingData.sort(new SortTeams());
-        model.addAttribute("teams", rankingData);
+        return rankingData;
+    }
 
-
-        //Previous match
+    //Previous match
+    @ModelAttribute("previousMatch")
+    public Match previousMatch() {
         Match previousMatch;
-        boolean previousMatchScoreIsNull = true;
         int i = 0;
         try {
             do {
@@ -79,19 +61,16 @@ public class HomeController {
                 }
                 i++;
             } while (previousMatch == null);
-            if (previousMatch.getHomeScore() != null && previousMatch.getAwayScore() != null) {
-                previousMatchScoreIsNull = false;
-            }
         } catch (NullPointerException e) {
             previousMatch = null;
         }
-        model.addAttribute("previousMatch", previousMatch);
-        model.addAttribute("previousMatchScoreIsNull", previousMatchScoreIsNull);
+        return previousMatch;
+    }
 
-
-        //Next Match
+    //Next Match
+    @ModelAttribute("nextMatch")
+    public Match nextMatch() {
         Match nextMatch;
-        boolean nextMatchScoreIsNull = true;
         int j = 0;
         try {
             do {
@@ -101,23 +80,20 @@ public class HomeController {
                 }
                 j++;
             } while (nextMatch == null);
-            if (nextMatch.getHomeScore() != null && nextMatch.getAwayScore() != null) {
-                nextMatchScoreIsNull = false;
-            }
         }
         catch (NullPointerException e) {
             nextMatch = null;
         }
-        model.addAttribute("nextMatch", nextMatch);
-        model.addAttribute("nextMatchScoreIsNull", nextMatchScoreIsNull);
+        return nextMatch;
+    }
 
-
-        //Last round
+    //Last round
+    @ModelAttribute("lastRound")
+    public Round lastRound() {
+        int seasonId = userConfigService.getCurrentSeasonId();
+        Season season = seasonService.getSeasonById(seasonId);
         Round lastRound = roundService.getLastRound(season);
-        model.addAttribute("lastRound", lastRound);
-
-
-        return "index2";
+        return lastRound;
     }
 
 }
