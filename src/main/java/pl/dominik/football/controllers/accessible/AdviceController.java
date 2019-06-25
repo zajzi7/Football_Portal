@@ -9,7 +9,6 @@ import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.services.MatchService;
-import pl.dominik.football.services.NewsService;
 import pl.dominik.football.services.PlayerService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
