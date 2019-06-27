@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sidebar</title>
+</head>
+<body>
+
+<div class="sidebar">
+    <div th:fragment="ranking" class="ranking">
+        <div class="ranking_head icon-football-or-soccer-board-with-results-of-games">Tabela</div>
+        <div class="ranking_content">
+
+            <table class="table-fill">
+                <thead>
+                <th scope="col" class="text-center">#</th>
+                <th scope="col" class="text-left">Drużyna</th>
+                <th scope="col" class="text-center">M</th>
+                <th scope="col" class="text-center">Pkt</th>
+                </thead>
+
+                <tbody class="table-hover">
+                <tr th:each="team, iteration : ${teams}">
+                    <td class="text-center" th:text="${iteration.index + 1}"></td>
+                    <td class="text-left">
+                        <div class="table_crest_teamname">
+                            <img class="table_crest_img" th:src="${team.team.crestSource}"
+                                 th:text="${team.team.teamName}"/>
+                        </div>
+                    </td>
+                    <td class="text-center" th:text="${team.matchesPlayed}"></td>
+                    <td class="text-center" th:text="${team.points}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <br/>
+            <a>> Pokaż pełną tabelę <</a>
+        </div>
+    </div>
+
+    <div th:fragment="results" class="results">
+        <div class="results_head icon-football-ball">Ostatnia kolejka</div>
+        <div class="results_content" th:if="${lastRound} != null">
+            <div th:each="match : ${lastRound.matches}">
+                <div class="single_match" th:if="${
+                             match.homeScore != null &&
+                             match.awayScore != null &&
+                             match.homeTeam != null &&
+                             match.awayTeam != null}">
+                    <div class="team_name">
+                        <img class="results_crest" th:src="${match.homeTeam.crestSource}"
+                             th:text="${match.homeTeam.teamName}"/>
+                    </div>
+                    <div class="score">
+                            <span th:text="${match.homeScore}" th:classappend="|
+                                  ${match.homeScore > match.awayScore ? 'color_score_win' : ''}
+                                  ${match.homeScore < match.awayScore ? 'color_score_lose' : ''}
+                                  ${match.homeScore == match.awayScore ? 'color_score_draw' : ''}|">
+                            </span>
+                        :
+                        <span th:text="${match.awayScore}" th:classappend="|
+                                  ${match.homeScore > match.awayScore ? 'color_score_lose' : ''}
+                                  ${match.homeScore < match.awayScore ? 'color_score_win' : ''}
+                                  ${match.homeScore == match.awayScore ? 'color_score_draw' : ''}|">
+                            </span>
+                    </div>
+                    <div class="team_name">
+                        <span th:text="${match.awayTeam.teamName}"></span>
+                        <img class="results_crest" th:src="${match.awayTeam.crestSource}"/>
+                    </div>
+                </div>
+            </div>
+            <a>> Kolejki <</a>
+        </div>
+        <div class="results_content" style="font-style: italic" th:if="${lastRound} == null"
+             th:text="'Brak wprowadzonych kolejek'"></div>
+    </div>
+</div>
+
+</body>
+</html>

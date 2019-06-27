@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Previous and next match</title>
+</head>
+<body>
+
+<div th:fragment="previous_next_match" class="previous_next_match">
+
+    <!--        Previous match-->
+    <div class="match">
+        <div class="match_title icon-back-in-time">
+            Poprzedni mecz
+        </div>
+        <div class="match_content">
+            <div class="match_exist" th:if="${previousMatch != null}">
+                <div class="match_team_score">
+
+                    <div class="match_teamname_crest">
+                        <img class="match_crest" th:src="${previousMatch.homeTeam.crestSource}"/>
+                        <span th:text="${previousMatch.homeTeam.teamName}"></span>
+                    </div>
+
+                    <div th:if="${previousMatch.homeScore != null && previousMatch.awayScore != null}"
+                         class="match_score">
+                            <span th:text="${previousMatch.homeScore}"
+                                  th:classappend="|
+                                  ${previousMatch.homeScore > previousMatch.awayScore ? 'color_score_win' : ''}
+                                  ${previousMatch.homeScore < previousMatch.awayScore ? 'color_score_lose' : ''}
+                                  ${previousMatch.homeScore == previousMatch.awayScore ? 'color_score_draw' : ''}|">
+                            </span>
+                        &nbsp;:&nbsp;
+                        <span th:text="${previousMatch.awayScore}"
+                              th:classappend="|
+                                  ${previousMatch.homeScore > previousMatch.awayScore ? 'color_score_lose' : ''}
+                                  ${previousMatch.homeScore < previousMatch.awayScore ? 'color_score_win' : ''}
+                                  ${previousMatch.homeScore == previousMatch.awayScore ? 'color_score_draw' : ''}|">
+                            </span>
+                    </div>
+
+                    <div th:if="${previousMatch.homeScore == null || previousMatch.awayScore == null}">
+                        &nbsp;-&nbsp;:&nbsp;-&nbsp;
+                    </div>
+                    <div class="match_teamname_crest">
+                        <img class="match_crest" th:src="${previousMatch.awayTeam.crestSource}"/>
+                        <span th:text="${previousMatch.awayTeam.teamName}"></span>
+                    </div>
+                </div>
+                <div class="match_date_time">
+                    <div class="match_date">
+                        <i class="icon-calendar" style="color: brown;"></i>Data:&nbsp;<span
+                            th:text="${#temporals.format(previousMatch.matchDate, 'dd.MM.yyyy')}"></span>
+                    </div>
+                    <div class="match_time">
+                        <i class="icon-clock" style="color: blueviolet;"></i>Godzina:&nbsp;<span
+                            th:text="${#temporals.format(previousMatch.matchStartTime, 'HH:mm')}"></span>12:45
+                    </div>
+                </div>
+            </div>
+            <div class="match_not_exist" th:if="${previousMatch == null}">
+                Brak ostatnich meczy
+            </div>
+        </div>
+    </div>
+
+    <!--        Next mach-->
+    <div class="match">
+        <div class="match_title icon-clock">
+            Następny mecz
+        </div>
+        <div class="match_content">
+            <div class="match_exist" th:if="${nextMatch != null}">
+                <div class="match_team_score">
+                    <div class="match_teamname_crest">
+                        <img class="match_crest" th:src="${nextMatch.homeTeam.crestSource}"/>
+                        <span th:text="${nextMatch.homeTeam.teamName}"></span>
+                    </div>
+
+                    <div class="versus">Vs</div>
+
+                    <div class="match_teamname_crest">
+                        <img class="match_crest" th:src="${nextMatch.awayTeam.crestSource}"/>
+                        <span th:text="${nextMatch.awayTeam.teamName}"></span>
+                    </div>
+                </div>
+
+                <div class="match_date_time">
+                    <div class="match_date">
+                        <i class="icon-calendar" style="color: brown;"></i>Data:&nbsp;<span
+                            th:text="${#temporals.format(nextMatch.matchDate, 'dd.MM.yyyy')}"></span>
+                    </div>
+                    <div class="match_time">
+                        <i class="icon-clock" style="color: blueviolet;"></i>Godzina:&nbsp;<span
+                            th:text="${#temporals.format(nextMatch.matchStartTime, 'HH:mm')}"></span>12:45
+                    </div>
+                </div>
+            </div>
+            <div class="match_not_exist" th:if="${nextMatch == null}">
+                Brak nadchodzących meczy
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

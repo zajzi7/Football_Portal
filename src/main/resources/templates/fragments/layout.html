@@ -1,0 +1,66 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <title>Football App</title>
+    <meta name="author" content="Dominik Drabina">
+    <meta name="keywords" content="Łapczyca, Husaria Łapczyca, Klub Sportowy Husaria Łapczyca, Piłka nożna, Sport">
+    <meta name="description"
+          content="Oficjalna strona Klubu Sportowego Husaria Łapczyca. Najnowsze wiadomości o klubie oraz ligowe wyniki meczów.">
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="stylesheet" th:href="@{/css/styles.css}"/>
+    <link rel="stylesheet" th:href="@{/css/icons/css/fontello.css}"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
+</head>
+<body>
+
+<div class="hamburger_menu">
+    <div class="hamburger_icon icon-menu-outline"></div>
+    <div class="hamburger_title">Menu</div>
+</div>
+
+<div class="app">
+
+    <!--    Header(logo etc.) -->
+    <div th:replace="fragments/header.html :: header"></div>
+
+    <!--    Previous and next match-->
+    <div th:replace="fragments/previous-next-match.html :: previous_next_match"></div>
+
+    <!--    Main content-->
+    <div class="content">
+
+        <!-- News or article-->
+        <div layout:fragment="content" class="article">
+            <div class="article_title">Pan Tadeusz</div>
+            <div class="article_content">Litwo! Ojczyzno moja! Ty jesteś jak zdrowie. Nazywał się kiedyś demokratą. Bo
+                nie widać z drzewa, lecz latem nic nie będziesz przy niej z pachnącymi ziołki geranium, lewkonija, astry
+                i ziemianinowi ustępować z rzadka ciche grusze siedzą. Śród cichej wsi litewskiej, kiedy karę na
+                początek dać małą kiedy się tłocz i w niebytność Wojskiego Woźny ciągle Sędziemu tłumaczył dlaczego
+                urządzenie pańskie jachał szlachcic obyczaje wtenczas i jadł. wtem z mosiężnymi dzwonki. Tam stała
+                wypisana i ze szkoły: więc i z szkaplerza. Tam konie porzucone same obicia z napisami: gdzie, kiedy do
+                nowej sąsiadki a w lisa, tak wedle dzisiejszej mody odsyłać konie rżące lecą ze żniwa i jadł. wtem z jej
+                był portret króla Stanisława. Ojcu Podkomorzego zdał się wstążkami jaskrawych stokrotek. Grządki widać,
+                że odbite od słońca promieni któremi się wstążkami jaskrawych stokrotek. Grządki widać, że gotyckiej są
+                architektury. Choć o ścianę komnaty gdzie panieńskim rumieńcem dzięcielina pała a Sędziego wolą była
+                gazetą gdy raptem boczne drzwi otwarto. weszła nowa osoba, przystojna i bagnami skradał się drzwiczki
+                Świeżo trącone. blisko drzwi poglądał jakby wstęgą, miedz zieloną, na Sędziego służono.
+            </div>
+        </div>
+
+        <!--        Sidebar-->
+        <div class="sidebar">
+            <div th:replace="fragments/sidebar.html :: ranking"></div>
+            <div th:replace="fragments/sidebar.html :: results"></div>
+        </div>
+    </div>
+
+    <!--    Footer-->
+    <div th:replace="fragments/footer.html :: footer"></div>
+</div>
+
+</body>
+</html>

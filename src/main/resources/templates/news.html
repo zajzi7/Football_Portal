@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layout}">
+      layout:decorate="~{fragments/layout}">
 <head>
 </head>
 <body>
@@ -9,7 +9,7 @@
     <div class="all_news">
         <div class="single_news" th:each="news : ${newsList}">
             <div class="news_image">
-                <a href="#">
+                <a th:href="|/news/${news.id}|">
                     <img class="news_image" th:src="${news.mainImageSource != null ? news.mainImageSource : '/img/no-image.png'}" />
                     <h2 class="news_title" th:text="${news.title}"></h2>
                 </a>
@@ -17,16 +17,13 @@
 
             <div class="news_content">
                 <div class="date_author">
-                    <div class="date"
-                         th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yy,&nbsp;HH:mm')}|">
-                    </div>
-
-                    <div class="author" th:text="|Autor:&nbsp;${news.author}|"></div>
+                    <div th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yy,&nbsp;HH:mm')}|"></div>
+                    <div th:text="|Autor:&nbsp;${news.author}|"></div>
                 </div>
 
                 <span class="news_text"
-                      th:utext="${#strings.substringBefore(news.content, '<!--more-->') == null ? news.content : #strings.substringBefore(news.content, '<!--more-->')}"></span>
-                <a th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}" class="news_text" style="color:blue;">...&nbsp;>Czytaj&nbsp;więcej<</a>
+                      th:utext="${#strings.substringBefore(news.content, '<!--more-->') == null ? news.content : #strings.substringBefore(news.content, '<!--more-->')} + '...'"></span>
+                <a th:href="|/news/${news.id}|" th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}" class="news_text" style="color:blue;">>Czytaj&nbsp;więcej<</a>
             </div>
         </div>
     </div>

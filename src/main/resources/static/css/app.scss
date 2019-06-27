@@ -6,6 +6,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   color: white;
   min-height: 100vh;
+  font-size: 16px;
 }
 
 .app {
@@ -46,7 +47,18 @@ body {
 
 }
 @media (min-width: 1600px) {
-  .app {
-    margin: 0 10em;
+  body {
+    font-size: 20px;
+
+    .app {
+      margin: 0 10em;
+    }
   }
+
+}
+@media (min-width: 2500px) {
+  body {
+    font-size: 25px;
+  }
+
 }

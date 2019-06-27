@@ -6,7 +6,7 @@
 /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 /* IE6-9 fallback on horizontal gradient */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
-html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, caption, tbody, tfoot, thead, tr, th, td, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video, input {
   margin: 0;
   padding: 0;
   border: 0;
@@ -14,7 +14,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
   box-sizing: border-box;
   vertical-align: baseline; }
 
-article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
   display: block; }
 
 a {
@@ -43,16 +43,12 @@ table {
   border-spacing: 0; }
 
 body {
-  font-size: 16px; }
-
-@media (min-width: 1600px) {
-  font-size: 20px; }
-body {
   background-color: #878c00;
   background-image: url("../img/football-no-lines.png");
   font-family: 'Open Sans', sans-serif;
   color: white;
-  min-height: 100vh; }
+  min-height: 100vh;
+  font-size: 16px; }
 
 .app {
   display: flex;
@@ -76,8 +72,42 @@ body {
     justify-content: space-between;
     margin: 25px 0; } }
 @media (min-width: 1600px) {
-  .app {
-    margin: 0 10em; } }
+  body {
+    font-size: 20px; }
+    body .app {
+      margin: 0 10em; } }
+@media (min-width: 2500px) {
+  body {
+    font-size: 25px; } }
+.article {
+  display: flex;
+  flex-direction: column;
+  color: black;
+  font-size: 0.85em;
+  background: white;
+  width: 100%;
+  min-height: 300px;
+  padding: 1.5em;
+  border-radius: 8px;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45); }
+  .article .article_title {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #319a31;
+    margin-bottom: 1em; }
+  .article .article_content {
+    font-size: 1em;
+    line-height: 1.75em;
+    margin-bottom: 1em; }
+
+@media (min-width: 450px) {
+  .article {
+    font-size: 1em; } }
+@media (min-width: 1000px) {
+  .article {
+    padding: 2em 3em; } }
 .table-fill {
   background: white;
   border-radius: 3px;
@@ -163,18 +193,17 @@ body {
   display: flex;
   flex-direction: column;
   color: #000;
-  margin-top: 20px;
   justify-content: space-between; }
-  .previous_next_match .previous_match {
+  .previous_next_match .match {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-right: 20px;
+    margin-top: 20px;
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     border-radius: 8px; }
-    .previous_next_match .previous_match .previous_match_title {
+    .previous_next_match .match .match_title {
       background: #008a00;
       background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
       background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
@@ -186,13 +215,13 @@ body {
       color: #fff;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px; }
-      .previous_next_match .previous_match .previous_match_title::before {
+      .previous_next_match .match .match_title::before {
         font-family: 'Fontello';
         content: '\e828';
         margin: 0; }
-    .previous_next_match .previous_match .previous_match_content {
+    .previous_next_match .match .match_content {
       font-size: 1em;
-      padding: 15px;
+      padding: 1em;
       background: #fff;
       text-align: center;
       border-bottom-left-radius: 8px;
@@ -201,112 +230,85 @@ body {
       flex: 1;
       align-items: center;
       justify-content: center; }
-      .previous_next_match .previous_match .previous_match_content .match_exist {
+      .previous_next_match .match .match_content .match_exist {
         display: flex;
         flex-direction: column;
         align-items: center; }
-        .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
+        .previous_next_match .match .match_content .match_exist .match_team_score {
           font-size: 0.85em;
           display: flex;
           flex-direction: row;
           align-items: center; }
-          .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest {
+          .previous_next_match .match .match_content .match_exist .match_team_score .match_teamname_crest {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center; }
-            .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
+            .previous_next_match .match .match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
               width: auto;
               height: 12vh; }
-          .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_score {
+          .previous_next_match .match .match_content .match_exist .match_team_score .match_score {
             font-weight: 700;
             color: orange;
             display: flex;
             padding: 0 0.4em; }
-        .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
+        .previous_next_match .match .match_content .match_exist .match_date_time {
           display: flex;
           flex-direction: row;
           flex-wrap: wrap;
           justify-content: center;
           margin-top: 0.7em;
           font-size: 0.85em; }
-          .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_date {
+          .previous_next_match .match .match_content .match_exist .match_date_time .match_date {
             display: flex;
             flex-direction: row;
             align-items: center;
             padding: 0 0.5em; }
-          .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time .match_time {
+          .previous_next_match .match .match_content .match_exist .match_date_time .match_time {
             display: flex;
             flex-direction: row;
             align-items: center;
             padding: 0 0.5em; }
-      .previous_next_match .previous_match .previous_match_content .match_not_exist {
+      .previous_next_match .match .match_content .match_not_exist {
         font-style: italic; }
-  .previous_next_match .next_match {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
-    box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  .previous_next_match .versus {
     border-radius: 8px;
-    margin-top: 20px; }
-    .previous_next_match .next_match .next_match_title {
-      background: #008a00;
-      background: -moz-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-      background: -webkit-linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-      background: linear-gradient(45deg, #008a00 0%, #30a31b 20%, #3aa82b 65%, #1f891f 100%);
-      filter: "progid:DXImageTransform.Microsoft.gradient( startColorstr='#008a00', endColorstr='#1f891f',GradientType=1 )";
-      padding: 0.55em;
-      font-weight: 700;
-      font-size: 1em;
-      color: #fff;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px; }
-      .previous_next_match .next_match .next_match_title::before {
-        font-family: 'Fontello';
-        content: '\e827';
-        margin: 0; }
-    .previous_next_match .next_match .next_match_content {
-      font-size: 1em;
-      padding: 15px;
-      background: #fff;
-      text-align: center;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
-      display: flex;
-      flex: 1;
-      align-items: center;
-      justify-content: center; }
-      .previous_next_match .next_match .next_match_content .match_exist {
-        display: flex;
-        flex-direction: row;
-        align-items: center; }
-      .previous_next_match .next_match .next_match_content .match_not_exist {
-        font-style: italic; }
+    color: #fff;
+    padding: 0.3em 0.4em;
+    font-size: 0.9em;
+    margin: 0 0.55em;
+    font-weight: 700;
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#ffaf4b+0,ff920a+100;Orange+3D+%231 */
+    background: #ffaf4b;
+    /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #ffaf4b 0%, #ff920a 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #ffaf4b 0%, #ff920a 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #ffaf4b 0%, #ff920a 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=1 );
+    /* IE6-9 fallback on horizontal gradient */ }
 
+@media (min-width: 450px) {
+  .previous_next_match .match .match_title {
+    font-size: 1.2em; }
+  .previous_next_match .match .match_content .match_exist .match_team_score {
+    font-size: 1.2em; }
+    .previous_next_match .match .match_content .match_exist .match_team_score .match_crest {
+      width: 50px; }
+  .previous_next_match .match .match_content .match_exist .match_date_time {
+    font-size: 1.2em;
+    margin-top: 1em; } }
 @media (min-width: 641px) {
   .previous_next_match {
-    flex-direction: row; }
-    .previous_next_match .previous_match {
-      width: 50%; }
-    .previous_next_match .next_match {
-      width: 50%;
+    flex-direction: row;
+    margin-top: 20px; }
+    .previous_next_match .match {
+      width: calc(50% - 10px);
       margin-top: 0; } }
-@media (min-width: 321px) {
-  .previous_next_match .previous_match .previous_match_title {
-    font-size: 1.2em; }
-  .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score {
-    font-size: 1.2em; }
-    .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_crest {
-      width: 50px; }
-  .previous_next_match .previous_match .previous_match_content .match_exist .match_date_time {
-    font-size: 1.2em;
-    margin-top: 1em; }
-  .previous_next_match .next_match .next_match_title {
-    font-size: 1.2em; } }
 @media (min-width: 1600px) {
-  .previous_next_match .previous_match .previous_match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
+  .previous_next_match .match .match_content .match_exist .match_team_score .match_teamname_crest .match_crest {
     height: 8vh; } }
 /* usuni─Öcie domy┼Ťlnych w┼éa┼Ťciwo┼Ťci CSS z element├│w - ol - oraz - ul */
 #menu, #menu ul, #menu ol {
@@ -639,7 +641,7 @@ body {
           padding: 0 1em;
           font-weight: 700; }
 
-@media (min-width: 321px) {
+@media (min-width: 450px) {
   .sidebar .ranking .ranking_head {
     font-size: 1.2em; }
   .sidebar .ranking .ranking_content {
@@ -737,13 +739,6 @@ body {
         padding: 1.5em 1.5em;
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px; }
-        .news_and_pagination .all_news .single_news .news_content .date_author {
-          display: flex;
-          flex-wrap: wrap;
-          font-size: 0.9em;
-          justify-content: space-between;
-          color: gray;
-          margin-bottom: 1em; }
         .news_and_pagination .all_news .single_news .news_content .news_text {
           font-size: 1.2em; }
   .news_and_pagination .news_pagination {
@@ -773,10 +768,31 @@ body {
         color: #fff;
         background: green; }
 
+.date_author {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 0.9em;
+  justify-content: space-between;
+  color: gray;
+  margin-bottom: 1em; }
+
+.full_news_main_image {
+  max-width: 100%;
+  height: auto;
+  margin-right: 1.5em;
+  margin-bottom: 1em;
+  float: left;
+  -webkit-box-shadow: 2px 2px 8px -3px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 2px 2px 8px -3px rgba(0, 0, 0, 0.75);
+  box-shadow: 2px 2px 8px -3px rgba(0, 0, 0, 0.75); }
+
 @media (max-width: 449px) {
   .news_image {
     max-height: 300px; } }
 @media (min-width: 450px) {
+  .display_br {
+    display: none; }
+
   .news_and_pagination .all_news .single_news {
     width: calc(50% - 10px); }
     .news_and_pagination .all_news .single_news .news_image {
@@ -796,9 +812,12 @@ body {
 @media (min-width: 900px) {
   .news_image {
     max-height: 370px; } }
+@media (min-width: 1000px) {
+  .full_news_main_image {
+    max-width: 35%; } }
 @media (min-width: 1600px) {
   .news_and_pagination .all_news .single_news .news_image {
-    max-height: 370px; } }
+    max-height: 40em; } }
 .hamburger_menu {
   background: #11af11c7;
   border-radius: 5px;
@@ -807,7 +826,8 @@ body {
   font-size: 1.7em;
   right: 0;
   position: fixed;
-  margin: 10px 20px; }
+  margin: 10px 20px;
+  z-index: 4; }
   .hamburger_menu .hamburger_title {
     font-size: 0.5em; }
 
