@@ -1,39 +1,20 @@
 package pl.dominik.football.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
-import pl.dominik.football.domain.repository.UserConfigRepository;
 
-@Service
-public class UserConfigService {
+public interface UserConfigService {
 
-    @Autowired
-    UserConfigRepository userConfigRepository;
+    void createUserConfig();
 
-    public void setCurrentSeason(Season season) {
-        userConfigRepository.setCurrentSeason(season);
-    }
+    void setCurrentSeason(Season season);
 
-    public void setFavouriteTeam(Team team) {
-        userConfigRepository.setFavouriteTeam(team);
-    }
+    void setFavouriteTeam(Team team);
 
-    public Team getFavouriteTeam() {
-        return userConfigRepository.getFavouriteTeam();
-    }
+    Team getFavouriteTeam();
 
-    public int getCurrentSeasonId() {
-        return userConfigRepository.getCurrentSeasonId();
-    }
+    int getCurrentSeasonId();
 
-    public void setCurrentSeasonById(int id) {
-        userConfigRepository.setCurrentSeasonById(id);
-    }
-
-    public int getId() {
-        return userConfigRepository.getId();
-    }
+    void setCurrentSeasonById(int id);
 
 }

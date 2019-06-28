@@ -3,6 +3,7 @@ package pl.dominik.football;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+import pl.dominik.football.domain.entity.UserConfig;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.NewsService;
 import pl.dominik.football.services.PlayerService;
@@ -58,6 +59,7 @@ public class Start implements CommandLineRunner {
                 roundService.getRoundByInt(6),
                 seasonService.getSeason("2018/2019"));
 
+        userConfigService.createUserConfig();
         userConfigService.setCurrentSeason(seasonService.getSeason("2018/2019"));
 
         //manual creating players just for tests

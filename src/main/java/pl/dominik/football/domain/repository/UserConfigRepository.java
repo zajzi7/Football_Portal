@@ -1,59 +1,22 @@
 package pl.dominik.football.domain.repository;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.entity.UserConfig;
-import pl.dominik.football.services.SeasonService;
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 @Repository
-public class UserConfigRepository {
+public interface UserConfigRepository extends JpaRepository<UserConfig, Integer> {
 
-    @PersistenceContext
-    EntityManager em;
+    UserConfig findByIdEquals(int id);
 
-    UserConfig userConfig = new UserConfig();
+    //Get current season
+    @Query("select uc.currentSeason from UserConfig uc where uc.id=1")
+    Season getCurrentSeason();
 
-    @Autowired
-    SeasonService seasonService;
-
-    //Admin manages which season is on going
-    @Transactional
-    public void setCurrentSeason(Season season) {
-        userConfig.setCurrentSeason(season);
-        em.merge(userConfig);
-    }
-
-    @Transactional
-    public void setFavouriteTeam(Team team) {
-        userConfig.setFavouriteTeam(team);
-        em.merge(userConfig);
-    }
-
-    @Transactional
-    public void setCurrentSeasonById(int id) {
-        Season season = seasonService.getSeasonById(id);
-        setCurrentSeason(season);
-    }
-
-    public int getCurrentSeasonId() {
-        Season season =
-                em.createQuery("select uc.currentSeason from UserConfig uc where uc.id=1", Season.class)
-                .getSingleResult();
-        return season.getId();
-    }
-
-    public int getId() {
-        return em.createQuery("select uc.id from UserConfig uc", Integer.class).getSingleResult();
-    }
-
-    public Team getFavouriteTeam() {
-        return em.createQuery("select uc.favouriteTeam from UserConfig uc where uc.id=1", Team.class).getSingleResult();
-    }
+    @Query("select uc.favouriteTeam from UserConfig uc where uc.id=1")
+    Team getFavouriteTeam();
 
 }
