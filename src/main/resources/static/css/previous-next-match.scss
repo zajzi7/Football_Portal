@@ -9,7 +9,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin-top: 20px;
+    margin-top: $margin_basic;
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -107,6 +107,7 @@
 
       .match_not_exist {
         font-style: italic;
+        font-size: 1.2em;
       }
     }
   }
@@ -161,10 +162,10 @@
 
   .previous_next_match {
     flex-direction: row;
-    margin-top: 20px;
+    margin-top: $margin_basic;
 
     .match {
-      width: calc(50% - 10px);
+      width: calc(50% - (#{$margin_basic} / 2));
       margin-top: 0;
     }
   }

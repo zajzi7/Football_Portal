@@ -12,7 +12,7 @@ body {
 .app {
   display: flex;
   flex-direction: column;
-  margin: 0px 20px;
+  margin: 0 $margin_basic;
 
   .color_score_win {
     color: #319a31;
@@ -30,7 +30,7 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 20px 0px;
+    margin: $margin_basic 0;
   }
 
 }
@@ -41,7 +41,7 @@ body {
     .content {
       flex-direction: row;
       justify-content: space-between;
-      margin: 25px 0;
+      margin: calc(#{$margin_basic} + #{$margin_basic} / 4) 0;
     }
   }
 

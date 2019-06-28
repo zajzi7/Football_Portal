@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   width: auto;
-  margin-left: 20px;
+  margin-left: $margin_basic;
 
   .ranking {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -37,7 +37,7 @@
   }
 
   .results {
-    margin-top: 20px;
+    margin-top: $margin_basic;
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -68,6 +68,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow: hidden;
 
       .single_match {
         display: flex;
@@ -128,8 +129,8 @@
 
   .sidebar {
     margin-left: 0;
-    margin-top: 20px;
-    margin-bottom: 10px;
+    margin-top: $margin_basic;
+    margin-bottom: calc(#{$margin_basic} / 2);
   }
 }
 
@@ -138,5 +139,19 @@
   .sidebar {
     //margin: 0 0 15px 15px;
     min-width: 25%;
+  }
+}
+@media (min-width: 1600px) {
+  .sidebar {
+    .results {
+      .results_content {
+        font-size: $font_size_content_small;
+        .single_match {
+          .results_crest {
+            margin: 10px;
+          }
+        }
+      }
+    }
   }
 }

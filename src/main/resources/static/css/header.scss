@@ -14,7 +14,7 @@
   .header_title {
     display: flex;
     align-items: center;
-    padding: 10px 0 20px 0;
+    padding: calc(#{$margin_basic} / 2) 0 $margin_basic 0;
     line-height: 100%;
     font-size: 3em;
     text-align: center;
