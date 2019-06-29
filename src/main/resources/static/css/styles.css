@@ -215,10 +215,6 @@ body {
       color: #fff;
       border-top-left-radius: 8px;
       border-top-right-radius: 8px; }
-      .previous_next_match .match .match_title::before {
-        font-family: 'Fontello';
-        content: '\e828';
-        margin: 0; }
     .previous_next_match .match .match_content {
       font-size: 1em;
       padding: 1em;

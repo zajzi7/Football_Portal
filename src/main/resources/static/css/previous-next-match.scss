@@ -28,12 +28,6 @@
       color: #fff;
       border-top-left-radius: $border_radius_header;
       border-top-right-radius: $border_radius_header;
-
-      &::before {
-        font-family: 'Fontello';
-        content: '\e828';
-        margin: 0;
-      }
     }
 
     .match_content {
