@@ -14,6 +14,46 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}"/>
     <link rel="stylesheet" th:href="@{/css/icons/css/fontello.css}"/>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
+
+    <script th:inline="javascript">
+        /*<![CDATA[*/
+            var countDownDate = new Date([[|${nextMatch?.matchDate} ${nextMatch?.matchStartTime}:00|]]).getTime();
+        /*]]>*/
+        // Update the count down every 1 second
+        var x = setInterval(function() {
+
+            // Get today's date and time
+            var now = new Date().getTime();
+
+            // Find the distance between now and the count down date
+            var distance = countDownDate - now;
+
+            // Time calculations for days, hours, minutes and seconds
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("countdown_timer").innerHTML = "<i class=\"icon-timer-clock\" style=\"color: #8e0926\"></i>" +
+                "Do&nbsp;meczu&nbsp;pozostało: "
+                + ((days > 0) ? (days + "d&nbsp;") : '')
+                + ((hours > 0) ? (hours + "g&nbsp;") : '')
+                + ((minutes > 0) ? (minutes + "m&nbsp;") : '')
+                + seconds + "s&nbsp;";
+
+            if (distance > -6300000 && distance < 0) { // 6 300 000 ms = 105 min
+                // clearInterval(x);
+                document.getElementById("countdown_timer_live").innerHTML = "MECZ TRWA";
+                document.getElementById("countdown_timer").innerHTML = "";
+            }
+            if (distance <= -6300000) {
+                clearInterval(x);
+                document.getElementById("countdown_timer_live").innerHTML = "";
+                document.getElementById("countdown_timer").innerHTML = "<i class=\"icon-timer-clock\" style=\"color: #8e0926\"></i>" +
+                    "Mecz się skończył";
+            }
+        }, 1000);
+    </script>
 </head>
 <body>
 

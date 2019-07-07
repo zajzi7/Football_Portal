@@ -62,6 +62,7 @@
             .match_crest {
               width: auto;
               height: 12vh;
+              margin-bottom: 0.5em;
               //padding: 0 7px;
             }
           }
@@ -97,11 +98,22 @@
             padding: 0 0.5em;
           }
         }
+
+        .countdown_match {
+          font-size: 0.85em;
+          font-style: italic;
+          margin-top: 0.4em;
+        }
+
+        .round_season_info {
+          margin-bottom: 0.7em;
+          font-size: 0.75em;
+        }
       }
 
       .match_not_exist {
         font-style: italic;
-        font-size: 1.2em;
+        font-size: 0.85em;
       }
     }
   }
@@ -146,6 +158,18 @@
             font-size: 1.2em;
             margin-top: 1em;
           }
+
+          .countdown_match {
+            font-size: 1.2em;
+          }
+
+          .round_season_info {
+            font-size: 0.95em;
+          }
+        }
+
+        .match_not_exist {
+          font-size: 1.2em;
         }
       }
     }
@@ -181,6 +205,16 @@
           }
         }
       }
+    }
+  }
+
+}
+@media (min-width: 2500px) {
+  .previous_next_match {
+    margin-top: $margin_big;
+
+    .match {
+      width: calc(50% - (#{$margin_big} / 2));
     }
   }
 

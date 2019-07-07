@@ -35,6 +35,24 @@ body {
 
 }
 
+.blink {
+  animation-duration: 1.3s;
+  animation-name: blink;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  animation-timing-function: ease-in;
+  color: #ff3131;
+  font-weight: 700;
+}
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @media (min-width: 641px) {
 
   .app {
@@ -60,5 +78,9 @@ body {
   body {
     font-size: 25px;
   }
-
+  .app {
+    .content {
+      margin: calc(#{$margin_big} + #{$margin_big} / 4) 0;
+    }
+  }
 }

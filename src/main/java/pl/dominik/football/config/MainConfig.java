@@ -1,5 +1,7 @@
 package pl.dominik.football.config;
 
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,6 +15,11 @@ import java.util.TimeZone;
 @Configuration
 @PropertySource("classpath:validation.messages.properties")
 public class MainConfig {
+
+    @Bean
+    ServletWebServerFactory servletWebServerFactory() {
+        return new TomcatServletWebServerFactory();
+    }
 
     //Set timezone
     @PostConstruct

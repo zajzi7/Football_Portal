@@ -63,6 +63,12 @@
         .news_text {
           font-size: 1.2em;
         }
+        a:hover {
+          color: #ccb715;
+        }
+        a:active {
+          color: #ccb715;
+        }
       }
     }
   }
@@ -213,6 +219,23 @@
 
         .news_image {
           max-height: 40em;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 2500px) {
+  .news_and_pagination {
+
+    .all_news {
+
+      .single_news {
+        width: calc(50% - (#{$margin_big} / 2));
+        margin: 0 0 $margin_big 0;
+
+        .news_image {
+          max-height: 500px;
         }
       }
     }

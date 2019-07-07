@@ -10,6 +10,8 @@ import pl.dominik.football.domain.repository.MatchRepository;
 import pl.dominik.football.utilities.RankingDataComponent;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -148,10 +150,10 @@ public class MatchServiceImpl implements MatchService {
     public Match findPreviousMatch(int whichMatchFromList) {
         Team favouriteTeam = userConfigService.getFavouriteTeam();
 
-        //TODO make comment
         //Get first element of the previous matches collection
         try {
-            return matchRepository.findPreviousMatch(favouriteTeam, LocalDate.now()).get(whichMatchFromList);
+            //GMT +00:15(not +02:00) because the duration of the match is 01:45min
+            return matchRepository.findPreviousMatch(favouriteTeam, LocalDate.now(), LocalTime.now(ZoneId.of("GMT+00:15"))).get(whichMatchFromList);
         } catch (IndexOutOfBoundsException e) { //if there is no previous match
             return null;
         }
@@ -161,10 +163,10 @@ public class MatchServiceImpl implements MatchService {
     public Match findNextMatch(int whichMatchFromList) {
         Team favouriteTeam = userConfigService.getFavouriteTeam();
 
-        //TODO make comment
         //Get first element of the next matches collection(if the whichMatchFromList is 0)
         try {
-            return matchRepository.findNextMatch(favouriteTeam, LocalDate.now()).get(whichMatchFromList);
+            //GMT +00:15(not +02:00) because the duration of the match is 01:45min
+            return matchRepository.findNextMatch(favouriteTeam, LocalDate.now(), LocalTime.now(ZoneId.of("GMT+00:15"))).get(whichMatchFromList);
         } catch (IndexOutOfBoundsException e) { //if there is no next match
             return null;
         }

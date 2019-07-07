@@ -17,13 +17,14 @@
 
             <div class="news_content">
                 <div class="date_author">
-                    <div th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yy,&nbsp;HH:mm')}|"></div>
+                    <div th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yyyy,&nbsp;HH:mm')}|" style="margin-right: 20px"></div>
                     <div th:text="|Autor:&nbsp;${news.author}|"></div>
                 </div>
 
                 <span class="news_text"
                       th:utext="${#strings.substringBefore(news.content, '<!--more-->') == null ? news.content : #strings.substringBefore(news.content, '<!--more-->')} + '...'"></span>
-                <a th:href="|/news/${news.id}|" th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}" class="news_text" style="color:blue;">>Czytaj&nbsp;więcej<</a>
+                <a th:href="|/news/${news.id}|" th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}" class="news_text">
+                    <span style="speak: none">></span>Czytaj&nbsp;więcej<span style="speak: none"><</span></a>
             </div>
         </div>
     </div>

@@ -155,3 +155,12 @@
     }
   }
 }
+@media (min-width: 2500px) {
+  .sidebar {
+    margin-left: $margin_big;
+
+    .results {
+      margin-top: $margin_big;
+    }
+  }
+}

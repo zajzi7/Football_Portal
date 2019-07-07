@@ -88,16 +88,19 @@
       padding: unset;
     }
   }
-
-  @media (max-width: 320px) {
-    .footer {
-      .links {
-        .all_columns {
-          flex-direction: column;
-          margin: 0;
-        }
+}
+@media (max-width: 320px) {
+  .footer {
+    .links {
+      .all_columns {
+        flex-direction: column;
+        margin: 0;
       }
     }
   }
-
+}
+@media (min-width: 2500px) {
+  .footer {
+    margin-bottom: $margin_big;
+  }
 }
