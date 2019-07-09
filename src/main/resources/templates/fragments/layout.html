@@ -67,6 +67,11 @@
     <!--    Header(logo etc.) -->
     <div th:replace="fragments/header.html :: header"></div>
 
+    <!--/*    Important message */-->
+    <th:block th:if="${importantMessageFlag == true}">
+        <div th:replace="fragments/important-message.html :: important_message"></div>
+    </th:block>
+
     <!--    Previous and next match-->
     <div th:replace="fragments/previous-next-match.html :: previous_next_match"></div>
 

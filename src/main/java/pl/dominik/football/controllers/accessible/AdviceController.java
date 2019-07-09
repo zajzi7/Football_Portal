@@ -38,6 +38,17 @@ public class AdviceController {
     @Autowired
     MatchService matchService;
 
+    //Important message
+    @ModelAttribute("importantMessageFlag")
+    public boolean showImportantMessage() {
+        return userConfigService.getImportantMessageFlag();
+    }
+
+    @ModelAttribute("importantMessageContent")
+    public String importantMessage() {
+        return userConfigService.getImportantMessageContent();
+    }
+
     //Ranking
     @ModelAttribute("teams")
     public List<RankingData> rankingTeams() {

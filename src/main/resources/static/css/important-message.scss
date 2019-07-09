@@ -1,0 +1,93 @@
+
+.important_message {
+  display: flex;
+  flex-direction: column;
+  margin-top: $margin_basic;
+  color: black;
+  font-size: $font_size_header_small + 0.1em;
+  width: 100%;
+  -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+  box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
+
+  .important_message_title {
+    background: $background_header1;
+    background: $background_header2;
+    background: $background_header3;
+    background: $background_header4;
+    filter: $filter;
+
+    padding: $padding_header;
+    font-weight: $font_weight_header;
+    font-size: $font_size_header_small;
+    color: #fff;
+    border-top-left-radius: $border_radius_header;
+    border-top-right-radius: $border_radius_header;
+
+    animation-duration: 2s;
+    animation-name: important-message-title;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-timing-function: ease-in-out;
+  }
+
+  .important_message_content {
+    background: #fff;
+    //text-align: center;
+    border-bottom-left-radius: $border_radius_header;
+    border-bottom-right-radius: $border_radius_header;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1em 1.5em;
+    .important_message_icon {
+      display: none;
+      font-size: 1.7em;
+      color: darkred;
+      //padding-right: 1rem;
+      //padding-left: 0.5rem;
+      margin-right: 0.8rem;
+    }
+  }
+}
+
+@keyframes important-message-title {
+  0% {
+    color: #fff;
+  }
+  50% {
+    color: darkred;
+  }
+  100% {
+    color: darkred;
+  }
+}
+
+@media (min-width: 450px) {
+  .important_message {
+    font-size: $font_size_header + 0.1em;
+    .important_message_content {
+      padding: 1em 1.5rem;
+      .important_message_icon {
+        display: block;
+      }
+    }
+  }
+}
+
+@media (min-width: 641px) {
+  .important_message {
+    font-size: $font_size_header + 0.2em;
+  }
+}
+@media (min-width: 1000px) {
+  .important_message {
+    font-size: $font_size_header + 0.2em;
+    .important_message_content {
+      padding: 1em 1.5rem;
+      .important_message_icon {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

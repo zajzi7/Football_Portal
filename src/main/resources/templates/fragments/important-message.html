@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Important message</title>
+</head>
+<body>
+
+<div th:fragment="important_message" class="important_message">
+    <div class="important_message_title icon-exclamation">Ważna informacja</div>
+    <div class="important_message_content">
+        <div class="important_message_icon"><i class="icon-exclamation"></i></div>
+        <div>
+            <span th:utext="${importantMessageContent}"></span>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

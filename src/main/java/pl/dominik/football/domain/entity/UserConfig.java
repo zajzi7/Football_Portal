@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -24,5 +25,12 @@ public class UserConfig {
     @Getter @Setter
     @OneToOne
     private Team favouriteTeam;
+
+    @Getter @Setter
+    private boolean importantMessageFlag;
+
+    @Getter @Setter
+    @Lob
+    private String importantMessageContent;
 
 }
