@@ -28,7 +28,7 @@
             </div>
         </div>
     </div>
-    <div class="news_pagination">
+    <div class="news_pagination" th:unless="${newsList.empty}">
 
         <!--/* First page */-->
         <div class="numbering_element" th:if="${currentPage > 3}">

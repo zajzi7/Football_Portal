@@ -3,7 +3,6 @@ package pl.dominik.football.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.News;
-import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.repository.NewsRepository;
 
 import java.time.LocalDateTime;
@@ -49,6 +48,11 @@ public class NewsServiceImpl implements NewsService{
         news.setMainImageSource(image);
         news.setDateTime(LocalDateTime.now(ZoneId.of("Europe/Paris")));
         newsRepository.save(news);
+    }
+
+    @Override
+    public void deleteNews(int id) {
+        newsRepository.deleteById(id);
     }
 
 

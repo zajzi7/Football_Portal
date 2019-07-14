@@ -13,4 +13,6 @@ public interface NewsService {
     News getById(int id);
 
     void addNews(String title, String image, String content);
+
+    void deleteNews(int id);
 }

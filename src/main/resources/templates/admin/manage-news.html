@@ -1,0 +1,71 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin-layout}">
+<head>
+</head>
+<body>
+
+<div layout:fragment="container" class="container">
+    <a th:href="|/create-news|" class="btn btn-info mt-2 mb-2">Nowy news</a>
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="thead-dark">
+        <th scope="col" style="width: 5%; text-align: center">ID</th><!-- ID-->
+        <th scope="col">Tytuł newsa</th><!-- News title-->
+        <th style="width: 15%"></th><!-- Edit news-->
+        <th style="width: 10%"></th><!-- Delete news-->
+        </thead>
+
+        <tbody>
+        <tr th:each="news : ${newsList}">
+            <th scope="row" style="width: 5%; text-align: center" th:text="${news.id}"></th>
+            <td><a th:href="|/news/edit/${news.id}|">
+                <span th:text="${news.title}"></span></a></td>
+            <td><a th:href="|/news/edit/${news.id}|">Edytuj</a></td>
+            <td><a th:href="|/news/delete/${news.id}|"
+                   th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć Newsa ' + ${news.title} +'?'+'\')'">
+                Usuń</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="news_and_pagination" th:unless="${newsList.empty}">
+        <div class="news_pagination">
+
+            <!--/* First page */-->
+            <div class="numbering_element" th:if="${currentPage > 3}">
+                <a class="news_pagination_block" th:href="|/news|" title="Pierwsza strona"><<</a>
+            </div>
+
+            <!--/* Previous page '>' button */-->
+            <div class="numbering_element" th:if="${currentPage > 1}">
+                <a class="news_pagination_block" th:href="|/news?page=${currentPage - 1}|"
+                   title="Poprzednia strona"><</a>
+            </div>
+
+            <div class="numbering_element" th:each="i : ${#numbers.sequence
+                (currentPage < 3 ? 1 : newsList.totalPages-currentPage==2 ? currentPage-2 : newsList.totalPages-currentPage==1 ? currentPage-3 : newsList.totalPages-currentPage==0 ? currentPage-4 : currentPage - 2,
+                newsList.totalPages-currentPage < 3 ? newsList.totalPages : currentPage==1 ? currentPage+4 : currentPage==2 ? currentPage+3 : currentPage+2)}">
+                <a class="news_pagination_block" th:text="${i}"
+                   th:title="'Strona ' + ${i}"
+                   th:classappend="${currentPage} == ${i} ? 'news_pagination_block_active'"
+                   th:href="|/news?page=${i}|"></a>
+            </div>
+
+            <!--/* Next page '>' button */-->
+            <div class="numbering_element" th:if="${currentPage < newsList.totalPages}">
+                <a class="news_pagination_block" th:href="|/news?page=${currentPage + 1}|" title="Następna strona">></a>
+            </div>
+
+            <!--/* Last page */-->
+            <div class="numbering_element" th:if="${currentPage < newsList.totalPages-2}">
+                <a class="news_pagination_block" th:href="|/news?page=${newsList.totalPages}|"
+                   title="Ostatnia strona">>></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

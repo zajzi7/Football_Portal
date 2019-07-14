@@ -37,6 +37,7 @@
             <input type="hidden" th:field="*{id}"/>
             <!-- News title-->
             <input type="text" th:field="*{title}" class="form-control mb-3 col-12" placeholder="Tytuł newsa"/>
+            <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
 
             <!--        Main image source-->
             <input type="text" th:field="*{mainImageSource}" class="form-control mb-3 col-12"

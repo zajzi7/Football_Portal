@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
@@ -20,6 +21,7 @@ public class News {
     @Id
     private int id;
 
+    @NotNull(message = "{pl.news.validation.notNull.message}")
     @Getter @Setter
     private String title;
 
