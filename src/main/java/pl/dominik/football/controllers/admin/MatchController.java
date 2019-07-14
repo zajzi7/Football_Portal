@@ -43,7 +43,7 @@ public class MatchController {
         model.addAttribute("roundId", roundId);
         model.addAttribute("matches", matchService.getMatchesByRoundId(roundId));
         model.addAttribute("pausedTeams", teamService.getPausedTeamsInRound(roundId));
-        return "matches";
+        return "admin/matches";
     }
 
     @RequestMapping(value = "/matches/process/{seasonId}/{roundId}", method = RequestMethod.POST, params = "action=addMatches")

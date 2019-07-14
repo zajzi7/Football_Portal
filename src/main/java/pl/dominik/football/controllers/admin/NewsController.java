@@ -22,16 +22,14 @@ public class NewsController {
     //Form to create new news by admin
     public String createNews(Model model) {
         model.addAttribute("news", new News());
-        return "create-news";
+        return "admin/create-news";
     }
 
     @RequestMapping(value = "/save-news", method = RequestMethod.POST)
     public String saveNews(@ModelAttribute("news") News news) {
         news.setDateTime(LocalDateTime.now(ZoneId.of("Europe/Paris")));
         newsService.save(news);
-        return "index";
+        return "redirect:/";
     }
-
-
 
 }

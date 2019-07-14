@@ -19,7 +19,7 @@ public class ImportantMessageController {
     public String editImportantMessage(Model model) {
         model.addAttribute("importantMessageFlag", userConfigService.getImportantMessageFlag());
         model.addAttribute("importantMessageContent", userConfigService.getImportantMessageContent());
-        return "edit-important-message";
+        return "admin/edit-important-message";
     }
 
     @RequestMapping(value = "/save-important-message", method = RequestMethod.POST)

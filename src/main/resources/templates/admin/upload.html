@@ -1,0 +1,43 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin-layout}">
+<head>
+</head>
+<body>
+
+<div layout:fragment="container" class="container">
+    <h3 th:if="${#vars['flash.message']}" th:text="${#vars['flash.message']}" style="background: yellow;"></h3>
+
+    <h3 th:text="${page.number + 1} + ' of ' + ${page.totalPages}" />
+
+    <table border="1">
+        <thead>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Image</th>
+        <th>Delete</th>
+        </thead>
+        <tbody>
+        <tr th:each="image : ${page.content}">
+            <td th:text="${image.id}"></td>
+            <td th:text="${image.name}"></td>
+            <td><img th:src="@{'/images/' + ${image.name} + '/raw'}" style="max-width: 200px;"/></td>
+            <td>
+                <form th:method="delete" th:action="@{'/images/' + ${image.name}}">
+                    <input type="submit" value="Delete"/>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <form action="/images" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" multiple/>
+        <input type="submit" value="Upload"/>
+    </form>
+</div>
+
+</body>
+</html>

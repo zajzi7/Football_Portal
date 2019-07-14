@@ -10,7 +10,7 @@
         <div class="single_news" th:each="news : ${newsList}">
             <div class="news_image">
                 <a th:href="|/news/${news.id}|">
-                    <img class="news_image" th:src="${news.mainImageSource != null ? news.mainImageSource : '/img/no-image.png'}" />
+                    <img class="news_image" th:src="${news.mainImageSource != '' ? news.mainImageSource : '/img/no-image.png'}" />
                     <h2 class="news_title" th:text="${news.title}"></h2>
                 </a>
             </div>

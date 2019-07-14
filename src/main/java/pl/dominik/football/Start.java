@@ -119,7 +119,6 @@ public class Start implements CommandLineRunner {
                 roundService.getRoundByInt(4));
 
         //News
-//        String img = "<img style=\"-webkit-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);-moz-box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75);box-shadow: 1px 1px 3px 0px rgba(0,0,0,0.75); height: auto; max-width: 100%; max-height: 20vh; margin-right: 10px;\" align=\"left\" src=\"https://scontent.fktw1-1.fna.fbcdn.net/v/t1.0-9/40784936_1835208716514319_1787454333625827328_n.jpg?_nc_cat=107&_nc_ht=scontent.fktw1-1.fna&oh=4455010e02a22fa054ed891e1bf26dd2&oe=5D972748\" />";
         String img = "https://scontent.fktw1-1.fna.fbcdn.net/v/t1.0-9/40784936_1835208716514319_1787454333625827328_n.jpg?_nc_cat=107&_nc_ht=scontent.fktw1-1.fna&oh=4455010e02a22fa054ed891e1bf26dd2&oe=5D972748";
         String img2 = "https://scontent.fktw1-1.fna.fbcdn.net/v/t1.0-9/21558675_1439813686053826_2294785295015831166_n.jpg?_nc_cat=103&_nc_ht=scontent.fktw1-1.fna&oh=7a746d723f043b3290cad0311c8d9a9e&oe=5D858726";
         String img3 = "https://scontent.fktw1-1.fna.fbcdn.net/v/t1.0-9/34985030_1704646462903879_7592089285411471360_n.jpg?_nc_cat=100&_nc_ht=scontent.fktw1-1.fna&oh=802488dba12b537f5372428db2895467&oe=5D961382";

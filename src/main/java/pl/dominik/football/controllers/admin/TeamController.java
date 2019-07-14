@@ -62,7 +62,7 @@ public class TeamController {
     //Form to create new team by admin
     public String createTeam(Model model) {
         model.addAttribute("team", new Team());
-        return "create-team";
+        return "admin/create-team";
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=editTeam")
@@ -70,7 +70,7 @@ public class TeamController {
 
         //Check if the teamName value entered by the admin contains errors(validation @NotNull, @Size in the Team class)
         if (bindingResult.hasErrors()) {
-            return "create-team";
+            return "admin/create-team";
         }
 
         try {
@@ -84,7 +84,7 @@ public class TeamController {
             //Team name already exists - add new error to the bindingResult
             ObjectError error = new ObjectError("teamName", teamNameAlreadyExists);
             bindingResult.addError(error);
-            return "create-team";
+            return "admin/create-team";
         }
 
         //If everything went well then redirect to the teams list
@@ -97,7 +97,7 @@ public class TeamController {
 
         //Check if the teamName value entered by the admin contains errors(validation @NotNull, @Size in the Team class)
         if (bindingResult.hasErrors()) {
-            return "create-team";
+            return "admin/create-team";
         }
 
         try {
@@ -108,7 +108,7 @@ public class TeamController {
             //Team name already exists - add new error to the bindingResult
             ObjectError error = new ObjectError("teamName", teamNameAlreadyExists);
             bindingResult.addError(error);
-            return "create-team";
+            return "admin/create-team";
         }
 
         //If everything went well then redirect to the teams list
@@ -119,13 +119,13 @@ public class TeamController {
     public String getAllTeams(Model model) {
         List<Team> teams = teamService.getAllTeams();
         model.addAttribute("teams", teams);
-        return "teams";
+        return "admin/teams";
     }
 
     @RequestMapping(value = "/teams/edit/{id}")
     public String updateTeam(@PathVariable("id") int id, Model model) {
         model.addAttribute("team", teamService.getTeamById(id));
-        return "create-team";
+        return "admin/create-team";
     }
 
     @RequestMapping(value = "/teams/delete/{id}")
@@ -150,7 +150,7 @@ public class TeamController {
         }
         model.addAttribute("season", season);
         model.addAttribute("allTeams", allTeamsWithoutSeasonTeams);
-        return "assign-teams";
+        return "admin/assign-teams";
     }
 
     @RequestMapping(value = "/assign-teams/{id}", method = RequestMethod.POST, params = "action=leftToRight")

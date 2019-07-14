@@ -35,7 +35,7 @@ public class FileUploadController {
     public String index(Model model, Pageable pageable) {
         final Page<Image> page = imageService.findPage(pageable);
         model.addAttribute("page", page);
-        return "upload";
+        return "admin/upload";
     }
 
     @RequestMapping(value = BASE_PATH + "/" + FILENAME + "/raw")

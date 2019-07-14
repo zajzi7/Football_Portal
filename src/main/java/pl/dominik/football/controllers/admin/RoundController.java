@@ -38,7 +38,7 @@ public class RoundController {
 
         model.addAttribute("round", new Round(date));
         model.addAttribute("seasonId", id);
-        return "create-round";
+        return "admin/create-round";
     }
 
     @RequestMapping(value = "/rounds", method = RequestMethod.POST)
@@ -52,7 +52,7 @@ public class RoundController {
         //Check if roundNumber value entered by the admin contains errors(validation @Min, @Max in the Round class)
         if (bindingResult.hasErrors()) {
             model.addAttribute("seasonId", seasonId);
-            return "create-round";
+            return "admin/create-round";
         }
 
         try {
@@ -63,7 +63,7 @@ public class RoundController {
             ObjectError error = new ObjectError("roundNumber", roundNumberAlreadyExists);
             bindingResult.addError(error);
             model.addAttribute("seasonId", seasonId);
-            return "create-round";
+            return "admin/create-round";
         }
 
         //If everything went well then redirect to the rounds list
@@ -77,7 +77,7 @@ public class RoundController {
 
         model.addAttribute("round", round);
         model.addAttribute("seasonId", seasonId);
-        return "create-round";
+        return "admin/create-round";
     }
 
     @RequestMapping(value = "/rounds/delete/{seasonId}/{roundId}")

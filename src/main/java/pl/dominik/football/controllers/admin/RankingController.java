@@ -14,6 +14,7 @@ import pl.dominik.football.utilities.SortTeams;
 
 import java.util.List;
 
+@Deprecated
 @Controller
 public class RankingController {
 
@@ -36,7 +37,7 @@ public class RankingController {
         rankingData.sort(new SortTeams());
         model.addAttribute("teams", rankingData);
 
-        return "ranking";
+        return "";
     }
 
 }

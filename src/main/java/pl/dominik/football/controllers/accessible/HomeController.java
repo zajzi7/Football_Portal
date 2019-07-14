@@ -25,6 +25,11 @@ public class HomeController {
         return "fragments/layout";
     }
 
+    @RequestMapping("/alayout")
+    public String adminLayout() {
+        return "admin/admin-layout";
+    }
+
     @RequestMapping("/news/{id}")
     public String fullNews(@PathVariable("id") int newsId, Model model) {
         model.addAttribute("news", newsService.getById(newsId));

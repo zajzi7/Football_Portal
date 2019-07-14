@@ -1,14 +1,13 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin-layout}">
 <head>
-    <title>Football App</title>
-    <meta http-equiv="Content-Type" content="text/html; charsuet=UTF-8"/>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}"/>
 </head>
 <body>
 
-<div class="container">
+<div layout:fragment="container" class="container">
     <a th:href="newteam" class="btn btn-info mt-2 mb-2">Nowa drużyna</a>
 
     <table class="table table-bordered table-striped table-hover">

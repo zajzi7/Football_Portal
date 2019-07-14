@@ -50,7 +50,7 @@ public class SeasonController {
     //Form to create new season by admin
     public String createSeason(Model model) {
         model.addAttribute("season", new Season());
-        return "create-season";
+        return "admin/create-season";
     }
 
     @RequestMapping(value = "/seasons", method = RequestMethod.POST)
@@ -61,7 +61,7 @@ public class SeasonController {
 
         //Check if seasonName value entered by the admin contains errors(validation @NotNull, @Size in the Season class)
         if (bindingResult.hasErrors()) {
-            return "create-season";
+            return "admin/create-season";
         }
 
         try {
@@ -73,7 +73,7 @@ public class SeasonController {
             //Season name already exists - add new error to the bindingResult
             ObjectError error = new ObjectError("seasonName", seasonNameAlreadyExists);
             bindingResult.addError(error);
-            return "create-season";
+            return "admin/create-season";
         }
 
         //If everything went well then redirect to the seasons list
@@ -84,7 +84,7 @@ public class SeasonController {
     public String updateSeason(@PathVariable("id") int id, Model model) {
         Season season = seasonService.getSeasonById(id);
         model.addAttribute("season", season);
-        return "create-season";
+        return "admin/create-season";
     }
 
     @RequestMapping(value = "/seasons/delete/{id}")
@@ -111,7 +111,7 @@ public class SeasonController {
         int currentSeasonId = userConfigService.getCurrentSeasonId();
         model.addAttribute("currentSeasonId", currentSeasonId);
 
-        return "seasons";
+        return "admin/seasons";
     }
 
     @RequestMapping("/seasons/show-rounds/{id}")
@@ -120,7 +120,7 @@ public class SeasonController {
         model.addAttribute("rounds", rounds);
         model.addAttribute("seasonId", id);
         model.addAttribute("seasonName", seasonService.getSeasonById(id).getSeasonName());
-        return "rounds";
+        return "admin/rounds";
     }
 
 }
