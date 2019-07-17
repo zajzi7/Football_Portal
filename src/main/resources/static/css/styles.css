@@ -115,6 +115,9 @@ body {
   min-height: 100vh;
   font-size: 16px; }
 
+hr {
+  width: 100%; }
+
 .app {
   display: flex;
   flex-direction: column;
@@ -669,6 +672,15 @@ body {
   flex-direction: column;
   width: auto;
   margin-left: 20px; }
+  .sidebar a {
+    color: orange;
+    font-weight: 700; }
+    .sidebar a::after {
+      content: '';
+      animation: arrows-after 2.2s infinite ease-in-out; }
+    .sidebar a::before {
+      content: '';
+      animation: arrows-before 2.2s infinite ease-in-out; }
   .sidebar .ranking {
     -webkit-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     -moz-box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
@@ -743,6 +755,44 @@ body {
           padding: 0 1em;
           font-weight: 700; }
 
+.hr_top {
+  border-top: 1px dotted green; }
+
+.hr_bottom {
+  border-top: 1px dotted green; }
+
+.paused_teams {
+  width: 100%; }
+  .paused_teams div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.45em; }
+  .paused_teams img {
+    width: auto;
+    height: 4.5vh; }
+
+@keyframes arrows-before {
+  0% {
+    content: '>';
+    speak: none; }
+  50% {
+    content: '>>';
+    speak: none; }
+  100% {
+    content: '';
+    speak: none; } }
+@keyframes arrows-after {
+  0% {
+    content: '<';
+    speak: none; }
+  50% {
+    content: '<<';
+    speak: none; }
+  100% {
+    content: '';
+    speak: none; } }
 @media (min-width: 450px) {
   .sidebar .ranking .ranking_head {
     font-size: 1.2em; }
@@ -909,12 +959,8 @@ body {
   .display_br {
     display: none; }
 
-  .news_and_pagination .all_news .single_news {
-    width: calc(50% - (20px / 2)); }
-    .news_and_pagination .all_news .single_news .news_image {
-      max-height: 370px; }
-      .news_and_pagination .all_news .single_news .news_image .news_title {
-        font-size: 1em; } }
+  .news_and_pagination .all_news .single_news .news_image {
+    max-height: 400px; } }
 @media (min-width: 641px) {
   .news_and_pagination .all_news .single_news {
     width: unset; }
@@ -927,7 +973,7 @@ body {
       max-height: 370px; } }
 @media (min-width: 900px) {
   .news_image {
-    max-height: 370px; } }
+    max-height: 400px; } }
 @media (min-width: 1000px) {
   .full_news_main_image {
     max-width: 35%; } }

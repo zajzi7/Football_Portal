@@ -7,11 +7,13 @@ import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.RankingData;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.PlayerService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
+import pl.dominik.football.services.TeamService;
 import pl.dominik.football.services.UserConfigService;
 import pl.dominik.football.utilities.SortTeams;
 
@@ -37,6 +39,10 @@ public class AdviceController {
 
     @Autowired
     MatchService matchService;
+
+    @Autowired
+    TeamService teamService;
+
 
     //Important message
     @ModelAttribute("importantMessageFlag")
@@ -104,6 +110,12 @@ public class AdviceController {
         Season season = seasonService.getSeasonById(seasonId);
         Round lastRound = roundService.getLastRound(season);
         return lastRound;
+    }
+
+    //Paused teams
+    @ModelAttribute("pausedTeams")
+    public List<Team> pausedTeams() {
+        return teamService.getPausedTeamsInRound(lastRound().getId());
     }
 
 }

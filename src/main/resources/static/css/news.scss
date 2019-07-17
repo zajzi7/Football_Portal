@@ -149,13 +149,13 @@
   .news_and_pagination {
     .all_news {
       .single_news {
-        width: calc(50% - (#{$margin_basic} / 2));
+        //width: calc(50% - (#{$margin_basic} / 2));
 
         .news_image {
-          max-height: 370px;
+          max-height: 400px;
 
           .news_title {
-            font-size: $font_size_header_small;
+            //font-size: $font_size_header_small;
           }
         }
       }
@@ -199,7 +199,7 @@
 
 @media (min-width: 900px) {
   .news_image {
-    max-height: 370px;
+    max-height: 400px;
   }
 }
 

@@ -5,6 +5,7 @@
 <head>
 </head>
 <body>
+
 <div layout:fragment="content" class="article">
     <div class="article_title">
         <h2 th:text="${news.title}"></h2>
@@ -16,10 +17,17 @@
     </div>
 
     <div class="article_content">
-        <img class="full_news_main_image" th:src="${news.mainImageSource}" />
-        <br class="display_br" />
+        <!--/* News image */-->
+        <img class="full_news_main_image" th:if="${news.mainImageSource != '' && news.mainImageSource != null}"
+             th:src="${news.mainImageSource}" />
+
+        <!--/* Helpful br for the responsive */-->
+        <br class="display_br" th:if="${news.mainImageSource != '' && news.mainImageSource != null}" />
+
+        <!--/* News content */-->
         <span th:utext="${news.content}"></span>
     </div>
 </div>
+
 </body>
 </html>

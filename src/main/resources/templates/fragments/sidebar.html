@@ -35,7 +35,7 @@
                 </tbody>
             </table>
             <br/>
-            <a><span style="speak: none">></span> Pokaż pełną tabelę <span style="speak: none"><</span></a>
+            <a th:href="|/|"> Pokaż pełną tabelę </a>
         </div>
     </div>
 
@@ -71,7 +71,21 @@
                     </div>
                 </div>
             </div>
-            <a><span style="speak: none">></span> Kolejki <span style="speak: none"><</span></a>
+
+            <!-- Visible only if there are skipped teams in this round-->
+            <div class="paused_teams" th:if="${pausedTeams.size()} > 0">
+                <hr class="hr_top">
+
+                <div>Pauzujące drużyny:</div>
+
+                <div th:each="team : ${pausedTeams}">
+                    <img th:src="${team.crestSource}" />
+                    <span th:text="'&nbsp;' + ${team.teamName}"></span>
+                </div>
+
+                <hr class="hr_bottom">
+                <a th:href="|/|"> Kolejki </a>
+            </div>
         </div>
         <div class="results_content" style="font-style: italic" th:if="${lastRound} == null"
              th:text="'Brak wprowadzonych kolejek'"></div>

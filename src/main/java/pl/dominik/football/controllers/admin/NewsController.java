@@ -58,11 +58,26 @@ public class NewsController {
     @RequestMapping(value = "/save-news", method = RequestMethod.POST)
     public String saveNews(@Valid @ModelAttribute("news") News news, BindingResult bindingResult) {
 
+        //Validation if news title is empty
         if (bindingResult.hasErrors()) {
             return "admin/create-news";
         }
 
+        //Modify the url introduced by the admin in case of domain change(for example "http://my-domain.pl/img.jpg" to "img.jpg")
+        try {
+            String mainImageSource = news.getMainImageSource();
+
+            String regex = "https?://[-A-Za-z0-9:.]*/";
+            String[] imgLocation = mainImageSource.split(regex, 2);
+
+            news.setMainImageSource("/" + imgLocation[1]);
+        } catch (IndexOutOfBoundsException | NullPointerException e) {
+            //Nothing to do (link is already modified or is empty)
+        }
+
+        //Set the current time and date
         news.setDateTime(LocalDateTime.now(ZoneId.of("Europe/Paris")));
+
         newsService.save(news);
         return "redirect:/news";
     }

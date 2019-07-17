@@ -137,5 +137,6 @@ public class Start implements CommandLineRunner {
 
         userConfigService.setImportantMessageFlag(false);
         userConfigService.setImportantMessageContent("Uwaga! Z powodu kiepskiego stanu boiska w wyniku opadów atmosferycznych dzisiejszy mecz zostaje przeniesiony. Więcej informacji później.");
+
     }
 }
