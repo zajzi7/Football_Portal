@@ -3,11 +3,14 @@
   display: flex;
   flex-direction: column;
   width: auto;
+  min-width: 40%;
+  overflow: auto;
   margin-left: $margin_basic;
 
   a {
     color: orange;
     font-weight: 700;
+    margin: 0 -10px;
 
     &::after {
       content: '';
@@ -58,6 +61,10 @@
     box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
     border-radius: $border_radius_header;
 
+    span {
+      word-break: break-word;
+    }
+
     .results_head {
       background: $background_header1;
       background: $background_header2;
@@ -87,14 +94,17 @@
 
       .single_match {
         display: flex;
-        margin: 0.7em 0;
+        margin: 0.6em 0;
         width: 100%;
 
         .team_name {
           display: flex;
           align-items: center;
-          justify-content: space-evenly;
-          width: 42%;
+          //justify-content: space-evenly;
+          justify-content: center;
+          flex-wrap: wrap;
+          flex: 1;
+          //width: 42%;
 
           .results_crest {
             width: auto;
@@ -107,10 +117,10 @@
           align-items: center;
           justify-content: center;
           color: orange;
-          width: 16%;
-          padding: 0 1em;
+          //width: 16%;
+          //padding: 0 1em;
+          padding: 0 0.5em;
           font-weight: 700;
-          //margin: 0 0.4em;
         }
 
       }
@@ -200,12 +210,23 @@
 @media (max-width: 640px) {
 
   .sidebar {
+    min-width: 35%;
     margin-left: 0;
     margin-top: $margin_basic;
     margin-bottom: calc(#{$margin_basic} / 2);
+
+    .results {
+      .results_content {
+        //font-size: 0.7em;
+      }
+    }
   }
 }
-
+@media (min-width: 900px) {
+  .sidebar {
+    min-width: 30%;
+  }
+}
 @media (min-width: 1000px) {
 
   .sidebar {

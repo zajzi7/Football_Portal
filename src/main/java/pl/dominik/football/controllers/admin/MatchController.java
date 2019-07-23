@@ -16,6 +16,7 @@ import pl.dominik.football.utilities.RankingDataComponent;
 import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 
 @Controller
 public class MatchController {
@@ -173,7 +174,7 @@ public class MatchController {
                         if (matchId.equals(matchDateId[k])) {
                             match.setMatchDate(LocalDate.parse(matchDate));
                         }
-                    } catch (ArrayIndexOutOfBoundsException e) {
+                    } catch (ArrayIndexOutOfBoundsException | DateTimeParseException e) {
                         e.printStackTrace();
                         continue;
                     }

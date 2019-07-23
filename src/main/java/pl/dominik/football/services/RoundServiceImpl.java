@@ -54,6 +54,11 @@ public class RoundServiceImpl implements RoundService {
     }
 
     @Override
+    public Round getRoundBySeasonIdAndRoundNumber(int seasonId, int roundNumber) {
+        return roundRepository.getRoundBySeasonIdAndRoundNumber(seasonId, roundNumber);
+    }
+
+    @Override
     public Round getRoundById(int id) {
         Optional<Round> result = roundRepository.findById(id);
 

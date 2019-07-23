@@ -1,0 +1,199 @@
+
+.results_header {
+  display: flex;
+  width: 100%;
+  background: #0f74a8;
+  margin-bottom: 1em;
+  color: #fff;
+  font-weight: 700;
+  padding: 0.5em;
+  font-size: 1.2em;
+  text-align: center;
+  border-radius: 8px;
+
+  .results_season {
+    flex: 1;
+    padding: 0 1em;
+  }
+
+  .select_round {
+    font-size: 0.9em;
+    padding: 0 0.3em;
+    color: #495057;
+    border-radius: .25rem;
+    border: 1px solid #ced4da;
+  }
+}
+
+.score_results {
+  display: flex;
+  justify-content: center;
+  font-weight: 700;
+  align-self: center;
+  //text-align: center;
+  //width: 16%;
+  padding: 0 0.7em;
+  color: orange;
+  background: #f5f5f5;
+  border-radius: .25rem;
+  margin: 0 0.8em;
+}
+
+.no_team {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  //width: 43%;
+}
+
+.results_date_time {
+  display: flex;
+  //flex: 1;
+  justify-content: center;
+  padding: 0.7em 0.5em;
+  font-size: 0.8em;
+}
+
+.team_score_team {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  //flex: 2;
+}
+
+.team_crest {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  //width: 43%;
+}
+
+.results_matches_exist {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7em;
+
+  img {
+    width: auto;
+    height: 4.5vh;
+  }
+}
+
+.results_single_match {
+  width: 100%;
+  //background: #4a75a1;
+  background: #4a75a1c9;
+  display: flex;
+  flex-direction: column-reverse;
+  //flex-wrap: wrap-reverse;
+  padding: 0.7em 0.7em 0em 0.7em;
+  justify-content: center;
+  align-items: center;
+  color: #e6e6e6;
+
+  &:nth-child(odd) {
+    background: #4a75a1de;
+  }
+}
+
+.results_team_name {
+  text-align: center;
+}
+
+.paused_teams_text {
+  text-align: center;
+}
+
+.results_paused_teams {
+  width: 100%;
+  //background: #4a75a1;
+  background: #4a75a1de;
+  display: flex;
+  padding: 1em;
+  justify-content: center;
+  align-items: center;
+  color: #e6e6e6;
+  border-top: 1px #fff solid;
+}
+
+.paused_teams_content {
+  padding: 0 2em;
+}
+
+.single_paused_team {
+  display: flex;
+  align-items: center;
+  padding: 0.4em;
+
+  span {
+    padding-left: 0.3em;
+  }
+}
+
+.clock {
+  margin-left: 0.5em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.calendar {
+  margin-right: 0.5em;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no_data {
+  font-style: italic;
+  text-align: center;
+}
+
+//.color_score_win_results {
+//  color: #46de46;
+//}
+
+.color_score_lose_results {
+  color: #ff5858;
+}
+
+@media (max-width: 750px) {
+  .team_crest {
+    flex-wrap: wrap-reverse;
+  }
+  div.team_crest:nth-child(1) {
+    flex-wrap: wrap;
+  }
+}
+
+@media (min-width: 450px) {
+  .results_matches_exist {
+    font-size: 1.2em;
+  }
+}
+
+@media (min-width: 1300px) {
+  .results_single_match {
+    flex-direction: row;
+    justify-content: unset;
+    padding: 0.7em;
+  }
+  .team_score_team {
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    //justify-content: center;
+  }
+  .team_crest {
+    //width: 43%;
+  }
+  .results_date_time {
+    font-size: unset;
+    padding: 0.3em 0.5em;
+  }
+}

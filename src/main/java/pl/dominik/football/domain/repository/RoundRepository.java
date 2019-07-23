@@ -13,6 +13,8 @@ public interface RoundRepository extends JpaRepository<Round, Integer> {
 
     Round getRoundByRoundNumberEquals(int roundNumber);
 
+    Round getRoundBySeasonIdAndRoundNumber(int seasonId, int roundNumber);
+
     List<Round> getRoundsBySeason_Id(int id);
 
     @Query("select r from Round r where r.season = :season and r.roundStartDate < :date order by r.roundStartDate desc")

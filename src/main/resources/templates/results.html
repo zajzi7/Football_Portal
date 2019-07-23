@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/css/results.css}"/>
+</head>
+<body>
+
+<div layout:fragment="content" class="article">
+
+    <div th:if="${season.rounds.size() > 0}">
+
+        <div class="results_header">
+            <span class="results_season" th:text="|Sezon ${season.seasonName}|"></span>
+            <select class="select_round" onchange="location = this.value;">
+                <option th:each="round : ${season.rounds}"
+                        th:text="|Kolejka ${round.roundNumber}|"
+                        th:value="|/results?round=${round.roundNumber}|"
+                        th:selected="${round.roundNumber} == ${selectedRound.roundNumber}"></option>
+            </select>
+        </div>
+
+        <div th:if="${selectedRound.matches.size() > 0}" class="results_matches_exist">
+            <div th:each="match : ${selectedRound.matches}" class="results_single_match">
+
+                <div class="results_date_time">
+                    <div class="icon-calendar calendar"><span
+                            th:text="${#temporals.format(match.matchDate, 'dd.MM.yy')}"></span></div>
+                    <div class="icon-clock clock">14:00<span
+                            th:text="${#temporals.format(match.matchStartTime, 'HH:mm')}"></span></div>
+                </div>
+
+                <div class="team_score_team">
+                    <div class="team_crest" th:if="${match.homeTeam != null}">
+                        <img th:src="${match.homeTeam.crestSource}" />
+                        <span class="results_team_name" th:text="'&nbsp;' + ${match.homeTeam.teamName}"></span>
+                    </div>
+                    <div th:if="${match.homeTeam == null}" class="no_team">
+                        Brak drużyny
+                    </div>
+
+                    <div class="score_results">
+                        <span th:text="${match.homeScore}" th:classappend="|
+                                  ${match.homeScore > match.awayScore ? 'color_score_win' : ''}
+                                  ${match.homeScore < match.awayScore ? 'color_score_lose_results' : ''}
+                                  ${match.homeScore == match.awayScore ? 'color_score_draw' : ''}|"></span>
+                        :
+                        <span th:text="${match.awayScore}" th:classappend="|
+                                  ${match.homeScore > match.awayScore ? 'color_score_lose_results' : ''}
+                                  ${match.homeScore < match.awayScore ? 'color_score_win' : ''}
+                                  ${match.homeScore == match.awayScore ? 'color_score_draw' : ''}|"></span>
+                    </div>
+
+                    <div th:if="${match.awayTeam != null}" class="team_crest">
+                        <span class="results_team_name" th:text="${match.awayTeam.teamName} + '&nbsp;'"></span>
+                        <img th:src="${match.awayTeam.crestSource}" />
+                    </div>
+
+                    <div th:if="${match.awayTeam == null}" class="no_team">
+                        Brak drużyny
+                    </div>
+                </div>
+            </div>
+
+            <!--/* Visible only if there are skipped teams in this round */-->
+            <div th:if="${pausedTeamsInRound.size()} > 0" class="results_paused_teams">
+
+                <div class="paused_teams_text">Pauzujące drużyny:</div>
+
+                <div class="paused_teams_content">
+                    <div th:each="team : ${pausedTeamsInRound}" class="single_paused_team">
+                        <img th:src="${team.crestSource}" />
+                        <span th:text="${team.teamName}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div th:if="${selectedRound.matches.size() < 1}" class="no_data">
+            <br />
+            Brak wprowadzonych meczy dla tej kolejki
+        </div>
+    </div>
+    <div th:if="${season.rounds.size() < 1}" class="no_data">
+        <br />
+        Brak wprowadzonych kolejek
+    </div>
+</div>
+
+</body>
+</html>

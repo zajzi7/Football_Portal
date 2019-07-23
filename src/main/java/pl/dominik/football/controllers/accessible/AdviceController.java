@@ -115,7 +115,11 @@ public class AdviceController {
     //Paused teams
     @ModelAttribute("pausedTeams")
     public List<Team> pausedTeams() {
-        return teamService.getPausedTeamsInRound(lastRound().getId());
+        try {
+            return teamService.getPausedTeamsInRound(lastRound().getId());
+        } catch (NullPointerException e) {
+            return null;
+        }
     }
 
 }

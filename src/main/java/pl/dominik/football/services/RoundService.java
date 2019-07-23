@@ -16,6 +16,8 @@ public interface RoundService {
 
     Round getRoundByInt(int roundNumber);
 
+    Round getRoundBySeasonIdAndRoundNumber(int seasonId, int roundNumber);
+
     Round getRoundById(int id);
 
     List<Round> getRoundsBySeasonId(int id);

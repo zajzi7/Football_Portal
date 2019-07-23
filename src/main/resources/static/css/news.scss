@@ -181,7 +181,8 @@
   }
 }
 
-@media (min-width: 768px) {
+//@media (min-width: 768px) {
+@media (min-width: 900px) {
   .news_and_pagination {
 
     .all_news {
@@ -190,18 +191,18 @@
         width: calc(50% - (#{$margin_basic} / 2));
 
         .news_image {
-          max-height: 370px;
+          max-height: 400px;
         }
       }
     }
   }
 }
 
-@media (min-width: 900px) {
-  .news_image {
-    max-height: 400px;
-  }
-}
+//@media (min-width: 900px) {
+//  .news_image {
+//    max-height: 400px;
+//  }
+//}
 
 @media (min-width: 1000px) {
   .full_news_main_image {
