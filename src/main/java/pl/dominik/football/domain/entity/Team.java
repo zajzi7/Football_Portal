@@ -42,6 +42,7 @@ public class Team {
     private String teamName;
 
     @Getter @Setter
+    @ToString.Exclude
     private String crestSource;
 
     @LazyCollection(LazyCollectionOption.FALSE)

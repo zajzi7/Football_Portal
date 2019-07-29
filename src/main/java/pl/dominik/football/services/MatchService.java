@@ -2,6 +2,7 @@ package pl.dominik.football.services;
 
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.Round;
+import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
 
 import java.util.List;
@@ -27,5 +28,7 @@ public interface MatchService {
     Match findPreviousMatch(int whichMatchFromList);
 
     Match findNextMatch(int whichMatchFromList);
+
+    List<Match> findLast5Matches(Team team, Season season);
 
 }

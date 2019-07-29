@@ -1,0 +1,131 @@
+
+.full-ranking-table {
+  background: white;
+  border-radius: 3px;
+  border-collapse: collapse;
+  font-size: 0.8em;
+  width: 100%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  animation: float 5s infinite;
+
+  th {
+    font-size: 1.2em;
+    color: #fff;
+    background: #05345f;
+    border-bottom: 1px solid #9ea7af;
+    border-right: 1px solid #343a45;
+    padding: 1em;
+    text-align: left;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    vertical-align: middle;
+  }
+
+  th:first-child {
+    border-top-left-radius: 3px;
+  }
+
+  th:last-child {
+    border-top-right-radius: 3px;
+    border-right: none;
+  }
+
+  tr {
+    border-top: 1px solid #C1C3D1;
+    border-bottom-: 1px solid #C1C3D1;
+    //color: #666B85;
+    color: #000;
+    //font-size: 16px;
+    font-weight: normal;
+    text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+  }
+
+  tr:hover td {
+    background: #4E5066;
+    color: #FFFFFF;
+    border-top: 1px solid #22262e;
+  }
+
+  tr:first-child {
+    border-top: none;
+  }
+
+  tr:last-child {
+    border-bottom: none;
+  }
+
+  tr:nth-child(odd) td {
+    background: #EBEBEB;
+  }
+
+  tr:nth-child(odd):hover td {
+    background: #4E5066;
+  }
+
+  tr:last-child td:first-child {
+    border-bottom-left-radius: 3px;
+  }
+
+  tr:last-child td:last-child {
+    border-bottom-right-radius: 3px;
+  }
+
+  td {
+    height: 5px;
+    background: #FFFFFF;
+    padding: 1em 0 0.5em 0;
+    text-align: left;
+    vertical-align: middle;
+    //font-size: 18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-right: 1px solid #C1C3D1;
+    &:hover, &:active {
+      border: gold 2px solid !important;
+    }
+  }
+
+  td:last-child {
+    border-right: 0px;
+  }
+
+  th.text-left {
+    text-align: left;
+    padding-left: 0.6em;
+  }
+
+  th.text-center {
+    text-align: center;
+  }
+
+  th.text-right {
+    text-align: right;
+  }
+
+  td.text-left {
+    text-align: left;
+    padding-left: 0.6em;
+    padding-right: 0.6em;
+    &:hover, &:active {
+      border: unset !important;
+      border-top: 1px solid #22262e !important;
+      border-right: 1px solid #C1C3D1 !important;
+    }
+  }
+
+  td.text-center {
+    text-align: center;
+  }
+
+  td.text-right {
+    text-align: right;
+  }
+
+}
+
+.ranking-wrapper {
+    overflow-x: auto;
+    padding-bottom: 2em;
+    //overflow-y: hidden;
+    @media (min-width: 1024px) {
+      overflow-x: unset;
+    }
+}

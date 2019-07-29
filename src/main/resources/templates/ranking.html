@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <link rel="stylesheet" th:href="@{/css/full-ranking-table.css}" />
+    <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/js/jquery-ui-1.12.1.custom/jquery-ui.min.css}">
+    <script th:src="@{/js/jquery-ui-1.12.1.custom/jquery-ui.min.js}"></script>
+    <script>
+        $( function() {
+            $( document ).tooltip();
+        } );
+    </script>
+</head>
+<body>
+
+<div layout:fragment="content" class="article">
+
+    <div class="ranking-wrapper">
+        <table class="full-ranking-table">
+            <thead>
+            <th scope="col" class="text-center" style="speak: none;">#</th>
+            <th scope="col" class="text-left icon-football-jersey-shirt" title="Drużyna">Drużyna</th>
+            <th scope="col" class="text-center icon-football-court-top-view" title="Mecze">M</th>
+            <th scope="col" class="text-center icon-football-stats-graphic" title="Punkty">Pkt</th>
+            <th scope="col" class="text-center" title="Wygrane"><i style="color: green" class="icon-blank"></i>W</th>
+            <th scope="col" class="text-center" title="Remisy"><i style="color: orange" class="icon-blank"></i>R</th>
+            <th scope="col" class="text-center" title="Przegrane"><i style="color: red" class="icon-blank"></i>P</th>
+            <th scope="col" class="text-center icon-football-player-attempting-to-kick-ball" title="Gole zdobyte">G+</th>
+            <th scope="col" class="text-center icon-football-goalkeeper-catching-the-ball" title="Gole stracone">G-</th>
+            <th scope="col" class="text-center" title="Różnica goli">+/-</th>
+            </thead>
+
+            <tbody class="table-hover">
+            <tr th:each="team, iteration : ${rankingData}">
+                <td class="text-center" th:title="|${iteration.index + 1} miejsce|" th:text="${iteration.index + 1}"></td>
+                <td class="text-left">
+                    <div class="table_crest_teamname">
+                        <img class="table_crest_img" th:src="${team.team.crestSource}"
+                             th:text="${team.team.teamName}"/>
+                    </div>
+                    <div style="margin-top: 0.5em; display: flex; justify-content: space-evenly">
+                        <span th:each="match : ${last5MatchesList[iteration.index]}"
+                              th:if="${match.homeTeam.teamName == team.team.teamName and
+                              match.homeScore != null and match.awayScore != null}"
+                              th:classappend="${match.homeScore > match.awayScore ?
+                                     'win_square' : match.homeScore < match.awayScore ? 'lose_square' : 'draw_square'}"
+                              th:attr="title=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                        </span>
+                        <span th:each="match : ${last5MatchesList[iteration.index]}"
+                              th:if="${match.awayTeam.teamName == team.team.teamName and
+                              match.homeScore != null and match.awayScore != null}"
+                              th:classappend="${match.homeScore < match.awayScore ?
+                                     'win_square' : match.homeScore > match.awayScore ? 'lose_square' : 'draw_square'}"
+                              th:attr="title=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                        </span>
+                    </div>
+                </td>
+                <td class="text-center" th:text="${team.matchesPlayed}"
+                    th:attr="title=|Ilość rozegranych meczy ${team.team.teamName}|"></td>
+                <td class="text-center" style="font-weight: 700" th:text="${team.points}"
+                    th:attr="title=|Punkty ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.won}"
+                    th:attr="title=|Wygrane mecze ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.drawn}"
+                    th:attr="title=|Zremisowane mecze ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.lost}"
+                    th:attr="title=|Przegrane mecze ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.goalsScored}"
+                    th:attr="title=|Gole zdobyte ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.goalsConceded}"
+                    th:attr="title=|Gole stracone ${team.team.teamName}|"></td>
+                <td class="text-center" th:text="${team.goalsScored - team.goalsConceded}"
+                    th:attr="title=|Różnica goli ${team.team.teamName}|"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div style="line-height: 1.75em"><br />
+        Tabela jest sortowana na podstawie regulaminu rozgrywek:<br/>
+        - punkty<br/>
+        - punkty bezpośrednie<br/>
+        - różnica goli bezpośrednia<br/>
+        - różnica goli uwzględniając bramki na wyjeździe liczone podwójnie<br/>
+        - różnica goli z całego sezonu<br/>
+        - większa ilość goli zdobytych w całym sezonie
+    </div>
+</div>
+
+</body>
+</html>

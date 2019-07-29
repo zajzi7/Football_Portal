@@ -1,10 +1,12 @@
 package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.Round;
+import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.MatchRepository;
 import pl.dominik.football.utilities.RankingDataComponent;
@@ -171,4 +173,20 @@ public class MatchServiceImpl implements MatchService {
             return null;
         }
     }
+
+    @Override
+    public List<Match> findLast5Matches(Team team, Season season) {
+
+        //Find the last 5 matches from a given season(by the last round date)
+        LocalDate roundDate;
+        try {
+            roundDate = roundService.getLastRound(season).getRoundStartDate();
+        } catch (NullPointerException e) {
+            roundDate = LocalDate.now();
+        }
+
+        List<Match> last5Matches = matchRepository.findLast5Matches(team, roundDate, PageRequest.of(0, 5));
+        return last5Matches;
+    }
+
 }

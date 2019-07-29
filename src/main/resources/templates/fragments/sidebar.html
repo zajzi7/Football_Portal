@@ -35,21 +35,24 @@
                 </tbody>
             </table>
             <br/>
-            <a th:href="|/|"> Pełna tabela </a>
+            <a th:href="|/ranking/${currentSeasonId}|"> Pełna tabela </a>
         </div>
     </div>
 
     <div th:fragment="results" class="results">
         <div class="results_head icon-football-ball">Ostatnia kolejka</div>
         <div class="results_content" th:if="${lastRound} != null">
+            <div th:text="|Kolejka ${lastRound.roundNumber}, ${#temporals.format(lastRound.roundStartDate, 'dd.MM.yyyy')}|"
+                style="margin-bottom: 0.3em"></div>
+
                 <div th:each="match : ${lastRound.matches}" class="single_match" th:if="${
                              match.homeScore != null &&
                              match.awayScore != null &&
                              match.homeTeam != null &&
                              match.awayTeam != null}">
                     <div class="team_name">
-                        <img class="results_crest" th:src="${match.homeTeam.crestSource}"
-                             th:text="${match.homeTeam.teamName}"/>
+                        <img class="results_crest" th:src="${match.homeTeam.crestSource}" />
+                        <span th:text="${match.homeTeam.teamName}"></span>
                     </div>
                     <div class="score">
                             <span th:text="${match.homeScore}" th:classappend="|
@@ -66,11 +69,11 @@
                     </div>
                     <div class="team_name" style="flex-wrap: wrap-reverse">
                         <span th:text="${match.awayTeam.teamName}"></span>
-                        <img class="results_crest" th:src="${match.awayTeam.crestSource}"/>
+                        <img class="results_crest" th:src="${match.awayTeam.crestSource}" />
                     </div>
                 </div>
 
-            <!-- Visible only if there are skipped teams in this round-->
+            <!--/* Visible only if there are skipped teams in this round */-->
             <div class="paused_teams" th:if="${pausedTeams.size()} > 0">
                 <hr class="hr_top">
 
@@ -86,7 +89,7 @@
             <a th:href="|/results?round=${lastRound.roundNumber}|"> Kolejki </a>
         </div>
         <div class="results_content" style="font-style: italic" th:if="${lastRound} == null"
-             th:text="'Brak wprowadzonych kolejek'"></div>
+             th:text="'Brak meczy'"></div>
     </div>
 </div>
 

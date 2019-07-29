@@ -513,6 +513,12 @@
       "css": "upload",
       "code": 59436,
       "src": "fontawesome"
+    },
+    {
+      "uid": "2c2ca8a96b31781c9c8056d05c0a8980",
+      "css": "blank",
+      "code": 61640,
+      "src": "fontawesome"
     }
   ]
 }

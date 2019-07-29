@@ -55,11 +55,16 @@ public class AdviceController {
         return userConfigService.getImportantMessageContent();
     }
 
+    //Current season id
+    @ModelAttribute("currentSeasonId")
+    public int currentSeasonId() {
+        return userConfigService.getCurrentSeasonId();
+    }
+
     //Ranking
     @ModelAttribute("teams")
     public List<RankingData> rankingTeams() {
-        int seasonId = userConfigService.getCurrentSeasonId();
-        List<RankingData> rankingData = rankingDataRepository.getRankingDataBySeasonId(seasonId);
+        List<RankingData> rankingData = rankingDataRepository.getRankingDataBySeasonId(currentSeasonId());
         rankingData.sort(new SortTeams());
         return rankingData;
     }
@@ -96,8 +101,7 @@ public class AdviceController {
                 }
                 j++;
             } while (nextMatch == null);
-        }
-        catch (NullPointerException e) {
+        } catch (NullPointerException e) {
             nextMatch = null;
         }
         return nextMatch;
@@ -106,8 +110,7 @@ public class AdviceController {
     //Last round
     @ModelAttribute("lastRound")
     public Round lastRound() {
-        int seasonId = userConfigService.getCurrentSeasonId();
-        Season season = seasonService.getSeasonById(seasonId);
+        Season season = seasonService.getSeasonById(currentSeasonId());
         Round lastRound = roundService.getLastRound(season);
         return lastRound;
     }
@@ -117,6 +120,31 @@ public class AdviceController {
     public List<Team> pausedTeams() {
         try {
             return teamService.getPausedTeamsInRound(lastRound().getId());
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    //Last 5 matches(from the home team in the nextMatch)
+    @ModelAttribute("last5MatchesHome")
+    public List<Match> last5MatchesHome() {
+        try {
+            Team team = nextMatch().getHomeTeam();
+            Season season = seasonService.getSeasonById(currentSeasonId());
+            return matchService.findLast5Matches(team, season);
+        } catch (NullPointerException e) {
+            return null;
+        }
+    }
+
+    //Last 5 matches(from the away team in the nextMatch)
+    @ModelAttribute("last5MatchesAway")
+    public List<Match> last5MatchesAway() {
+        try {
+            Team team = nextMatch().getAwayTeam();
+            Season season = seasonService.getSeasonById(currentSeasonId());
+            List<Match> last5Matches = matchService.findLast5Matches(team, season);
+            return last5Matches;
         } catch (NullPointerException e) {
             return null;
         }

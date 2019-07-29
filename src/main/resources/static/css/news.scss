@@ -236,7 +236,29 @@
         margin: 0 0 $margin_big 0;
 
         .news_image {
-          max-height: 500px;
+          max-height: 600px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 3400px) {
+  .news_and_pagination {
+    .all_news {
+      .single_news {
+        .news_image {
+          max-height: 800px;
+        }
+      }
+    }
+  }
+}
+@media (min-width: 4000px) {
+  .news_and_pagination {
+    .all_news {
+      .single_news {
+        .news_image {
+          max-height: unset;
         }
       }
     }

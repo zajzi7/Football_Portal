@@ -3,6 +3,7 @@ package pl.dominik.football.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import pl.dominik.football.domain.entity.Match;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.repository.RoundRepository;
@@ -110,22 +111,46 @@ public class RoundServiceImpl implements RoundService {
     }
 
     @Override
+    public boolean roundHasOnlyEmptyMatches(Round round) {
+        boolean flag = true;
+        for (Match m : round.getMatches()) {
+            if (m.getHomeScore() != null && m.getAwayScore() != null && m.getHomeTeam() != null && m.getAwayTeam() != null) {
+                flag = false;
+                break;
+            }
+        }
+        return flag;
+    }
+
+    @Override
     public Round getLastRound(Season season) {
         List<Round> rounds = roundRepository.findLastRound(season, LocalDate.now());
 
-        //Check if the last round has matches. If not then return the previous round
-        for (Round r : rounds) {
-            if (r.getMatches().size() > 0) {
-                return r;
+        try {
+            for (Round r : rounds) {
+                //Check if the round has matches with results
+                if (r.getMatches().size() == 0) {
+                    continue;
+                }
+                if (roundHasOnlyEmptyMatches(r) == true) {
+                    continue;
+                } else {
+                    return r;
+                }
+            }
+        } catch (NullPointerException e) {
+            //If the round search fails then look for another way
+            try {
+                //Sort list by the roundNumber
+                rounds.sort((o1, o2) -> ((Integer) o2.getRoundNumber()).compareTo(o1.getRoundNumber()));
+
+                //Get first(round with the biggest roundNumber) element
+                return rounds.get(0);
+            } catch (NullPointerException | ArrayIndexOutOfBoundsException ex) {
+                return null;
             }
         }
-
-        //Return the last round on the iteration fail
-        try {
-            return rounds.get(0);
-        } catch (IndexOutOfBoundsException e) {
-            return null;
-        }
+        return null;
     }
 
 }

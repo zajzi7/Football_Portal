@@ -9,7 +9,7 @@
 
 <div th:fragment="previous_next_match" class="previous_next_match">
 
-    <!--        Previous match-->
+    <!--/* Previous match */-->
     <div class="match">
         <div class="match_title icon-back-in-time">
             Poprzedni mecz
@@ -70,7 +70,7 @@
         </div>
     </div>
 
-    <!--        Next mach-->
+    <!--/* Next match */-->
     <div class="match">
         <div class="match_title icon-clock">
             Następny mecz
@@ -83,15 +83,53 @@
                 </div>
                 <div class="match_team_score">
                     <div class="match_teamname_crest">
-                        <img class="match_crest" th:src="${nextMatch.homeTeam.crestSource}"/>
-                        <span th:text="${nextMatch.homeTeam.teamName}"></span>
+                        <div class="match_teamname_crest">
+                            <img class="match_crest" th:src="${nextMatch.homeTeam.crestSource}"/>
+                            <span th:text="${nextMatch.homeTeam.teamName}"></span>
+                        </div>
+                        <!--/* Form of the last 5 matches - home team */-->
+                        <div th:if="${last5MatchesHome != null}" class="form_last_matches">
+                            <div th:each="match : ${last5MatchesHome}"
+                                 th:if="${match.homeTeam.teamName == nextMatch.homeTeam.teamName and
+                                 match.homeScore != null and match.awayScore != null}"
+                                 th:attr="tooltip=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                                <span th:classappend="${match.homeScore > match.awayScore ?
+                                     'win_square' : match.homeScore < match.awayScore ? 'lose_square' : 'draw_square'}"></span>
+                            </div>
+                            <div th:each="match : ${last5MatchesHome}"
+                                 th:if="${match.awayTeam.teamName == nextMatch.homeTeam.teamName and
+                                 match.homeScore != null and match.awayScore != null}"
+                                 th:attr="tooltip=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                                <span th:classappend="${match.homeScore < match.awayScore ?
+                                     'win_square' : match.homeScore > match.awayScore ? 'lose_square' : 'draw_square'}"></span>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="versus">Vs</div>
 
                     <div class="match_teamname_crest">
-                        <img class="match_crest" th:src="${nextMatch.awayTeam.crestSource}"/>
-                        <span th:text="${nextMatch.awayTeam.teamName}"></span>
+                        <div class="match_teamname_crest">
+                            <img class="match_crest" th:src="${nextMatch.awayTeam.crestSource}"/>
+                            <span th:text="${nextMatch.awayTeam.teamName}"></span>
+                        </div>
+                        <!--/* Form of the last 5 matches - away team */-->
+                        <div th:if="${last5MatchesAway != null}" class="form_last_matches">
+                            <div th:each="match : ${last5MatchesAway}"
+                                 th:if="${match.homeTeam.teamName == nextMatch.awayTeam.teamName and
+                                 match.homeScore != null and match.awayScore != null}"
+                                 th:attr="tooltip=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                                <span th:classappend="${match.homeScore > match.awayScore ?
+                                     'win_square' : match.homeScore < match.awayScore ? 'lose_square' : 'draw_square'}"></span>
+                            </div>
+                            <div th:each="match : ${last5MatchesAway}"
+                                 th:if="${match.awayTeam.teamName == nextMatch.awayTeam.teamName and
+                                 match.homeScore != null and match.awayScore != null}"
+                                 th:attr="tooltip=|${match.homeTeam.teamName} ${match.homeScore}:${match.awayScore} ${match.awayTeam.teamName} (${#temporals.format(match.matchDate, 'dd.MM.yyyy')})|">
+                                <span th:classappend="${match.homeScore < match.awayScore ?
+                                     'win_square' : match.homeScore > match.awayScore ? 'lose_square' : 'draw_square'}"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 

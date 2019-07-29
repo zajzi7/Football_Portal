@@ -14,6 +14,7 @@ import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
 import pl.dominik.football.services.UserConfigService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -41,7 +42,17 @@ public class ResultsController {
         Round selectedRound = roundService.getRoundBySeasonIdAndRoundNumber(season.getId(), round);
         List<Team> pausedTeamsInRound = teamService.getPausedTeamsInRound(selectedRound.getId());
 
+        //Sort the season rounds by date
+        List<Round> rounds = season.getRounds();
+        Collections.sort(rounds, (o1, o2) -> {
+            if (o1.getRoundStartDate().isBefore(o2.getRoundStartDate())) {
+                return -1;
+            }
+            return 0;
+        });
+
         model.addAttribute("season", season);
+        model.addAttribute("rounds", rounds);
         model.addAttribute("selectedRound", selectedRound);
         model.addAttribute("pausedTeamsInRound", pausedTeamsInRound);
         return "results";

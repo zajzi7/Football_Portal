@@ -14,7 +14,7 @@
         <div class="results_header">
             <span class="results_season" th:text="|Sezon ${season.seasonName}|"></span>
             <select class="select_round" onchange="location = this.value;">
-                <option th:each="round : ${season.rounds}"
+                <option th:each="round : ${rounds}"
                         th:text="|Kolejka ${round.roundNumber}|"
                         th:value="|/results?round=${round.roundNumber}|"
                         th:selected="${round.roundNumber} == ${selectedRound.roundNumber}"></option>

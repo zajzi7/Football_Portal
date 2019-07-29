@@ -28,5 +28,7 @@ public interface RoundService {
 
     LocalDate generateNextRoundDefaultDate(Season season);
 
+    boolean roundHasOnlyEmptyMatches(Round round);
+
     Round getLastRound(Season season);
 }

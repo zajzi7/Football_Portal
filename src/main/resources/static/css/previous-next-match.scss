@@ -32,7 +32,7 @@
 
     .match_content {
       font-size: 1em;
-      padding: 1em;
+      padding: 0.5em;
       background: #fff;
       text-align: center;
       border-bottom-left-radius: 8px;
@@ -107,6 +107,7 @@
 
         .round_season_info {
           margin-bottom: 0.7em;
+          margin-top: 0.3em;
           font-size: 0.75em;
         }
       }
@@ -133,6 +134,14 @@
     background: linear-gradient(135deg,  rgba(255,175,75,1) 0%,rgba(255,146,10,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffaf4b', endColorstr='#ff920a',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
   }
+}
+
+.form_last_matches {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.67em;
+  flex-wrap: wrap;
 }
 
 @media (min-width: 450px) {

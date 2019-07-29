@@ -39,6 +39,81 @@ hr {
 
 }
 
+.win_square {
+  &:before {
+    padding: $square_padding;
+    border-radius: $square_border_radius;
+    color: $square_color;
+    font-weight: $square_font_weight;
+    background: green;
+    content: 'W';
+    width: $square_width;
+    height: $square_height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $square_border_opacity;
+    margin: $square_margin;
+    font-size: $font_size_content_small;
+  }
+
+  &:hover, &:active {
+    &:before {
+      border: $square_border_hover;
+    }
+  }
+}
+
+.lose_square {
+  &:before {
+    padding: $square_padding;
+    border-radius: $square_border_radius;
+    color: $square_color;
+    font-weight: $square_font_weight;
+    background: red;
+    content: 'L';
+    width: $square_width;
+    height: $square_height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $square_border_opacity;
+    margin: $square_margin;
+    font-size: $font_size_content_small;
+  }
+
+  &:hover, &:active {
+    &:before {
+      border: $square_border_hover;
+    }
+  }
+}
+
+.draw_square {
+  &:before {
+    padding: $square_padding;
+    border-radius: $square_border_radius;
+    color: $square_color;
+    font-weight: $square_font_weight;
+    background: orange;
+    content: 'R';
+    width: $square_width;
+    height: $square_height;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: $square_border_opacity;
+    margin: $square_margin;
+    font-size: $font_size_content_small;
+  }
+
+  &:hover, &:active {
+    &:before {
+      border: $square_border_hover;
+    }
+  }
+}
+
 .blink {
   animation-duration: 1.3s;
   animation-name: blink;
@@ -48,6 +123,50 @@ hr {
   color: #ff3131;
   font-weight: 700;
 }
+
+[tooltip]:before {
+  /* needed - do not touch */
+  content: attr(tooltip);
+  position: absolute;
+  opacity: 0;
+
+  /* customizable */
+  transition: all .2s ease;
+  padding: 10px;
+  color: #000;
+  box-shadow: 0px 0px 5px #666666;
+  border-radius: $border_radius_header;
+  font-size: 125%;
+  //box-shadow: 2px 2px 1px silver;
+  left: 0%;
+  @media (min-width: 350px) {
+    left: 10%;
+  }
+  @media (min-width: 450px) {
+    font-size: 115%;
+  }
+  @media (min-width: 550px) {
+    left: 25%;
+  }
+  @media (min-width: 641px) {
+    left: 60%;
+  }
+}
+
+[tooltip]:hover:before, [tooltip]:active:before {
+  /* needed - do not touch */
+  opacity: 1;
+
+  /* customizable */
+  background: #fff;
+  margin-top: -50px;
+  margin-left: 20px;
+}
+
+[tooltip]:not([tooltip-persistent]):before {
+  pointer-events: none;
+}
+
 @keyframes blink {
   from {
     opacity: 1;
@@ -58,7 +177,6 @@ hr {
 }
 
 @media (min-width: 641px) {
-
   .app {
     .content {
       flex-direction: row;
@@ -66,11 +184,11 @@ hr {
       margin: calc(#{$margin_basic} + #{$margin_basic} / 4) 0;
     }
   }
-
 }
+
 @media (min-width: 1600px) {
   body {
-    font-size: 20px;
+    font-size: 22px;
 
     .app {
       margin: 0 10em;
@@ -78,9 +196,10 @@ hr {
   }
 
 }
+
 @media (min-width: 2500px) {
   body {
-    font-size: 25px;
+    font-size: 38px;
   }
   .app {
     .content {

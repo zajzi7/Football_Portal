@@ -14,11 +14,13 @@
 
     &::after {
       content: '';
+      speak: none;
       animation: arrows-after 2.2s infinite ease-in-out;
     }
 
     &::before {
       content: '';
+      speak: none;
       animation: arrows-before 2.2s infinite ease-in-out;
     }
   }
@@ -47,10 +49,10 @@
       background: #fff;
       font-size: $font_size_content_small;
       color: black;
-      padding: 15px;
+      padding: 1em;
       text-align: center;
-      border-bottom-left-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-bottom-left-radius: $border_radius_header;
+      border-bottom-right-radius: $border_radius_header;
     }
   }
 
@@ -83,7 +85,7 @@
       background: #fff;
       font-size: $font_size_content_small;
       color: black;
-      padding: 15px;
+      padding: 1em;
       text-align: center;
       border-bottom-left-radius: $border_radius_header;
       border-bottom-right-radius: $border_radius_header;
@@ -94,7 +96,7 @@
 
       .single_match {
         display: flex;
-        margin: 0.6em 0;
+        margin: 0.3em 0;
         width: 100%;
 
         .team_name {
@@ -109,6 +111,7 @@
           .results_crest {
             width: auto;
             height: 4.5vh;
+            margin: 0 4px;
           }
         }
 
