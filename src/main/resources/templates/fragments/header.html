@@ -9,11 +9,15 @@
 
 <div th:fragment="header" class="header">
     <div class="logo_crest">
-        <img th:src="@{/img/herb-logo2.png}"/>
+        <picture>
+            <source data-srcset="img/herb-logo2.webp" type="image/webp">
+            <source data-srcset="img/herb-logo2.png" type="image/png">
+            <img class="lazyload" th:attr="data-src=@{/img/herb-logo2.png}" alt="Logo strony" />
+        </picture>
     </div>
     <div class="header_title"><h1>KS&nbsp;Husaria Łapczyca</h1></div>
     <!--        Menu-->
-    <div style="z-index: 1">
+    <div class="z-index1">
         <ol id="menu">
             <li><a th:href="@{/}"><i class="icon-home-outline"></i></a></li>
             <li class="dol"><a href="#"><i
@@ -63,7 +67,7 @@
                     <li><a href="#">link - 3</a></li>
                 </ul>
             </li>
-            <li class="dol"><a href="#"><i class="icon-dollar" style="padding-right: 5px"></i>Sponsorzy</a>
+            <li class="dol"><a href="#"><i class="icon-dollar padding_right5"></i>Sponsorzy</a>
                 <ul>
                     <li><a href="#">link - 1</a></li>
                     <li><a href="#">link - 2</a></li>

@@ -1,0 +1,58 @@
+body {
+  background: #F8F8F8;
+}
+
+ul {
+  list-style-type: none !important;
+  background-color: black !important;
+  padding: 5px !important;
+  border-radius: 5px !important;
+}
+
+li {
+  display: inline !important;
+  padding: 5px 0.5em !important;
+  color: white !important;
+
+  border-right-style: solid !important;
+  border-right-width: 2px !important;
+  border-image: linear-gradient(to bottom, transparent, gray, transparent) 1 100% !important;
+  border-left-width: 0px !important;
+}
+
+nav {
+  background: black !important;
+}
+
+nav a {
+  color: #fff !important;
+}
+
+nav a:hover {
+  color: orange !important;
+  transition: color 0.5s !important;
+}
+
+.logout {
+  border-right-style: none !important;
+}
+
+.upload_img_size {
+  max-width: 200px;
+}
+
+.important_message_settings {
+  border: 2px solid #dee2e6;
+  .checkbox {
+    text-align: center;
+    vertical-align: middle;
+    width: 10%;
+    .checkbox_scale {
+      transform: scale(1.2);
+    }
+    .checkbox_text {
+      vertical-align: middle;
+    }
+  }
+
+}

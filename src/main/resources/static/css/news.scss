@@ -1,10 +1,10 @@
 
 .news_and_pagination {
-  display: flex;
+  @include flexbox;
   flex-direction: column;
 
   .all_news {
-    display: flex;
+    @include flexbox;
     //flex-direction: column;
     flex-direction: row;
     flex-wrap: wrap;
@@ -74,7 +74,7 @@
   }
 
   .news_pagination {
-    display: flex;
+    @include flexbox;
     justify-content: center;
     flex-wrap: wrap;
     color: #000;
@@ -111,7 +111,7 @@
 }
 
 .date_author {
-  display: flex;
+  @include flexbox;
   flex-wrap: wrap;
   font-size: 0.9em;
   justify-content: space-between;
@@ -134,6 +134,10 @@
 
 .display_br {
 
+}
+
+.date_margin {
+  margin-right: 20px;
 }
 
 @media (max-width: 449px) {

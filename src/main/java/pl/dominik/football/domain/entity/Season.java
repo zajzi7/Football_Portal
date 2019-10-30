@@ -4,12 +4,15 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import pl.dominik.football.domain.repository.RankingDataRepository;
 import pl.dominik.football.services.H2hService;
 import pl.dominik.football.utilities.BeanUtil;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +31,8 @@ import java.util.List;
 import java.util.Set;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NoArgsConstructor
 @ToString
 public class Season {
@@ -37,23 +42,25 @@ public class Season {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull(message = "{pl.season.validation.notNull.message}")
-    @Size(min = 2, message = "{pl.season.validation.size.message}")
-    @Column(unique = true)
-    @Getter @Setter
-    @ToString.Exclude
-    private String seasonName;
-
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "season", cascade = CascadeType.REMOVE)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Getter @Setter
     @ToString.Exclude
     private List<Round> rounds = new ArrayList<>();
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany(mappedBy = "season")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Getter @Setter
     @ToString.Exclude
     private Set<Team> teams = new HashSet<>();
+
+    @NotNull(message = "{pl.season.validation.notNull.message}")
+    @Size(min = 2, message = "{pl.season.validation.size.message}")
+    @Column(unique = true)
+    @Getter @Setter
+    @ToString.Exclude
+    private String seasonName;
 
     public Season(String seasonName) {
         this.seasonName = seasonName; //constructor to delete in the future

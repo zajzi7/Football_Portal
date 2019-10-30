@@ -26,7 +26,7 @@
 <div layout:fragment="container" class="container-fluid">
     <div class="ml-4 mt-4 form-row justify-content-center">
 
-        <form th:method="post" th:action="|/save-important-message|" class="form-horizontal">
+        <form th:method="post" th:action="|/admin/save-important-message|" class="form-horizontal">
 
             <!-- Important message content-->
             <textarea id="importantMessageContent" name="importantMessageContent"
@@ -41,14 +41,14 @@
             <br/>
 
             <!-- Show important message(set true or false) -->
-            <table class="table table-striped" style="border: 2px solid #dee2e6">
+            <table class="table table-striped important_message_settings">
                 <tr>
-                    <td style="text-align: center; vertical-align: middle; width: 10%">
-                        <input type="checkbox" name="importantMessageFlag" style="transform: scale(1.2)"
+                    <td class="checkbox">
+                        <input type="checkbox" name="importantMessageFlag" class="checkbox_scale"
                                th:checked="${importantMessageFlag}">
                         <input type="hidden" th:value="${importantMessageFlag}" name="_importantMessageFlag"/>
                     </td>
-                    <td style="vertical-align: middle">
+                    <td class="checkbox_text">
                         <h6>Pokaż banner "Ważna informacja"</h6>
                     </td>
                 </tr>

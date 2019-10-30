@@ -1,12 +1,12 @@
 
 .previous_next_match {
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   color: #000;
   justify-content: space-between;
 
   .match {
-    display: flex;
+    @include flexbox;
     flex-direction: column;
     width: 100%;
     margin-top: $margin_basic;
@@ -37,24 +37,24 @@
       text-align: center;
       border-bottom-left-radius: 8px;
       border-bottom-right-radius: 8px;
-      display: flex;
+      @include flexbox;
       flex: 1;
       align-items: center;
       justify-content: center;
 
       .match_exist {
-        display: flex;
+        @include flexbox;
         flex-direction: column;
         align-items: center;
 
         .match_team_score {
           font-size: $font_size_content_small;
-          display: flex;
+          @include flexbox;
           flex-direction: row;
           align-items: center;
 
           .match_teamname_crest {
-            display: flex;
+            @include flexbox;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -70,14 +70,14 @@
           .match_score {
             font-weight: 700;
             color: orange;
-            display: flex;
+            @include flexbox;
             padding: 0 0.4em;
           }
 
         }
 
         .match_date_time {
-          display: flex;
+          @include flexbox;
           flex-direction: row;
           flex-wrap: wrap;
           justify-content: center;
@@ -85,14 +85,14 @@
           font-size: 0.85em;
 
           .match_date {
-            display: flex;
+            @include flexbox;
             flex-direction: row;
             align-items: center;
             padding: 0 0.5em;
           }
 
           .match_time {
-            display: flex;
+            @include flexbox;
             flex-direction: row;
             align-items: center;
             padding: 0 0.5em;
@@ -103,6 +103,7 @@
           font-size: 0.85em;
           font-style: italic;
           margin-top: 0.4em;
+          margin-bottom: 0.3em;
         }
 
         .round_season_info {
@@ -137,7 +138,7 @@
 }
 
 .form_last_matches {
-  display: flex;
+  @include flexbox;
   align-items: center;
   justify-content: center;
   font-size: 0.67em;

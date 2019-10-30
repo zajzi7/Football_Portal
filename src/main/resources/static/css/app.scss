@@ -1,20 +1,52 @@
 //@import url(https://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
-  background-color: #878c00;
-  background-image: url("../img/football-no-lines.png");
   font-family: 'Open Sans', sans-serif;
   color: white;
   min-height: 100vh;
   font-size: 16px;
+  background-color: #878c00;
+}
+.no-webp body {
+  background-image: url("../img/football-no-lines.png");
+}
+.webp body {
+  background-image: url("../img/football-no-lines.webp");
+}
+
+/* Remove outline for non-keyboard :focus */
+*:focus:not(.focus-visible) {
+  outline: none;
+}
+
+/* Optional: Customize .focus-visible */
+.focus-visible {
+  outline: blue solid 4px;
 }
 
 hr {
   width: 100%;
 }
 
+.italic {
+  font-style: italic;
+}
+.bold {
+  font-weight: 700;
+}
+.speak_none {
+  speak: none;
+}
+.calendar_color {
+  color: brown;
+}
+.clock_color {
+  color: blueviolet;
+}
+
 .app {
-  display: flex;
+  //display: flex;
+  @include flexbox;
   flex-direction: column;
   margin: 0 $margin_basic;
 
@@ -31,7 +63,7 @@ hr {
   }
 
   .content {
-    display: flex;
+    @include flexbox;
     flex-direction: column;
     width: 100%;
     margin: $margin_basic 0;
@@ -49,7 +81,7 @@ hr {
     content: 'W';
     width: $square_width;
     height: $square_height;
-    display: flex;
+    @include flexbox;
     align-items: center;
     justify-content: center;
     border: $square_border_opacity;
@@ -74,7 +106,7 @@ hr {
     content: 'L';
     width: $square_width;
     height: $square_height;
-    display: flex;
+    @include flexbox;
     align-items: center;
     justify-content: center;
     border: $square_border_opacity;
@@ -99,7 +131,7 @@ hr {
     content: 'R';
     width: $square_width;
     height: $square_height;
-    display: flex;
+    @include flexbox;
     align-items: center;
     justify-content: center;
     border: $square_border_opacity;

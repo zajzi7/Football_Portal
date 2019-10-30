@@ -1,3 +1,18 @@
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+/* Old browsers */
+/* FF3.6-15 */
+/* Chrome10-25,Safari5.1-6 */
+/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/* IE6-9 fallback on horizontal gradient */
+.form-last-matches-ranking {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 0.5em;
+  justify-content: space-evenly; }
+
 .full-ranking-table {
   background: white;
   border-radius: 3px;

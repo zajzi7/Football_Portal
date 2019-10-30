@@ -32,16 +32,19 @@
 <div layout:fragment="container" class="container">
     <div class="ml-4 mt-4 form-row justify-content-center">
 
-        <form th:method="post" th:action="|/save-news|" th:object="${news}" class="form-horizontal">
+        <form th:method="post" th:action="|/admin/save-news|" th:object="${news}" class="form-horizontal">
             <!--    Hidden field necessary for updates-->
             <input type="hidden" th:field="*{id}"/>
             <!-- News title-->
-            <input type="text" th:field="*{title}" class="form-control mb-3 col-12" placeholder="Tytuł newsa"/>
+            <input type="text" th:field="*{title}" class="form-control mb-3 col-12" placeholder="Tytuł newsa" />
             <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
 
             <!--        Main image source-->
             <input type="text" th:field="*{mainImageSource}" class="form-control mb-3 col-12"
-                   placeholder="Link do głównego obrazka newsa"/>
+                   placeholder="Link do głównego obrazka newsa" />
+            <!-- Alternate text-->
+            <input type="text" th:field="*{imageAlternateText}" class="form-control mb-3 col-12"
+                   placeholder="Tekst alternatywny obrazka" />
             <!-- News content-->
             <textarea id="x1" name="x1" th:field="*{content}"></textarea>
             <script>

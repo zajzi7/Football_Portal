@@ -1,6 +1,6 @@
 
 .important_message {
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   margin-top: $margin_basic;
   color: black;
@@ -36,7 +36,7 @@
     //text-align: center;
     border-bottom-left-radius: $border_radius_header;
     border-bottom-right-radius: $border_radius_header;
-    display: flex;
+    @include flexbox;
     align-items: center;
     justify-content: center;
     padding: 1em 1.5em;

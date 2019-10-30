@@ -125,7 +125,7 @@
 }
 
 .table_crest_teamname {
-  display: flex;
+  @include flexbox;
   align-items: center;
 
   .table_crest_img {

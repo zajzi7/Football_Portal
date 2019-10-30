@@ -9,7 +9,7 @@
 
 <div layout:fragment="container" class="container">
     <div class="ml-4 mt-4">
-        <form th:object="${round}" th:action="|/rounds|" th:method="post">
+        <form th:object="${round}" th:action="|/admin/rounds|" th:method="post">
             <!--    Hidden field necessary for updates-->
             <input type="hidden" th:field="*{id}"/>
             <!--    Handle season id to add round to proper season-->
@@ -25,7 +25,7 @@
             <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
             <!--    Save-->
             <button type="submit" class="btn btn-info col-1">Zapisz</button>
-            <a th:href="|/seasons/show-rounds/${seasonId}|" class="btn btn-info col-1">Powrót</a>
+            <a th:href="|/admin/seasons/show-rounds/${seasonId}|" class="btn btn-info col-1">Powrót</a>
         </form>
     </div>
 </div>

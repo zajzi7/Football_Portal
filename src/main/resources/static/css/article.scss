@@ -1,6 +1,6 @@
 
 .article {
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   color: black;
   font-size: $font_size_content_small;

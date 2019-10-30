@@ -1,6 +1,7 @@
 package pl.dominik.football.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,10 +32,12 @@ public class MatchServiceImpl implements MatchService {
     RankingDataComponent rankingDataComponent;
 
     @Autowired
-    UserConfigService userConfigService;
+    AdminConfigService adminConfigService;
 
     @Override
+    @Cacheable("empcache")
     public Match getMatchById(int id) {
+
         Optional<Match> result = matchRepository.findById(id);
 
         Match match = null;
@@ -150,7 +153,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public Match findPreviousMatch(int whichMatchFromList) {
-        Team favouriteTeam = userConfigService.getFavouriteTeam();
+        Team favouriteTeam = adminConfigService.getFavouriteTeam();
 
         //Get first element of the previous matches collection
         try {
@@ -163,7 +166,7 @@ public class MatchServiceImpl implements MatchService {
 
     @Override
     public Match findNextMatch(int whichMatchFromList) {
-        Team favouriteTeam = userConfigService.getFavouriteTeam();
+        Team favouriteTeam = adminConfigService.getFavouriteTeam();
 
         //Get first element of the next matches collection(if the whichMatchFromList is 0)
         try {

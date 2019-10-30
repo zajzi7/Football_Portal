@@ -1,12 +1,16 @@
 package pl.dominik.football.config;
 
-import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
-import org.springframework.boot.web.servlet.server.ServletWebServerFactory;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.ehcache.EhCacheCacheManager;
+import org.springframework.cache.ehcache.EhCacheManagerFactoryBean;
 import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.thymeleaf.templatemode.TemplateMode;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
@@ -15,12 +19,22 @@ import javax.annotation.PostConstruct;
 import java.util.TimeZone;
 
 @Configuration
+@EnableCaching(mode = AdviceMode.ASPECTJ)
 @PropertySource("classpath:validation.messages.properties")
 public class MainConfig {
 
+    //Cache
     @Bean
-    ServletWebServerFactory servletWebServerFactory() {
-        return new TomcatServletWebServerFactory();
+    public CacheManager cacheManager() {
+        return new EhCacheCacheManager(ehCacheCacheManager().getObject());
+    }
+
+    @Bean
+    public EhCacheManagerFactoryBean ehCacheCacheManager() {
+        EhCacheManagerFactoryBean cmfb = new EhCacheManagerFactoryBean();
+        cmfb.setConfigLocation(new ClassPathResource("ehcache.xml"));
+        cmfb.setShared(true);
+        return cmfb;
     }
 
     //Needed for proper finding thymeleaf templates

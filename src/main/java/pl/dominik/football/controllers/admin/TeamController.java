@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Set;
 
 @Controller
+@RequestMapping("/admin")
 public class TeamController {
 
     @Autowired
@@ -88,7 +89,7 @@ public class TeamController {
         }
 
         //If everything went well then redirect to the teams list
-        return "redirect:/teams";
+        return "redirect:/admin/teams";
     }
 
     @RequestMapping(value = "/teams", method = RequestMethod.POST, params = "action=newTeam")
@@ -112,7 +113,7 @@ public class TeamController {
         }
 
         //If everything went well then redirect to the teams list
-        return "redirect:/teams";
+        return "redirect:/admin/teams";
     }
 
     @RequestMapping(value = "/teams")
@@ -131,7 +132,7 @@ public class TeamController {
     @RequestMapping(value = "/teams/delete/{id}")
     public String deleteTeam(@PathVariable("id") int id) {
         teamService.deleteTeam(id);
-        return "redirect:/teams";
+        return "redirect:/admin/teams";
     }
 
     @RequestMapping("/assign-teams/{id}")
@@ -169,7 +170,7 @@ public class TeamController {
         } catch (NullPointerException e) { //when none of the values is selected
 //            e.printStackTrace();
         }
-        return "redirect:/assign-teams/" + seasonId;
+        return "redirect:/admin/assign-teams/" + seasonId;
     }
 
     @RequestMapping(value = "/assign-teams/{id}", method = RequestMethod.POST, params = "action=rightToLeft")
@@ -205,8 +206,7 @@ public class TeamController {
 //            e.printStackTrace();
         }
 
-        return "redirect:/assign-teams/" + seasonId;
+        return "redirect:/admin/assign-teams/" + seasonId;
     }
 
 }
-

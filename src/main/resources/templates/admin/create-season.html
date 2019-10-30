@@ -6,19 +6,24 @@
 <head>
 </head>
 <body>
-
 <div layout:fragment="container" class="container">
     <div class="ml-4 mt-4">
-        <form th:object="${season}" th:action="@{/seasons}" th:method="post">
-            <!--    Hidden field necessary for updates-->
-            <input type="hidden" th:field="*{id}"/>
-            <!--    Input season name-->
-            <input type="text" th:field="*{seasonName}" class="form-control mb-3 col-2" placeholder="Nazwa sezonu"/>
-            <!--    Errors-->
+        <form th:object="${season}" th:action="@{/admin/seasons}" th:method="post">
+
+            <!-- Hidden field necessary for updates -->
+            <input type="hidden" th:field="*{id}" />
+
+            <!-- Input season name -->
+            <input type="text" th:field="*{seasonName}" class="form-control mb-3 col-2" placeholder="Nazwa sezonu" />
+
+            <!-- Errors -->
             <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
-            <!--    Save-->
+
+            <!-- Save -->
             <button type="submit" class="btn btn-info col-1">Zapisz</button>
-            <a th:href="|/seasons|" class="btn btn-info col-1">Powrót</a>
+
+            <!-- Back to the seasons -->
+            <a href="/admin/seasons" class="btn btn-info col-1">Powrót</a>
         </form>
     </div>
 </div>

@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import pl.dominik.football.domain.repository.RankingDataRepository;
@@ -11,6 +13,7 @@ import pl.dominik.football.services.H2hService;
 import pl.dominik.football.utilities.BeanUtil;
 import pl.dominik.football.utilities.RankingDataComponent;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -25,6 +28,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NoArgsConstructor
 @ToString
 public class Team {
@@ -35,6 +40,27 @@ public class Team {
     @Id
     private int id;
 
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "homeTeam")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Getter @Setter
+    @ToString.Exclude
+    private Set<Match> matchHomeTeam; //It is mainly here to help @PreRemove interface
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany(mappedBy = "awayTeam")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Getter @Setter
+    @ToString.Exclude
+    private Set<Match> matchAwayTeam; //It is mainly here to help @PreRemove interface
+
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @ManyToMany
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @ToString.Exclude
+    @Getter @Setter
+    private Set<Season> season = new HashSet<>();
+
     @NotNull(message = "{pl.team.validation.notNull.message}")
     @Size(min = 2, message = "{pl.team.validation.size.message}")
     @Column(unique = true)
@@ -44,24 +70,6 @@ public class Team {
     @Getter @Setter
     @ToString.Exclude
     private String crestSource;
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "homeTeam")
-    @Getter @Setter
-    @ToString.Exclude
-    private Set<Match> matchHomeTeam; //It is mainly here to help @PreRemove interface
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @OneToMany(mappedBy = "awayTeam")
-    @Getter @Setter
-    @ToString.Exclude
-    private Set<Match> matchAwayTeam; //It is mainly here to help @PreRemove interface
-
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @ManyToMany
-    @ToString.Exclude
-    @Getter @Setter
-    private Set<Season> season = new HashSet<>();
 
     public Team(String teamName) {
         this.teamName = teamName;

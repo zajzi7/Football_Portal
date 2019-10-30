@@ -3,7 +3,10 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -11,8 +14,10 @@ import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NoArgsConstructor
-public class UserConfig {
+public class AdminConfig {
 
     @Id
     @Getter

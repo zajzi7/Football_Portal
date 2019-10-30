@@ -1,7 +1,7 @@
 
 .header {
   width: 100%;
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   align-items: center;
   //background: #151515;
@@ -12,7 +12,7 @@
   box-shadow: 0px 5px 5px 0px rgba(0, 0, 0, 0.45);
 
   .header_title {
-    display: flex;
+    @include flexbox;
     align-items: center;
     padding: calc(#{$margin_basic} / 2) 0 $margin_basic 0;
     line-height: 100%;
@@ -30,6 +30,14 @@
   .logo_crest {
     padding-top: 5px;
   }
+}
+
+.z-index1 {
+  z-index: 1;
+}
+
+.padding_right5 {
+  padding-right: 5px;
 }
 
 @keyframes blur {

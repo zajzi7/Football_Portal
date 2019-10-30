@@ -1,14 +1,14 @@
 package pl.dominik.football.services;
 
+import pl.dominik.football.domain.entity.AdminConfig;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
-import pl.dominik.football.domain.entity.UserConfig;
 
-public interface UserConfigService {
+public interface AdminConfigService {
 
-    void createUserConfig();
+    void createAdminConfig();
 
-    UserConfig getUserConfig();
+    AdminConfig getAdminConfig();
 
     void setCurrentSeason(Season season);
 

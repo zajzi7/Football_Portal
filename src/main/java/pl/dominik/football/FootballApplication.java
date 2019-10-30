@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@ComponentScan({"pl.dominik.football.services", "pl.dominik.football.domain.repository", "pl.dominik.football.controllers.accessible", "pl.dominik.football.controllers.admin", "pl.dominik.football.utilities"})
 @SpringBootApplication
 @EntityScan("pl.dominik.football.domain.entity")
 @EnableTransactionManagement

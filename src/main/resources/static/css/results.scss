@@ -1,6 +1,7 @@
+@import "variables";
 
 .results_header {
-  display: flex;
+  @include flexbox;
   width: 100%;
   background: #0f74a8;
   margin-bottom: 1em;
@@ -26,7 +27,7 @@
 }
 
 .score_results {
-  display: flex;
+  @include flexbox;
   justify-content: center;
   font-weight: 700;
   align-self: center;
@@ -40,7 +41,7 @@
 }
 
 .no_team {
-  display: flex;
+  @include flexbox;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -49,7 +50,7 @@
 }
 
 .results_date_time {
-  display: flex;
+  @include flexbox;
   //flex: 1;
   justify-content: center;
   padding: 0.7em 0.5em;
@@ -57,14 +58,14 @@
 }
 
 .team_score_team {
-  display: flex;
+  @include flexbox;
   justify-content: center;
   width: 100%;
   //flex: 2;
 }
 
 .team_crest {
-  display: flex;
+  @include flexbox;
   flex: 1;
   align-items: center;
   justify-content: center;
@@ -72,7 +73,7 @@
 }
 
 .results_matches_exist {
-  display: flex;
+  @include flexbox;
   flex-direction: column;
   font-size: 0.7em;
 
@@ -86,7 +87,7 @@
   width: 100%;
   //background: #4a75a1;
   background: #4a75a1c9;
-  display: flex;
+  @include flexbox;
   flex-direction: column-reverse;
   //flex-wrap: wrap-reverse;
   padding: 0.7em 0.7em 0em 0.7em;
@@ -111,7 +112,7 @@
   width: 100%;
   //background: #4a75a1;
   background: #4a75a1de;
-  display: flex;
+  @include flexbox;
   padding: 1em;
   justify-content: center;
   align-items: center;
@@ -124,7 +125,7 @@
 }
 
 .single_paused_team {
-  display: flex;
+  @include flexbox;
   align-items: center;
   padding: 0.4em;
 
@@ -136,7 +137,7 @@
 .clock {
   margin-left: 0.5em;
   white-space: nowrap;
-  display: flex;
+  @include flexbox;
   align-items: center;
   justify-content: center;
 }
@@ -144,7 +145,7 @@
 .calendar {
   margin-right: 0.5em;
   white-space: nowrap;
-  display: flex;
+  @include flexbox;
   align-items: center;
   justify-content: center;
 }

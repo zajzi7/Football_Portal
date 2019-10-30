@@ -33,7 +33,7 @@
 
                 <div class="team_score_team">
                     <div class="team_crest" th:if="${match.homeTeam != null}">
-                        <img th:src="${match.homeTeam.crestSource}" />
+                        <img class="lazyload" th:attr="data-src=${match.homeTeam.crestSource}" alt="Herb klubu" />
                         <span class="results_team_name" th:text="'&nbsp;' + ${match.homeTeam.teamName}"></span>
                     </div>
                     <div th:if="${match.homeTeam == null}" class="no_team">
@@ -54,7 +54,7 @@
 
                     <div th:if="${match.awayTeam != null}" class="team_crest">
                         <span class="results_team_name" th:text="${match.awayTeam.teamName} + '&nbsp;'"></span>
-                        <img th:src="${match.awayTeam.crestSource}" />
+                        <img class="lazyload" th:attr="data-src=${match.awayTeam.crestSource}" alt="Herb klubu" />
                     </div>
 
                     <div th:if="${match.awayTeam == null}" class="no_team">
@@ -70,7 +70,7 @@
 
                 <div class="paused_teams_content">
                     <div th:each="team : ${pausedTeamsInRound}" class="single_paused_team">
-                        <img th:src="${team.crestSource}" />
+                        <img class="lazyload" th:attr="data-src=${team.crestSource}" alt="Herb klubu" />
                         <span th:text="${team.teamName}"></span>
                     </div>
                 </div>

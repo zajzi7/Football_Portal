@@ -3,8 +3,11 @@ package pl.dominik.football.domain.entity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import pl.dominik.football.utilities.MatchEntityListener;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
@@ -15,6 +18,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @EntityListeners(MatchEntityListener.class)
 @NoArgsConstructor
 public class Match {
@@ -23,18 +28,6 @@ public class Match {
     @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @Getter @Setter
-    private LocalDate matchDate;
-
-    @Getter @Setter
-    private LocalTime matchStartTime;
-
-    @Getter @Setter
-    private Integer homeScore; //not int for null possibility
-
-    @Getter @Setter
-    private Integer awayScore; //not int for null possibility
 
     @ManyToOne
     @Getter @Setter
@@ -47,6 +40,18 @@ public class Match {
     @ManyToOne
     @Getter @Setter
     private Round round;
+
+    @Getter @Setter
+    private LocalDate matchDate;
+
+    @Getter @Setter
+    private LocalTime matchStartTime;
+
+    @Getter @Setter
+    private Integer homeScore; //not int for null possibility
+
+    @Getter @Setter
+    private Integer awayScore; //not int for null possibility
 
     public Match(Team homeTeam, Team awayTeam, int homeScore, int awayScore, Round round) {
         this.homeTeam = homeTeam;

@@ -27,7 +27,7 @@
 <body>
 
 <div layout:fragment="container" class="container">
-    <form th:method="post" th:action="|/matches/process/${season.id}/${roundId}|" class="form-inline">
+    <form th:method="post" th:action="|/admin/matches/process/${season.id}/${roundId}|" class="form-inline">
         <table class="table table-bordered table-striped">
             <caption><span th:text="|Mecze kolejki ${roundNumber} sezonu ${season.seasonName}|"></span></caption>
             <thead class="thead-dark">
@@ -110,7 +110,7 @@
             </tbody>
         </table>
     </form>
-    <a th:href="|/seasons/show-rounds/${season.id}|" class="btn btn-outline-info btn-sm">Powrót do listy kolejek</a>
+    <a th:href="|/admin/seasons/show-rounds/${season.id}|" class="btn btn-outline-info btn-sm">Powrót do listy kolejek</a>
 </div>
 
 </body>

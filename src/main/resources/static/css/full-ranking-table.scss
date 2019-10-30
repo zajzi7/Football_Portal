@@ -1,3 +1,23 @@
+@import "variables";
+
+.form-last-matches-ranking {
+  @include flexbox;
+  margin-top: 0.5em;
+  justify-content: space-evenly;
+}
+
+.ranking_description {
+  line-height: 1.75em;
+}
+.win_color {
+  color: green;
+}
+.draw_color {
+  color: orange;
+}
+.lose_color {
+  color: red;
+}
 
 .full-ranking-table {
   background: white;

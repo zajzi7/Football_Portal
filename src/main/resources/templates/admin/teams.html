@@ -8,7 +8,7 @@
 <body>
 
 <div layout:fragment="container" class="container">
-    <a th:href="newteam" class="btn btn-info mt-2 mb-2">Nowa drużyna</a>
+    <a th:href="@{/admin/newteam}" class="btn btn-info mt-2 mb-2">Nowa drużyna</a>
 
     <table class="table table-bordered table-striped table-hover">
         <caption>Lista drużyn</caption>
@@ -28,10 +28,10 @@
             <td><span th:text="${team.teamName}"></span></td>
 
             <!--        Edit team name-->
-            <td><a th:href="${'/teams/edit/'+team.id}">Edytuj nazwę</a></td>
+            <td><a th:href="${'/admin/teams/edit/'+team.id}">Edytuj nazwę</a></td>
 
             <!--        Delete team-->
-            <td><a th:href="${'/teams/delete/'+team.id}"
+            <td><a th:href="${'/admin/teams/delete/'+team.id}"
                    th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć drużynę ' + ${team.teamName} +'?'+'\')'">
                 Usuń</a></td>
         </tr>

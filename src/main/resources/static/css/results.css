@@ -1,4 +1,14 @@
+/* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
+/* Old browsers */
+/* FF3.6-15 */
+/* Chrome10-25,Safari5.1-6 */
+/* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+/* IE6-9 fallback on horizontal gradient */
 .results_header {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   background: #0f74a8;
@@ -20,6 +30,10 @@
     border: 1px solid #ced4da; }
 
 .score_results {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   font-weight: 700;
@@ -31,6 +45,10 @@
   margin: 0 0.8em; }
 
 .no_team {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex: 1;
   align-items: center;
@@ -38,23 +56,39 @@
   text-align: center; }
 
 .results_date_time {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   padding: 0.7em 0.5em;
   font-size: 0.8em; }
 
 .team_score_team {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   justify-content: center;
   width: 100%; }
 
 .team_crest {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex: 1;
   align-items: center;
   justify-content: center; }
 
 .results_matches_exist {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: column;
   font-size: 0.7em; }
@@ -65,6 +99,10 @@
 .results_single_match {
   width: 100%;
   background: #4a75a1c9;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   flex-direction: column-reverse;
   padding: 0.7em 0.7em 0em 0.7em;
@@ -83,6 +121,10 @@
 .results_paused_teams {
   width: 100%;
   background: #4a75a1de;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   padding: 1em;
   justify-content: center;
@@ -94,6 +136,10 @@
   padding: 0 2em; }
 
 .single_paused_team {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   padding: 0.4em; }
@@ -103,6 +149,10 @@
 .clock {
   margin-left: 0.5em;
   white-space: nowrap;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center; }
@@ -110,6 +160,10 @@
 .calendar {
   margin-right: 0.5em;
   white-space: nowrap;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
   display: flex;
   align-items: center;
   justify-content: center; }

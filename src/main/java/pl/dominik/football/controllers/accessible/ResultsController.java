@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
+import pl.dominik.football.services.AdminConfigService;
 import pl.dominik.football.services.MatchService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
-import pl.dominik.football.services.UserConfigService;
 
 import java.util.Collections;
 import java.util.List;
@@ -33,12 +33,12 @@ public class ResultsController {
     SeasonService seasonService;
 
     @Autowired
-    UserConfigService userConfigService;
+    AdminConfigService adminConfigService;
 
     @RequestMapping("/results")
     public String showResults(Model model, @RequestParam(defaultValue = "1") int round) {
 
-        Season season = seasonService.getSeasonById(userConfigService.getCurrentSeasonId());
+        Season season = seasonService.getSeasonById(adminConfigService.getCurrentSeasonId());
         Round selectedRound = roundService.getRoundBySeasonIdAndRoundNumber(season.getId(), round);
         List<Team> pausedTeamsInRound = teamService.getPausedTeamsInRound(selectedRound.getId());
 

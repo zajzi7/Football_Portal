@@ -24,7 +24,7 @@
                 <div class="match_team_score">
 
                     <div class="match_teamname_crest">
-                        <img class="match_crest" th:src="${previousMatch.homeTeam.crestSource}"/>
+                        <img class="match_crest lazyload" th:attr="data-src=${previousMatch.homeTeam.crestSource}" alt="Herb klubu" />
                         <span th:text="${previousMatch.homeTeam.teamName}"></span>
                     </div>
 
@@ -49,17 +49,17 @@
                         &nbsp;-&nbsp;:&nbsp;-&nbsp;
                     </div>
                     <div class="match_teamname_crest">
-                        <img class="match_crest" th:src="${previousMatch.awayTeam.crestSource}"/>
+                        <img class="match_crest lazyload" th:attr="data-src=${previousMatch.awayTeam.crestSource}" alt="Herb klubu" />
                         <span th:text="${previousMatch.awayTeam.teamName}"></span>
                     </div>
                 </div>
                 <div class="match_date_time">
                     <div class="match_date" th:if="${previousMatch.matchDate != null}">
-                        <i class="icon-calendar" style="color: brown;"></i>Data:&nbsp;<span
+                        <i class="icon-calendar calendar_color"></i>Data:&nbsp;<span
                             th:text="${#temporals.format(previousMatch.matchDate, 'dd.MM.yyyy')}"></span>
                     </div>
                     <div class="match_time" th:if="${previousMatch.matchStartTime != null}">
-                        <i class="icon-clock" style="color: blueviolet;"></i>Godzina:&nbsp;<span
+                        <i class="icon-clock clock_color"></i>Godzina:&nbsp;<span
                             th:text="${#temporals.format(previousMatch.matchStartTime, 'HH:mm')}"></span>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                 <div class="match_team_score">
                     <div class="match_teamname_crest">
                         <div class="match_teamname_crest">
-                            <img class="match_crest" th:src="${nextMatch.homeTeam.crestSource}"/>
+                            <img class="match_crest lazyload" th:attr="data-src=${nextMatch.homeTeam.crestSource}" alt="Herb klubu" />
                             <span th:text="${nextMatch.homeTeam.teamName}"></span>
                         </div>
                         <!--/* Form of the last 5 matches - home team */-->
@@ -110,7 +110,7 @@
 
                     <div class="match_teamname_crest">
                         <div class="match_teamname_crest">
-                            <img class="match_crest" th:src="${nextMatch.awayTeam.crestSource}"/>
+                            <img class="match_crest lazyload" th:attr="data-src=${nextMatch.awayTeam.crestSource}" alt="Herb klubu" />
                             <span th:text="${nextMatch.awayTeam.teamName}"></span>
                         </div>
                         <!--/* Form of the last 5 matches - away team */-->
@@ -135,11 +135,11 @@
 
                 <div class="match_date_time">
                     <div class="match_date" th:if="${nextMatch.matchDate != null}">
-                        <i class="icon-calendar" style="color: brown;"></i>Data:&nbsp;<span
+                        <i class="icon-calendar calendar_color"></i>Data:&nbsp;<span
                             th:text="${#temporals.format(nextMatch.matchDate, 'dd.MM.yyyy')}"></span>
                     </div>
                     <div class="match_time" th:if="${nextMatch.matchStartTime != null}">
-                        <i class="icon-clock" style="color: blueviolet;"></i>Godzina:&nbsp;<span
+                        <i class="icon-clock clock_color"></i>Godzina:&nbsp;<span
                             th:text="${#temporals.format(nextMatch.matchStartTime, 'HH:mm')}"></span>
                     </div>
                 </div>

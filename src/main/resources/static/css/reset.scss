@@ -14,11 +14,10 @@ aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
 
 a {
     text-decoration: none;
-    outline: none;
 }
 
-button {
-    outline: none;
+button, select {
+    //outline: none;
 }
 
 ol, ul {

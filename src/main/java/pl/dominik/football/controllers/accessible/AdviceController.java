@@ -9,12 +9,11 @@ import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
 import pl.dominik.football.domain.entity.Team;
 import pl.dominik.football.domain.repository.RankingDataRepository;
+import pl.dominik.football.services.AdminConfigService;
 import pl.dominik.football.services.MatchService;
-import pl.dominik.football.services.PlayerService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
 import pl.dominik.football.services.TeamService;
-import pl.dominik.football.services.UserConfigService;
 import pl.dominik.football.utilities.SortTeams;
 
 import java.util.List;
@@ -23,10 +22,10 @@ import java.util.List;
 public class AdviceController {
 
     @Autowired
-    UserConfigService userConfigService;
+    AdminConfigService adminConfigService;
 
-    @Autowired
-    PlayerService playerService;
+//    @Autowired
+//    PlayerService playerService;
 
     @Autowired
     RankingDataRepository rankingDataRepository;
@@ -47,18 +46,18 @@ public class AdviceController {
     //Important message
     @ModelAttribute("importantMessageFlag")
     public boolean showImportantMessage() {
-        return userConfigService.getImportantMessageFlag();
+        return adminConfigService.getImportantMessageFlag();
     }
 
     @ModelAttribute("importantMessageContent")
     public String importantMessage() {
-        return userConfigService.getImportantMessageContent();
+        return adminConfigService.getImportantMessageContent();
     }
 
     //Current season id
     @ModelAttribute("currentSeasonId")
     public int currentSeasonId() {
-        return userConfigService.getCurrentSeasonId();
+        return adminConfigService.getCurrentSeasonId();
     }
 
     //Ranking

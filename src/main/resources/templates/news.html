@@ -11,8 +11,22 @@
             <div class="news_image">
                 <a th:href="|/news/${news.id}|">
 
-                    <img class="news_image" th:src="${news.mainImageSource != '' && news.mainImageSource != null
-                        ? news.mainImageSource : '/img/no-image.png'}" />
+                    <!-- /* If the news has an image */ -->
+                    <picture th:if="${news.mainImageSource != '' && news.mainImageSource != null}">
+                        <!-- /* Big image for big the resolution */ -->
+                        <source media="(min-width: 2000px)" th:attr="data-srcset=${news.mainImageSource}"/>
+                        <!-- /* Thumbnail image for the other resolutions */ -->
+                        <source th:if="${#strings.substringAfter(news.mainImageSource, '/images/')} != null"
+                                th:attr="data-srcset=
+                        '/images/thumbnail.' + ${#strings.substringAfter(news.mainImageSource, '/images/')}">
+                        <!-- /* Compatibility with old browsers */ -->
+
+                        <img th:attr="data-src=${news.mainImageSource}" alt="Obrazek aktualności" class="news_image lazyload">
+                    </picture>
+
+                    <!-- /* If the news has no image */ -->
+                    <img th:if="${news.mainImageSource == '' || news.mainImageSource == null}"
+                         class="news_image" src="/img/no-image.png" alt="Brak obrazka aktualności" />
 
                     <h2 class="news_title" th:text="${news.title}"></h2>
                 </a>
@@ -20,14 +34,16 @@
 
             <div class="news_content">
                 <div class="date_author">
-                    <div th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yyyy,&nbsp;HH:mm')}|" style="margin-right: 20px"></div>
+                    <div th:text="|Dodano:&nbsp;${#temporals.format(news.dateTime, 'dd.MM.yyyy,&nbsp;HH:mm')}|"
+                         class="date_margin"></div>
                     <div th:text="|Autor:&nbsp;${news.author}|"></div>
                 </div>
 
                 <span class="news_text"
                       th:utext="${#strings.substringBefore(news.content, '<!--more-->') == null ? news.content : #strings.substringBefore(news.content, '<!--more-->')} + '...'"></span>
-                <a th:href="|/news/${news.id}|" th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}" class="news_text">
-                    <span style="speak: none">></span>Czytaj&nbsp;więcej<span style="speak: none"><</span></a>
+                <a th:href="|/news/${news.id}|" th:if="${#strings.substringBefore(news.content, '<!--more-->') != null}"
+                   class="news_text">
+                    <span class="speak_none">></span>Czytaj&nbsp;więcej<span class="speak_none"><</span></a>
             </div>
         </div>
     </div>

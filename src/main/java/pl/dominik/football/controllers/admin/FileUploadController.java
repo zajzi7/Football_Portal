@@ -31,7 +31,7 @@ public class FileUploadController {
     @Autowired
     ImageService imageService;
 
-    @RequestMapping(value = "/upload", method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/upload", method = RequestMethod.GET)
     public String index(Model model, Pageable pageable) {
         final Page<Image> page = imageService.findPage(pageable);
         model.addAttribute("page", page);
@@ -62,8 +62,9 @@ public class FileUploadController {
             redirectAttributes.addFlashAttribute("flash.message", "Successfully uploaded " + file.getOriginalFilename());
         } catch (IOException e) {
             redirectAttributes.addFlashAttribute("flash.message", "Failed to upload " + file.getOriginalFilename());
+            e.printStackTrace();
         }
-        return "redirect:/upload";
+        return "redirect:/admin/upload";
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = BASE_PATH + "/" + FILENAME)
@@ -76,7 +77,7 @@ public class FileUploadController {
         } catch (IOException|RuntimeException e) {
             redirectAttributes.addFlashAttribute("flash.message", "Failed to delete " + filename + " => " + e.getMessage());
         }
-        return "redirect:/upload";
+        return "redirect:/admin/upload";
     }
 
 }

@@ -25,8 +25,8 @@
                     <td class="text-center" th:text="${iteration.index + 1}"></td>
                     <td class="text-left">
                         <div class="table_crest_teamname">
-                            <img class="table_crest_img" th:src="${team.team.crestSource}"
-                                 th:text="${team.team.teamName}"/>
+                            <img class="table_crest_img lazyload" th:attr="data-src=${team.team.crestSource}"
+                                 th:text="${team.team.teamName}" alt="Herb klubu" />
                         </div>
                     </td>
                     <td class="text-center" th:text="${team.matchesPlayed}"></td>
@@ -42,8 +42,9 @@
     <div th:fragment="results" class="results">
         <div class="results_head icon-football-ball">Ostatnia kolejka</div>
         <div class="results_content" th:if="${lastRound} != null">
-            <div th:text="|Kolejka ${lastRound.roundNumber}, ${#temporals.format(lastRound.roundStartDate, 'dd.MM.yyyy')}|"
-                style="margin-bottom: 0.3em"></div>
+            <div style="margin-bottom: 0.3em"
+                 th:text="|Kolejka ${lastRound.roundNumber}, ${#temporals.format(lastRound.roundStartDate, 'dd.MM.yyyy')}|">
+            </div>
 
                 <div th:each="match : ${lastRound.matches}" class="single_match" th:if="${
                              match.homeScore != null &&
@@ -51,7 +52,7 @@
                              match.homeTeam != null &&
                              match.awayTeam != null}">
                     <div class="team_name">
-                        <img class="results_crest" th:src="${match.homeTeam.crestSource}" />
+                        <img class="results_crest lazyload" th:attr="data-src=${match.homeTeam.crestSource}" alt="Herb klubu" />
                         <span th:text="${match.homeTeam.teamName}"></span>
                     </div>
                     <div class="score">
@@ -69,7 +70,7 @@
                     </div>
                     <div class="team_name" style="flex-wrap: wrap-reverse">
                         <span th:text="${match.awayTeam.teamName}"></span>
-                        <img class="results_crest" th:src="${match.awayTeam.crestSource}" />
+                        <img class="results_crest lazyload" th:attr="data-src=${match.awayTeam.crestSource}" alt="Herb klubu" />
                     </div>
                 </div>
 
@@ -80,7 +81,7 @@
                 <div>Pauzujące drużyny:</div>
 
                 <div th:each="team : ${pausedTeams}">
-                    <img th:src="${team.crestSource}" />
+                    <img class="lazyload" th:attr="data-src=${team.crestSource}" alt="Herb klubu" />
                     <span th:text="'&nbsp;' + ${team.teamName}"></span>
                 </div>
 
@@ -88,7 +89,7 @@
             </div>
             <a th:href="|/results?round=${lastRound.roundNumber}|"> Kolejki </a>
         </div>
-        <div class="results_content" style="font-style: italic" th:if="${lastRound} == null"
+        <div class="results_content italic" th:if="${lastRound} == null"
              th:text="'Brak meczy'"></div>
     </div>
 </div>

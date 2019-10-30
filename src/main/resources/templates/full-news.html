@@ -18,8 +18,17 @@
 
     <div class="article_content">
         <!--/* News image */-->
-        <img class="full_news_main_image" th:if="${news.mainImageSource != '' && news.mainImageSource != null}"
-             th:src="${news.mainImageSource}" />
+        <picture th:if="${news.mainImageSource != '' && news.mainImageSource != null}">
+            <!-- /* Big image for big the resolution */ -->
+            <source media="(min-width: 2000px)" th:attr="data-srcset=${news.mainImageSource}"/>
+            <!-- /* Thumbnail image for the other resolutions */ -->
+            <source th:if="${#strings.substringAfter(news.mainImageSource, '/images/')} != null"
+                    th:attr="data-srcset=
+                        '/images/thumbnail.' + ${#strings.substringAfter(news.mainImageSource, '/images/')}">
+            <!-- /* Compatibility with old browsers */ -->
+
+            <img th:attr="data-src=${news.mainImageSource}" alt="Obrazek aktualności" class="full_news_main_image lazyload">
+        </picture>
 
         <!--/* Helpful br for the responsive */-->
         <br class="display_br" th:if="${news.mainImageSource != '' && news.mainImageSource != null}" />

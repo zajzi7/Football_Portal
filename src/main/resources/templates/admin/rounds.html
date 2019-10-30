@@ -8,7 +8,7 @@
 <body>
 
 <div layout:fragment="container" class="container">
-    <a th:href="${'/newround/'+seasonId}" class="btn btn-info mt-2 mb-2">Nowa kolejka</a>
+    <a th:href="${'/admin/newround/'+seasonId}" class="btn btn-info mt-2 mb-2">Nowa kolejka</a>
     <table class="table table-bordered table-striped table-hover">
         <caption>Kolejki sezonu <span th:text="${seasonName}"></span></caption>
         <thead class="thead-dark">
@@ -21,16 +21,16 @@
         <tbody>
         <tr th:each="round : ${rounds}">
             <th scope="row" style="width: 5%; text-align: center" th:text="${round.id}"></th>
-            <td><a th:href="|/seasons/show-matches/${seasonId}/${round.id}|">
+            <td><a th:href="|/admin/seasons/show-matches/${seasonId}/${round.id}|">
                 <span th:text="${'Kolejka ' + round.roundNumber}" title="Wgląd do meczy"></span></a></td>
-            <td><a th:href="|/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
-            <td><a th:href="|/rounds/delete/${seasonId}/${round.id}|"
+            <td><a th:href="|/admin/rounds/edit/${seasonId}/${round.id}|">Edytuj</a></td>
+            <td><a th:href="|/admin/rounds/delete/${seasonId}/${round.id}|"
                    th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć Kolejkę ' + ${round.roundNumber} +'?'+'\')'">
                 Usuń</a></td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/seasons}" class="btn btn-outline-info btn-sm">Powrót do listy sezonów</a>
+    <a th:href="@{/admin/seasons}" class="btn btn-outline-info btn-sm">Powrót do listy sezonów</a>
 </div>
 
 </body>

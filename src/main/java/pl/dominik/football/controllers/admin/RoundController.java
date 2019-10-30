@@ -19,6 +19,7 @@ import javax.validation.Valid;
 import java.time.LocalDate;
 
 @Controller
+@RequestMapping("/admin")
 public class RoundController {
 
     //Auxiliary variable to get String value from validation.messages.properties and add to the error
@@ -67,7 +68,7 @@ public class RoundController {
         }
 
         //If everything went well then redirect to the rounds list
-        return "redirect:/seasons/show-rounds/" + seasonId;
+        return "redirect:/admin/seasons/show-rounds/" + seasonId;
     }
 
     @RequestMapping(value = "/rounds/edit/{seasonId}/{roundId}")
@@ -83,7 +84,7 @@ public class RoundController {
     @RequestMapping(value = "/rounds/delete/{seasonId}/{roundId}")
     public String deleteRound(@PathVariable("seasonId") int seasonId, @PathVariable("roundId") int roundId) {
         roundService.deleteRound(roundId);
-        return "redirect:/seasons/show-rounds/" + seasonId;
+        return "redirect:/admin/seasons/show-rounds/" + seasonId;
     }
 
 }

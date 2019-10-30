@@ -4,8 +4,11 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Cacheable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -26,6 +29,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 @NoArgsConstructor
 @ToString
 @Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"round_number", "season_id"})})
@@ -36,6 +41,16 @@ public class Round {
     @Getter @Setter
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "round", cascade = CascadeType.REMOVE)
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    @Getter @Setter
+    private List<Match> matches = new ArrayList<>();
+
+    @ManyToOne
+    @Getter @Setter
+    @JoinColumn(name = "season_id")
+    private Season season;
 
     //Field to store round number in the current season(example: Round 1, season 2019/2020)
     @Column(name = "round_number")
@@ -48,15 +63,6 @@ public class Round {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @NotNull(message = "{pl.round.validation.date.notNull.message}")
     private LocalDate roundStartDate;
-
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "round", cascade = CascadeType.REMOVE)
-    @Getter @Setter
-    private List<Match> matches = new ArrayList<>();
-
-    @ManyToOne
-    @Getter @Setter
-    @JoinColumn(name = "season_id")
-    private Season season;
 
     public Round(int roundNumber) {
         this.roundNumber = roundNumber;

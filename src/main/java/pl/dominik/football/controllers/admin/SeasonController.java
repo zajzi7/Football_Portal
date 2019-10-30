@@ -16,18 +16,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import pl.dominik.football.domain.entity.Round;
 import pl.dominik.football.domain.entity.Season;
+import pl.dominik.football.services.AdminConfigService;
 import pl.dominik.football.services.RoundService;
 import pl.dominik.football.services.SeasonService;
-import pl.dominik.football.services.UserConfigService;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Controller
+@RequestMapping("/admin")
 public class SeasonController {
 
     @Autowired
-    UserConfigService userConfigService;
+    AdminConfigService adminConfigService;
 
     @Autowired
     SeasonService seasonService;
@@ -77,7 +78,7 @@ public class SeasonController {
         }
 
         //If everything went well then redirect to the seasons list
-        return "redirect:/seasons";
+        return "redirect:/admin/seasons";
     }
 
     @RequestMapping(value = "/seasons/edit/{id}")
@@ -90,17 +91,17 @@ public class SeasonController {
     @RequestMapping(value = "/seasons/delete/{id}")
     public String deleteSeason(@PathVariable("id") int id) {
         seasonService.deleteSeason(id);
-        return "redirect:/seasons";
+        return "redirect:/admin/seasons";
     }
 
     @RequestMapping(value = "/seasons/set-season/{id}")
     public String setCurrentSeason(@PathVariable("id") int id) {
-        userConfigService.setCurrentSeasonById(id);
-        return "redirect:/seasons";
+        adminConfigService.setCurrentSeasonById(id);
+        return "redirect:/admin/seasons";
     }
 
     @RequestMapping("/seasons")
-    //Show all seasons in table
+    //Show all seasons in the table
     public String getAllSeasons(Model model) {
 
         //Get all seasons
@@ -108,7 +109,7 @@ public class SeasonController {
         model.addAttribute("seasons", seasons);
 
         //Get current season ID
-        int currentSeasonId = userConfigService.getCurrentSeasonId();
+        int currentSeasonId = adminConfigService.getCurrentSeasonId();
         model.addAttribute("currentSeasonId", currentSeasonId);
 
         return "admin/seasons";

@@ -1,5 +1,7 @@
 package pl.dominik.football.services;
 
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
@@ -44,6 +46,11 @@ public class ImageService {
         if (!file.isEmpty()) {
             Files.copy(file.getInputStream(), Paths.get(UPLOAD_ROOT, file.getOriginalFilename()));
             imageRepository.save(new Image(file.getOriginalFilename()));
+
+//                imageRepository.save(new Image("thumbnail." + file.getOriginalFilename()));
+                Thumbnails.of(UPLOAD_ROOT + "/" + file.getOriginalFilename())
+                        .size(585, 440)
+                        .toFiles(Rename.PREFIX_DOT_THUMBNAIL);
         }
     }
 
@@ -52,6 +59,7 @@ public class ImageService {
         final Image byName = imageRepository.findByName(filename);
         imageRepository.delete(byName);
         Files.deleteIfExists(Paths.get(UPLOAD_ROOT, filename));
+        Files.deleteIfExists(Paths.get(UPLOAD_ROOT, "thumbnail." + filename));
     }
 
     @Bean
@@ -62,16 +70,16 @@ public class ImageService {
 
             Files.createDirectory(Paths.get(UPLOAD_ROOT));
 
-            FileCopyUtils.copy("Test file", new FileWriter(UPLOAD_ROOT + "/test"));
-            imageRepository.save(new Image("test"));
+            FileCopyUtils.copy("Test file", new FileWriter(UPLOAD_ROOT + "/test.jpg"));
+            imageRepository.save(new Image("test.jpg"));
 
 
-            FileCopyUtils.copy("Test file2", new FileWriter(UPLOAD_ROOT + "/test2"));
-            imageRepository.save(new Image("test2"));
+            FileCopyUtils.copy("Test file2", new FileWriter(UPLOAD_ROOT + "/test2.jpg"));
+            imageRepository.save(new Image("test2.jpg"));
 
 
-            FileCopyUtils.copy("Test file3", new FileWriter(UPLOAD_ROOT + "/test3"));
-            imageRepository.save(new Image("test3"));
+            FileCopyUtils.copy("Test file3", new FileWriter(UPLOAD_ROOT + "/test3.jpg"));
+            imageRepository.save(new Image("test3.jpg"));
         };
     }
 

@@ -24,7 +24,7 @@ public class RoundServiceImpl implements RoundService {
     SeasonService seasonService;
 
     @Autowired
-    UserConfigService userConfigService;
+    AdminConfigService adminConfigService;
 
     @PersistenceContext
     EntityManager em;

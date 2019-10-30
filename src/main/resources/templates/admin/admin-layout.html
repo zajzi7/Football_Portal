@@ -1,47 +1,28 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <title>Panel administratora - KS Husaria Łapczyca</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
+    <link rel="stylesheet" th:href="@{/css/styles.min.css}" />
     <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
     <link rel="stylesheet" th:href="@{/css/icons/css/fontello.css}" />
     <script th:src="@{/webjars/jquery/3.4.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/4.3.1/js/bootstrap.min.js}"></script>
-    <style>
-        body {
-            background: #F8F8F8;
-        }
-        ul {
-            list-style-type: none !important;
-            background-color:black !important;
-            padding:5px !important;
-            border-radius: 5px !important;
-        }
-        li {
-            display: inline !important;
-            padding: 5px 0.5em !important;
-            color: white !important;
 
-            border-right-style: solid !important;
-            border-right-width: 2px !important;
-            border-image: linear-gradient(to bottom, transparent, gray, transparent) 1 100% !important;
-            border-left-width: 0px !important;
-        }
-        nav {
-            background: black !important;
-        }
-        nav a {
-            color: #fff !important;
-        }
-        nav a:hover {
-            color: orange !important;
-            transition:color 0.5s !important;
-        }
-    </style>
+    <!--    For jquery tooltips-->
+    <link rel="stylesheet" th:href="@{/js/jquery-ui-1.12.1.custom/jquery-ui.min.css}">
+    <script th:src="@{/js/jquery-ui-1.12.1.custom/jquery-ui.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/admin-css.min.css}" />
+    <script>
+        $( function() {
+            $( document ).tooltip();
+        } );
+    </script>
 </head>
 <body>
 
@@ -54,38 +35,38 @@
         <div class="collapse navbar-collapse" id="mainmenu">
             <ul class="navbar-nav">
 
-                <li class="nav-item">
+                <li class="nav-item" title="Strona główna panelu administratora">
+                    <a class="nav-link icon-panel" th:href="|/admin/|"></a>
+                </li>
+                <li class="nav-item" title="Strona główna witryny">
                     <a class="nav-link icon-home-outline" th:href="|/|" target="_blank"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-doc" th:href="|/news|"> News</a>
+                    <a class="nav-link icon-doc" th:href="|/admin/news|"> News</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-football-ball-variant" th:href="|/seasons|"> Sezony</a>
+                    <a class="nav-link icon-football-ball-variant" th:href="|/admin/seasons|"> Sezony</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-upload" th:href="|/upload|"> Upload</a>
+                    <a class="nav-link icon-football-jersey-shirt disabled" th:href="|/admin/teams|"> Drużyny</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-exclamation" th:href="|/important-message|"> Ważna Informacja</a>
+                    <a class="nav-link icon-upload" th:href="|/admin/upload|"> Upload</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-user disabled" th:href="|/|"> Użytkownicy</a>
+                    <a class="nav-link icon-exclamation" th:href="|/admin/important-message|"> Ważna Informacja</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link icon-cog disabled" th:href="|/|"> Ustawienia</a>
+                    <a class="nav-link icon-user disabled" th:href="|/admin/|"> Użytkownicy</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link icon-cog disabled" th:href="|/admin/|"> Ustawienia</a>
                 </li>
 
-                <!--                <li class="nav-item dropdown">-->
-                <!--                    <a class="nav-link dropdown-toggle"> Sezony </a>-->
-                <!--                    <div class="dropdown">-->
-                <!--                        <a class="dropdown-item" href="Utwórz sezon"></a>-->
-                <!--                    </div>-->
-                <!--                </li>-->
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="border-right-style: none !important;">
-                    <a class="nav-link icon-power disabled" th:href="|/|"> Wyloguj</a>
+                <li class="nav-item logout">
+                    <a class="nav-link icon-power" th:href="|/logout|"> Wyloguj</a>
                 </li>
             </ul>
         </div>
@@ -95,7 +76,7 @@
 
     <div layout:fragment="container" class="container-fluid">
         <div class="row">
-            <div class="col-12">To jest treść strony</div>
+            <div class="col-12">Witaj <span sec:authentication="name"></span>!</div>
         </div>
     </div>
 

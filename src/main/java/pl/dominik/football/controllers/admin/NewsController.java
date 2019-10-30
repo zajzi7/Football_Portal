@@ -23,6 +23,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 
 @Controller
+@RequestMapping("/admin")
 public class NewsController {
 
     @Autowired
@@ -79,13 +80,13 @@ public class NewsController {
         news.setDateTime(LocalDateTime.now(ZoneId.of("Europe/Paris")));
 
         newsService.save(news);
-        return "redirect:/news";
+        return "redirect:/admin/news";
     }
 
     @RequestMapping(value = "/news/delete/{newsId}")
     public String deleteNews(@PathVariable("newsId") int newsId) {
         newsService.deleteNews(newsId);
-        return "redirect:/news";
+        return "redirect:/admin/news";
     }
 
     @RequestMapping(value = "/news/edit/{newsId}")

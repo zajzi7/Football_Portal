@@ -1,3 +1,10 @@
+@mixin flexbox {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
 
 /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#4a75a1+0,49749f+44,3d6691+100 */
 $background_header1: rgb(0,138,0); /* Old browsers */

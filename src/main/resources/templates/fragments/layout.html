@@ -1,5 +1,6 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html lang="pl-PL"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
 <head>
@@ -11,9 +12,12 @@
 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&display=swap">
-    <link rel="stylesheet" th:href="@{/css/styles.css}" />
-    <link rel="stylesheet" th:href="@{/css/icons/css/fontello.css}" />
+
+    <link rel="stylesheet" th:href="@{/css/styles.min.css}" />
+
+    <!--/* Asynchronous CSS */-->
+    <!--/* <link rel="stylesheet" th:href="@{/css/styles.min.css}" media="print" onload="this.media='all'" /> */-->
+    <!--/* <noscript><link rel="stylesheet" th:href="@{/css/styles.min.css}" /></noscript> */-->
 
     <!-- ****** favicony faviconit.com ****** -->
     <link rel="shortcut icon" href="img/icons/favicon.ico">
@@ -38,6 +42,12 @@
     <meta name="msapplication-config" content="img/icons/browserconfig.xml">
     <!-- ****** favicony faviconit.com ****** -->
 
+    <!-- Focus keyboard script -->
+    <script async th:src="@{/js/lazysizes.min.js}"></script>
+    <script async th:src="@{/js/focus-visible.min.js}"></script>
+    <script async th:src="@{/js/modernizr-custom.js}"></script>
+
+    <!-- Next match date counter -->
     <script th:inline="javascript">
         /*<![CDATA[*/
             var countDownDate = new Date([[|${nextMatch?.matchDate} ${nextMatch?.matchStartTime}:00|]]).getTime();
@@ -120,10 +130,10 @@
         </div>
 
         <!--        Sidebar-->
-        <div class="sidebar">
+        <aside class="sidebar">
             <div th:replace="fragments/sidebar.html :: ranking"></div>
             <div th:replace="fragments/sidebar.html :: results"></div>
-        </div>
+        </aside>
     </div>
 
     <!--    Footer-->

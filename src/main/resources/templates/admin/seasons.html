@@ -8,7 +8,7 @@
 <body>
 
 <div layout:fragment="container" class="container">
-    <a th:href="newseason" class="btn btn-info mt-2 mb-2">Nowy sezon</a>
+    <a th:href="@{/admin/newseason}" class="btn btn-info mt-2 mb-2">Nowy sezon</a>
 
     <table class="table table-bordered table-striped table-hover">
         <caption>Lista sezonów</caption>
@@ -27,23 +27,23 @@
             <th scope="row" th:text="${season.id}"></th>
 
             <!--        Season name + current season-->
-            <td style="text-align: left"><a title="Kolejki" th:href="${'/seasons/show-rounds/'+season.id}">
+            <td style="text-align: left"><a title="Kolejki" th:href="${'/admin/seasons/show-rounds/'+season.id}">
                 <span th:text="${season.seasonName}"/>
                 <span th:if="${season.id==currentSeasonId}">Obecny sezon</span></a></td>
 
             <!--        Assign teams to season-->
-            <td><a th:href="${'/assign-teams/'+season.id}">Przypisz/usuń drużyny</a></td>
+            <td><a th:href="${'/admin/assign-teams/'+season.id}">Przypisz/usuń drużyny</a></td>
 
             <!--        Edit season name-->
-            <td><a th:href="${'/seasons/edit/'+season.id}">Edytuj nazwę</a></td>
+            <td><a th:href="${'/admin/seasons/edit/'+season.id}">Edytuj nazwę</a></td>
 
             <!--        Delete season-->
-            <td><a th:href="${'/seasons/delete/'+season.id}" th:if="${season.id!=currentSeasonId}"
+            <td><a th:href="${'/admin/seasons/delete/'+season.id}" th:if="${season.id!=currentSeasonId}"
                    th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć Sezon ' + ${season.seasonName} +'?'+'\')'">
                 Usuń</a></td>
 
             <!--        Set season as current season-->
-            <td><a th:href="${'/seasons/set-season/'+season.id}"
+            <td><a th:href="${'/admin/seasons/set-season/'+season.id}"
                    th:if="${season.id!=currentSeasonId}">Ustaw jako obecny</a></td>
         </tr>
         </tbody>

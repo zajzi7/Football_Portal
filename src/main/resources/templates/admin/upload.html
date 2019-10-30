@@ -23,7 +23,7 @@
         <tr th:each="image : ${page.content}">
             <td th:text="${image.id}"></td>
             <td th:text="${image.name}"></td>
-            <td><img th:src="@{'/images/' + ${image.name} + '/raw'}" style="max-width: 200px;"/></td>
+            <td><img th:src="@{'/images/' + ${image.name} + '/raw'}" class="upload_img_size" /></td>
             <td>
                 <form th:method="delete" th:action="@{'/images/' + ${image.name}}">
                     <input type="submit" value="Delete"/>
@@ -33,7 +33,7 @@
         </tbody>
     </table>
 
-    <form action="/images" method="post" enctype="multipart/form-data">
+    <form th:action="@{/images}" method="post" enctype="multipart/form-data">
         <input type="file" name="file" multiple/>
         <input type="submit" value="Upload"/>
     </form>
