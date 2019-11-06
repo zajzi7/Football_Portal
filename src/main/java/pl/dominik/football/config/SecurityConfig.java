@@ -82,8 +82,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @EventListener(ApplicationReadyEvent.class)
     public void createUsers() {
-        User user = new User("user", passwordEncoder().encode("123"), "ROLE_EDITOR", true);
-        User admin = new User("admin", passwordEncoder().encode("123"), "ROLE_ADMIN", true);
+        User user = new User("user", "Użytkownik", passwordEncoder().encode("123"), "ROLE_EDITOR", true);
+        User admin = new User("admin", "Administrator", passwordEncoder().encode("123"), "ROLE_ADMIN", true);
         userDetails.saveUser(user);
         userDetails.saveUser(admin);
     }

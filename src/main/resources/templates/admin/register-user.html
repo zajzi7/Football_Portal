@@ -1,0 +1,45 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.3.1/css/bootstrap.min.css}" />
+</head>
+<body>
+
+<div class="container">
+    <div class="ml-4 mt-4">
+        <form th:object="${user}" th:action="@{/register}" th:method="post">
+
+            <!--    Username-->
+            Użytkownik*:<br />
+            <input type="text" th:field="*{username}" class="form-control mb-3 col-3" placeholder="Nazwa użytkownika" />
+
+            <!-- First name-->
+            Nazwa własna(np. imię, wyświetlana jako autor newsa)*:<br />
+            <input type="text" th:field="*{firstName}" class="form-control mb-3 col-3" placeholder="Nazwa własna" />
+
+            <!-- Email-->
+            Adres e-mail:<br />
+            <input type="text" th:field="*{email}" class="form-control mb-3 col-3" placeholder="E-mail" />
+
+            <!--    Password-->
+            Hasło*:<br />
+            <input type="password" name="password" th:field="*{password}" class="form-control mb-3 col-3" placeholder="Hasło" />
+
+            <!--    Confirm password-->
+            Potwierdź hasło*:<br />
+            <input type="password" name="confirmPassword" class="form-control mb-3 col-3" placeholder="Potwierdź hasło" />
+
+            <!--    Errors-->
+            <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
+
+            <!--    Save-->
+            <button type="submit" class="btn btn-info col-1">Zapisz</button><br /><br />
+            Pola oznaczone gwiazdką (*) są obowiązkowe.
+        </form><br />
+        <h6 th:if="${#vars['flash.message']}" th:text="${#vars['flash.message']}"
+            style="background: green; color: lightgray; padding: 1em"></h6>
+    </div>
+</div>
+</body>
+</html>

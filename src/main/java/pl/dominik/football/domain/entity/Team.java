@@ -19,6 +19,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.PreRemove;
@@ -36,7 +37,6 @@ public class Team {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Getter @Setter
-    @ToString.Exclude
     @Id
     private int id;
 
@@ -44,20 +44,17 @@ public class Team {
     @OneToMany(mappedBy = "homeTeam")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Getter @Setter
-    @ToString.Exclude
     private Set<Match> matchHomeTeam; //It is mainly here to help @PreRemove interface
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @OneToMany(mappedBy = "awayTeam")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @Getter @Setter
-    @ToString.Exclude
     private Set<Match> matchAwayTeam; //It is mainly here to help @PreRemove interface
 
     @LazyCollection(LazyCollectionOption.FALSE)
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    @ToString.Exclude
     @Getter @Setter
     private Set<Season> season = new HashSet<>();
 
@@ -68,7 +65,7 @@ public class Team {
     private String teamName;
 
     @Getter @Setter
-    @ToString.Exclude
+    @Lob
     private String crestSource;
 
     public Team(String teamName) {

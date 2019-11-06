@@ -13,7 +13,10 @@
             <!--    Hidden field necessary for updates-->
             <input type="hidden" th:field="*{id}"/>
             <!--    Team name-->
-            <input type="text" th:field="*{teamName}" class="form-control mb-3 col-2" placeholder="Nazwa drużyny"/>
+            <input type="text" th:field="*{teamName}" class="form-control mb-3 col-2" placeholder="Nazwa drużyny" />
+            <!--    Team crest-->
+            <input type="text" th:field="*{crestSource}" class="form-control mb-3 col-5" placeholder="Link do herbu drużyny" />
+            <img th:src="*{crestSource}" class="upload_img_size" /><br /><br />
             <!--    Errors-->
             <p class="alert alert-danger" th:each="err : ${#fields.errors('*')}" th:text="${err}"></p>
             <!--    Save-->
