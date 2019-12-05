@@ -1,7 +1,18 @@
 # About project
-Football club website. An engineering project (for my thesis) in Spring.
+I created a football club website for my thesis and for the local community.
 
-I used Spring Boot, Gradle, Spring Security, MVC, Hibernate, MySQL, Thymeleaf, Lombok, SASS, Bootstrap for the admin panel, CKEditor, etc. This project isn't finished yet. I'm working on it (almost done). Look at the video! https://youtu.be/RjYBnGJrB90
+I used Spring Boot, Gradle, Spring Security, MVC, Hibernate, MySQL, Thymeleaf, Lombok, SASS, Bootstrap for the admin panel, CKEditor, etc. This project isn't finished yet. I'm working on it (almost done).
+
+I designed it through:
+- business requirements analysis
+- use cases
+- diagrams (DFD, ERD)
+
+I included, among others:
+- responsive web design
+- performance optimization (cache, GZIP, code minimify, basic database optimization)
+- security (SQL injection, CSRF, CSP headers and Feature Policy)
+
 ## Use cases (drawn in Enterpriste Architect)
 ![usecases](https://user-images.githubusercontent.com/27241538/70185679-92d7dc80-16ea-11ea-9883-97d356a33564.png)
 
@@ -29,4 +40,4 @@ I used Spring Boot, Gradle, Spring Security, MVC, Hibernate, MySQL, Thymeleaf, L
 ![responsive2](https://user-images.githubusercontent.com/27241538/70186231-c2d3af80-16eb-11ea-8281-e94a7e377d47.png)
 
 ### How to run?
-Unfortunately, this isn't possible yet. I'm working on it.
+Unfortunately, this isn't possible yet. I'm working on it but you can look at the video https://youtu.be/RjYBnGJrB90
