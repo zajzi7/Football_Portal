@@ -1,0 +1,47 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{admin/admin-layout}">
+<head>
+</head>
+<body>
+
+<div layout:fragment="container" class="container">
+
+    <table class="table table-bordered table-striped table-hover">
+        <caption>Lista użytkowników</caption>
+        <thead class="thead-dark">
+        <th scope="col" style="width: 5%; text-align: center">ID</th><!-- ID-->
+        <th scope="col">Nazwa użytkownika</th><!-- Username-->
+        <th scope="col">Uprawnienia</th><!-- Role-->
+        <th></th><!-- Delete user-->
+        </thead>
+
+        <tbody style="text-align: center">
+        <tr th:each="user : ${userList}">
+
+            <!--        ID-->
+            <th scope="row" th:text="${user.id}"></th>
+
+            <!--        Username-->
+            <td style="text-align: left">
+                <span th:text="${user.username}" />
+            </td>
+
+            <!--        Role-->
+            <td style="text-align: left">
+                <span th:text="${user.role}" />
+            </td>
+
+            <!--        Delete user-->
+            <td><a th:href="${'/admin/manage-users/delete/'+user.id}"
+                   th:attr="onclick='return confirm(\'Czy napewno chcesz usunąć użytkownika ' + ${user.username} +'?'+'\')'">
+                Usuń</a></td>
+
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

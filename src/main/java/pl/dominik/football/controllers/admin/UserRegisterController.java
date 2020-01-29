@@ -18,7 +18,7 @@ import pl.dominik.football.services.UserDetailsImpl;
 import javax.validation.Valid;
 
 @Controller
-public class UserController {
+public class UserRegisterController {
 
     //Auxiliary variable to get String value from validation.messages.properties and add to the error
     @Value("${pl.user.validation.passwordNotMatch}")
@@ -66,5 +66,4 @@ public class UserController {
                 "Zostałeś zarejestrowany poprawnie. Poczekaj na aktywację konta przez administratora");
         return "redirect:/register";
     }
-
 }

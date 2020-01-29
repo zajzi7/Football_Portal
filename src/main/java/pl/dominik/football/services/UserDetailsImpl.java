@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import pl.dominik.football.domain.entity.User;
 import pl.dominik.football.domain.repository.UserRepository;
 
+import java.util.List;
+
 @Service
 public class UserDetailsImpl implements UserDetailsService {
 
@@ -35,4 +37,7 @@ public class UserDetailsImpl implements UserDetailsService {
         userRepository.save(user);
     }
 
+    public List<User> findAllUsers() {
+        return userRepository.findAll();
+    }
 }
